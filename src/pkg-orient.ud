@@ -28,8 +28,7 @@
         (item "IRIX 6.5 - MIPS")
         (item "Linux - Too many combinations to mention")
         (item "Mac OS X / Darwin - PPC / PPC64 / x86 / x86_64")
-        (item "Microsoft Windows 2000")
-        (item "Microsoft Windows XP")
+        (item "Microsoft Windows 2000/XP (using MSYS for minimal POSIX shell commands)")
         (item "NetBSD - Too many combinations to mention")
         (item "OpenBSD - 3.5 .. 4.0 - x86")
         (item "OpenVMS - Alpha")
@@ -124,5 +123,44 @@ $ cat flags-sdl
     (para "The package does not change it's own behaviour based on the
       current host system or environment. Each platform executes the
       same code in the same order."))
+
+  (subsection
+    (title "Detail")
+    (para "The package can currently detect:")
+    (para
+      (list
+        (item "CPU features such as MMX, MMX2, 3DNow!, SSE, Altivec")
+        (item "CPU L1 instruction cache size")
+        (item "CPU L1 data cache size")
+        (item "CPU L2 cache size")
+        (item "CPU L3 cache size")
+        (item "CPU cache line size")
+        (item "CPU model")
+        (item "Number of CPUs in the system")
+        (item "Operating system")
+        (item "Version of operating system")
+        (item "C compiler vendor")
+        (item "Version of C compiler")
+        (item "Hardware architecture")
+        (item "Ada compiler vendor")
+        (item "Version of Ada compiler")))
+    (para "These are detected as standard, without any additional modules
+      required. They can be extremely useful when, for example, writing
+      high-performance numerical software.")
+    (para "The package comes with various optional modules that can detect,
+      for example:")
+    (para
+      (list
+        (item "Various features of ISO C, such as 'inline' support")
+        (item "System interfaces that have been historically problematic, such as " (item file_name "signal.h"))
+        (item "Presence of math functions in the standard C library")
+        (item "Libraries required to use system network socket functions")
+        (item "Libraries required to use dynamic library loading")
+        (item "Detection of native byte order")))
+    (para "At the time of writing, there are close to 200 modules for
+      various system features and external packages. This number is
+      steadily increasing. The modular design, of course, ensures that
+      complexity does not become an issue as it is isolated inside
+      optional modules."))
 
 ) ; end of section
