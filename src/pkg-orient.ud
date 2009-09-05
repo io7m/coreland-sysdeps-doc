@@ -43,7 +43,24 @@
       During the design and implementation, the code was extensively tested
       in the most obscenely broken and misconfigured environments to ensure
       that it worked everywhere and that only the truly \"portable\" subset
-      of the implementation languages were used."))
+      of the implementation languages were used.")
+    (para "A simple search of the " (item package "sysdeps") " source shows
+      usage of only these programs from POSIX:")
+    (para
+      (list
+        (item command "awk")
+        (item command "cat")
+        (item command "cc")
+        (item command "cd")
+        (item command "echo")
+        (item command "grep")
+        (item command "head")
+        (item command "mv")
+        (item command "rm")
+        (item command "sed")
+        (item command "sort")
+        (item command "wc")
+        (item command "uname"))))
 
   (subsection
     (title "Modularity")
