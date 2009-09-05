@@ -1,0 +1,114 @@
+(section
+  (title "Install")
+
+  ; config section
+
+  (subsection
+    (title "Configuration")
+    (para
+      "On installation, binaries, source files, libraries and
+       headers are installed into various locations. The locations
+       can be customised by editing single-line configuration files.
+       The defaults are as follows:")
+    (para
+      (table install_config
+        (t-row
+          (item "default path")
+          (item "configuration file")
+          (item "description"))
+        (t-row
+          (item file_name "/usr/local/share/coreland/sysdeps-repos")
+          (item file_name "conf-repos")
+          (item "Source code repository."))
+        (t-row
+          (item file_name "/usr/local/lib/coreland/sysdeps-static")
+          (item file_name "conf-slibdir")
+          (item "Static library directory."))
+        (t-row
+          (item file_name "/usr/local/lib/coreland/sysdeps")
+          (item file_name "conf-dlibdir")
+          (item "Dynamic library directory."))
+        (t-row
+          (item file_name "/usr/local/include/coreland/sysdeps")
+          (item file_name "conf-incdir")
+          (item "Header file directory."))
+        (t-row
+          (item file_name "/usr/local/bin")
+          (item file_name "conf-bindir")
+          (item "Executable directory."))))
+      (para
+        "For reasons of reliability, the compilation process does not
+         read the environment or, for example, attempt to detect which
+         compiler tools should be used to compile code. The compilation
+         process reads a series of single-line configuration files which
+         specify various options. The defaults provided are acceptable
+         for most systems but users wanting customised builds will need
+         to edit the following:")
+      (subsection
+        (title "C compiler configuration")
+        (table install_config
+          (t-row
+            (item "configuration file")
+            (item "description")
+            (item "default value"))
+          (t-row
+            (item file_name "conf-cc")
+            (item "C compiler used to compile C code to object files")
+            (item command "cc"))
+          (t-row
+            (item file_name "conf-ld")
+            (item "C linker used to link C object files into executables")
+            (item command "cc"))
+          (t-row
+            (item file_name "conf-cflags")
+            (item "Optional flags passed to C compiler")
+            (item parameter "-O"))
+          (t-row
+            (item file_name "conf-ldflags")
+            (item "Optional flags passed to C linker")
+            (item parameter " "))
+          (t-row
+            (item file_name "conf-ldflags")
+            (item "Optional flags passed to C linker")
+            (item parameter " "))))
+      )
+
+  ; compilation requirements
+
+  (subsection
+    (title "Requirements")
+
+    
+
+    (para "The package requires a C90" (footnote (link-ext
+    "http://www.open-std.org/jtc1/sc22/wg14/")) " compiler and a POSIX"
+    (footnote (link-ext "http://www.opengroup.org/")) " environment to
+      compile. The package is expected to be usable in a non-POSIX
+      environment, but is not currently tested extensively in one.")
+
+    (include "pkg-install-req.ud"))
+
+  ; compilation instructions
+
+  (subsection
+    (title "Compilation")
+    (para "The package is compiled with the following commands: ")
+
+    (para-verbatim example
+"make
+make tests")
+
+    (para "The first " (item command "make") " command compiles the
+    object code itself. The second command runs the test suite - any
+    errors here signal incorrect package behaviour.")
+
+    (para "To install:")
+
+    (para-verbatim example
+"make install
+make install-check")
+
+    (para "The first " (item command "make") " command installs all
+    relevant files. The second command checks that all files were
+    installed correctly."))
+)

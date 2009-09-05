@@ -1,0 +1,123 @@
+(section
+  (title "Orientation")
+
+  (subsection
+    (title "Overview")
+
+    (para (item package "sysdeps") " provides compile-time feature detection and
+      external package detection. It has been carefully designed to avoid the
+      serious design and implementation flaws of packages with similar goals."))
+
+  (subsection
+    (title "Portability")
+    (para "The package is implemented using a strict, portable subset of the
+      POSIX shell utilities "
+      (footnote (link-ext "http://www.opengroup.org/onlinepubs/009695399/toc.htm"))
+      " and minimal pieces of ISO C90.")
+    (para "From the perspective of a developer using the package, the package
+      adds no dependencies on external tools to the project and is completely
+      self contained.")
+    (para "The package has, at one time or another, been proven to work
+      identically without modification on all of the following systems:")
+    (para
+      (list
+        (item "BeOS")
+        (item "Cray UNICOS")
+        (item "FreeBSD 5 .. 8 - x86, Alpha, Itanium, x86_64")
+        (item "HP-UX b.11.11 .. 31 - PA RISC, Itanium")
+        (item "IRIX 6.5 - MIPS")
+        (item "Linux - Too many combinations to mention")
+        (item "Mac OS X / Darwin - PPC / PPC64 / x86 / x86_64")
+        (item "Microsoft Windows 2000")
+        (item "Microsoft Windows XP")
+        (item "NetBSD - Too many combinations to mention")
+        (item "OpenBSD - 3.5 .. 4.0 - x86")
+        (item "OpenVMS - Alpha")
+        (item "Sun OS 5.8 .. 5.11 - x86, SPARC")
+        (item "Tru64 - Alpha")))
+    (para "The package is designed to exhibit deterministic behaviour - the
+      main concept being that one should work towards a standard and provide
+      minimal workarounds for deviating behaviour as opposed to targeting
+      a wide range of specific platforms. This concept demonstratably keeps "
+      (item package "sysdeps") " portable to new platforms.")
+    (para "The " (item package "sysdeps") " package is battle-hardened.
+      During the design and implementation, the code was extensively tested
+      in the most obscenely broken and misconfigured environments to ensure
+      that it worked everywhere and that only the truly \"portable\" subset
+      of the implementation languages were used."))
+
+  (subsection
+    (title "Modularity")
+    (para "Other packages with similar goals tend to work from a monolithic
+      design, requiring developers to write complicated build scripts and
+      manual workaround for hard-to-detect features and packages. The "
+      (item package "sysdeps") " categorically rejects this approach and
+      provides a trivial module system requiring no configuration or
+      writing of build scripts.")
+    (para "Modules are added and removed with a set of simple shell commands:")
+    (para-verbatim example "
+$ cpj-sysdeps list | grep -i SDL
+sdl-flags: compiler flags to compile against SDL (http://www.libsdl.org)
+sdl-libs: linker flags to link against SDL (http://www.libsdl.org)
+
+$ cpj-sysdeps init
+$ cpj-sysdeps add sdl-flags sdl-libs
+$ (cd SYSDEPS && ./sd-run modules/sdl-flags)
+$ cat flags-sdl
+-I/usr/local/include/SDL -I/usr/local/include -D_GNU_SOURCE=1 -D_REENTRANT -DHAVE_SDL")
+    (para "Developers can rely on a large selection of pre-written modules,
+      spelling an end to unreliable custom build scripts and \"portability\"
+      hacks. Modules can be trivially updated at any time with a single command,
+      allowing projects to stay fully up-to-date.")
+    (para "Any bug in any module or the base package discovered by any developer
+      can be immediately fixed and then shared to all other projects using
+      the " (item package "sysdeps") " package as a direct consequence of the
+      modular design. Contrast this with other build-script based systems which
+      rely on haphazardly copying and pasting sections of build scripts from
+      other problems which inevitably become out-of-date within a few months."))
+
+  (subsection
+    (title "Parallelism")
+    (para "The " (item package "sysdeps") " package is designed from the ground
+      up to be completely safe to run from parallel software builds. Each module
+      uses a private workspace for temporary files and any project global
+      support/feature detection programs that need to be compiled are done
+      so under the protection of a simple locking scheme.")
+    (para "Modules are evaluated lazily when called from standard "
+      (item package "make") " scripts, meaning that a module that is not used
+      does not cost any build time.")
+    (para "At the time of writing, the entire repository of current "
+      (item package "sysdeps") " modules can be executed in parallel using
+      32 tasks in around 8 seconds. Contrast this to "
+      (link-ext "http://www.gnu.org/software/autoconf" "autoconf") " scripts,
+      which regularly take around 20 just to do initial feature detection."))
+
+  (subsection
+    (title "Simplicity")
+    (para "The " (item package "sysdeps") " distribution contains around 1000
+      lines of ISO C, of which only around 200 are not machine generated "
+        (footnote (item "They are essentially linear lists of preprocessor
+          macros for feature detection")) ". The distribution
+      contains 720 lines of POSIX " (item package "sh") " script - contrast this
+      to the infamous " (item filename "configure") " scripts, which routinely
+      run to hundreds of thousands of lines, making any bug impossible to
+      locate.")
+    (para "Using " (item package "sysdeps") " involves running one simple
+      command per module and requires nothing in the way of manual
+      configuration. At the time of writing, the builds of close to 100
+      projects are trivially automated using " (item package "sysdeps") 
+      " for feature detection across a wide range of systems."))
+
+  (subsection
+    (title "Reliability")
+    (para "The " (item package "sysdeps") " package rejects the approaches
+      of other feature detection systems and refuses to guess that which
+      cannot be guessed. It will not, for example, choose an apparently
+      suitable compiler to work with - it must be explicitly told which
+      to use. This simple design point can save and has saved literally
+      dozens of hours of pain when cross compiling, for example.")
+    (para "The package does change it's own behaviour based on the
+      current host system or environment. Each platform executes the
+      same code in the same order."))
+
+) ; end of section
