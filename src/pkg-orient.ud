@@ -68,7 +68,7 @@
       design, requiring developers to write complicated build scripts and
       manual workarounds for hard-to-detect features and packages (and, of course,
       remember to write them correctly again in every future project). The "
-      (item package "sysdeps") " categorically rejects this approach and
+      (item package "sysdeps") " package categorically rejects this approach and
       provides a trivial module system requiring no configuration or
       writing of build scripts.")
     (para "Modules are added and removed with a set of simple shell commands:")
