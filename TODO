@@ -1,0 +1,17 @@
+Documentation outline:
+
+  Orientation
+
+  User documentation
+    How to use tools, etc
+    Module writing
+    Explicitly supported platforms/issues
+
+  Developer documentation
+    Platform assumptions
+      cc -o file.o -c file.c
+      cc -o file      file.o
+    Platform dependent/independent code
+    Rationale
+
+  Module reference
