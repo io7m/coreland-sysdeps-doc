@@ -7,7 +7,7 @@
     support the " (item option "-n") " command-line option)" ".")
 
   (para "The following patch applies to "
-    (item file_name "/usr/src/commands/head/simple.c") ":")
+    (item file_name "/usr/src/commands/simple/head.c") ":")
 
   (para-verbatim "--- head.c.orig	2009-09-17 11:20:57.289932949 +0100
 +++ head.c	2009-09-17 11:20:15.221728196 +0100
