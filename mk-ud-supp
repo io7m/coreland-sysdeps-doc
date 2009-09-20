@@ -12,13 +12,13 @@ IFS="
 cat <<EOF
 (table supported
   (t-row
-    (item "system name")
-    (item "system version")
-    (item "architecture")
-    (item "C compiler name")
-    (item "C compiler version")
-    (item "Ada compiler name")
-    (item "Ada compiler version"))
+    (item supported_header "System")
+    (item supported_header "System Version")
+    (item supported_header "Architecture")
+    (item supported_header "CC Name")
+    (item supported_header "CC Version")
+    (item supported_header "Ada")
+    (item supported_header "Ada Version"))
 EOF
 
 for line in `sort < "$1"`
@@ -30,6 +30,10 @@ do
   arc=`echo $line | awk '{print $5}'`
   aan=`echo $line | awk '{print $6}'`
   aav=`echo $line | awk '{print $7}'`
+
+  if [ -z "${arc}" ]; then arc="n/a"; fi
+  if [ -z "${aan}" ]; then aan="n/a"; fi
+  if [ -z "${aav}" ]; then aav="n/a"; fi
 
   cat <<EOF
   (t-row

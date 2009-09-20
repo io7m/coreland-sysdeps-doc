@@ -88,6 +88,7 @@ table.supported td {
   vertical-align: top;
   padding-right: 3em;
 }
+span.supported_header { font-weight: bold; }
 
 table.comparison { }
 table.comparison td {
