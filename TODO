@@ -12,6 +12,13 @@ Documentation outline:
       cc -o file.o -c file.c
       cc -o file      file.o
     Platform dependent/independent code
+    Approach to portability
+      Be general, then be specific where required
+        "sysctl unless platform has something better or doesn't have it at all"
+    Requirements for calling a platform "supported"
+      Full 8-task parallel make with no internal warnings or errors.
+      Full 8-task parallel make clean-all with no internal warnings or errors.
+      Detection of as many properties as the given platform allows.
     Rationale
 
   Module reference
