@@ -1,0 +1,72 @@
+(subsection
+  (title "MINIX")
+
+  (para "On versions at least as new as " (item version "3.1.3a") ",
+    the " (item command "head") " utility requires patching in order
+    to be POSIX compliant (" (item command "head") " is required to
+    support the " (item option "-n") " command-line option)" ".")
+
+  (para "The following patch applies to "
+    (item file_name "/usr/src/commands/head/simple.c") ":")
+
+  (para-verbatim "--- head.c.orig	2009-09-17 11:20:57.289932949 +0100
++++ head.c	2009-09-17 11:20:15.221728196 +0100
+@@ -1,3 +1,5 @@
++#define _PROTOTYPE(x, y) x y
++
+ /* head - print the first few lines of a file	Author: Andy Tanenbaum */
+ 
+ #include <errno.h>
+@@ -16,18 +18,35 @@
+ char *argv[];
+ {
+   FILE *f;
+-  int n, k, nfiles;
+-  char *ptr;
++  int arg_index;
++  int n;
++  int k;
++  int nfiles;
++  char *arg;
+ 
+-  /* Check for flag.  Only flag is -n, to say how many lines to print. */
+   k = 1;
+-  ptr = argv[1];
+   n = DEFAULT;
+-  if (argc > 1 && *ptr++ == '-') {
+-	k++;
+-	n = atoi(ptr);
+-	if (n <= 0) usage();
++
++  for (arg_index = 1; arg_index < argc; ++arg_index) {
++	arg = argv[arg_index];
++	if (arg[0] == '-') {
++		k++;
++		switch (arg[1]) {
++			case 'n':
++				if (arg_index + 1 == argc) usage();
++				n = atoi(argv[arg_index + 1]);
++				if (n <= 0) usage();
++				k++;
++				break;
++			default:
++				n = atoi(arg + 1);
++				if (n <= 0) usage();
++		}
++	} else {
++		break;
++	}
+   }
++
+   nfiles = argc - k;
+ 
+   if (nfiles == 0) {
+@@ -73,6 +92,6 @@
+ 
+ void usage()
+ {
+-  fprintf(stderr, \"Usage: head [-n] [file ...]\n\");
++  fprintf(stderr, \"Usage: head [-lines] [-n lines] [file ...]\n\");
+   exit(1);
+ }
+"))
