@@ -19,6 +19,7 @@ Documentation outline:
       Full 8-task parallel make with no internal warnings or errors.
       Full 8-task parallel make clean-all with no internal warnings or errors.
       Detection of as many properties as the given platform allows.
+      Correct detection of system features in as many modules as possible.
     Rationale
 
   Module reference
