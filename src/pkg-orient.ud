@@ -115,7 +115,20 @@ $ cat flags-sdl
     (para "The " (item package "sysdeps") " distribution contains around 1000
       lines of ISO C, of which only around 200 are not machine generated "
         (footnote (item "They are essentially linear lists of preprocessor
-          macros for feature detection.")) ". The distribution
+          macros for feature detection. An example excerpt: "
+            (para-verbatim example "#if defined(_CRAY1)
+  var = \"CRAY_X_MP\";
+#endif
+#if defined(__ia64) || defined(__ia64__) || defined(___IA64__) || defined(_M_IA64)
+  var = \"IA64\";
+#endif
+#if defined(__m68k__) || defined(M68000)
+  var = \"M68K\";
+#endif
+#if defined(__mips__) || defined(_MIPS_ISA) || defined(_R3000) || defined(_R4000) || defined(__mips) || defined(__MIPS__)
+  var = \"MIPS\";
+#endif")))
+      ". The distribution
       contains 720 lines of POSIX " (item package "sh") " script - contrast this
       to the infamous " (item file_name "configure") " scripts, which routinely
       run to hundreds of thousands of lines, making any bug impossible to
