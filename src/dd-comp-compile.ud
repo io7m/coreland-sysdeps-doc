@@ -24,7 +24,9 @@
 
   (subsection
     (title "Preconditions")
-    (para "None"))
+    (para "The program requires the value of the environment variable "
+      (item variable "SYSDEP_BASE_DIRECTORY") " to be set to the location
+      of the base " (item package "sysdeps") " directory."))
 
   (subsection
     (title "Postconditions")
