@@ -1,0 +1,45 @@
+(section
+  (ref "dd_comp_cpuidx86")
+  (title "sd-cpuidx86")
+
+  (subsection
+    (title "Description")
+    (para "The " (item command "sd-cpuidx86") " program detects CPU features and
+      prints the values of various selectable properties of the CPU that the
+      program is running on when asked.")
+    (para "The " (item command "sd-cpuidx86") " program is created by compiling
+      and linking " (item file_name "sd-cpuidx86.c") "."))
+
+  (subsection
+    (title "Preconditions")
+    (para "None"))
+
+  (subsection
+    (title "Postconditions")
+    (para "The program will only produce useful output on the following
+      architecture and compiler combinations:")
+    (para
+      (table cpuid_support
+        (t-row
+          (item "Architecture")
+          (item "Compiler"))
+        (t-row (item constant "SD_SYSINFO_ARCH_X86")    (item constant "SD_SYSINFO_CCTYPE_GCC"))
+        (t-row (item constant "SD_SYSINFO_ARCH_X86")    (item constant "SD_SYSINFO_CCTYPE_SUN_C"))
+        (t-row (item constant "SD_SYSINFO_ARCH_X86")    (item constant "SD_SYSINFO_CCTYPE_MINGW32"))
+        (t-row (item constant "SD_SYSINFO_ARCH_X86_64") (item constant "SD_SYSINFO_CCTYPE_GCC"))
+        (t-row (item constant "SD_SYSINFO_ARCH_X86_64") (item constant "SD_SYSINFO_CCTYPE_SUN_C"))
+        (t-row (item constant "SD_SYSINFO_ARCH_X86_64") (item constant "SD_SYSINFO_CCTYPE_MINGW32"))))
+    (para
+      "Due to the compiler specific nature of inline assembler, support for
+       more compilers has to be added by hand.")
+    (para "If the " (item constant "CPUID") " instruction is not supported on
+      the current hardware or if the program does not contain support code
+      for executing the instruction on the current architecture/compiler,
+      the program will return an exit code indicating failure and will
+      produce no output on standard output.")
+    (para "The program will produce copious amounts of debugging output on
+      standard error.")
+    (para "On successful execution, the program will print a numeric string
+      representing the value of the requested information and will return
+      an exit code indicating success."))
+)
