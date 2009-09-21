@@ -1,0 +1,82 @@
+(table arches
+  (t-row
+    (item "Value")
+    (item "Description")
+    (item "URL"))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_ALPHA"))
+    (item " Alpha                 ")
+    (item (link-ext "http://www.alphalinux.org/docs/alphaahb.html")))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_ARM"))
+    (item " ARM                   ")
+    (item (link-ext "http://www.arm.com/")))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_CRAY"))
+    (item " Cray-1                ")
+    (item (link-ext "http://ed-thelen.org/comp-hist/CRAY-1-HardRefMan/CRAY-1-HRM.html")))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_CRAY_2"))
+    (item " Cray-2                ")
+    (item "n/a"))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_CRAY_X_MP"))
+    (item " Cray X/MP             ")
+    (item (link-ext "http://cm.bell-labs.com/cm/cs/who/dmr/cray.html")))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_IA64"))
+    (item " Itanium               ")
+    (item (link-ext "http://www.intel.com/products/processor/itanium/index.htm")))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_M68K"))
+    (item " Motorola 68k          ")
+    (item (link-ext "http://www.freescale.com/")))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_MIPS"))
+    (item " MIPS                  ")
+    (item (link-ext "http://mips.com")))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_PARISC"))
+    (item " HP PA-RISC            ")
+    (item "n/a"))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_PPC"))
+    (item " PowerPC               ")
+    (item (link-ext "http://www.freescale.com/powerpc")))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_PPC64"))
+    (item " PowerPC 64            ")
+    (item (link-ext "http://www.freescale.com/powerpc")))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_RS6000"))
+    (item " RS6000                ")
+    (item "n/a"))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_SPARC"))
+    (item " SPARC                 ")
+    (item (link-ext "http://www.sparc.org/")))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_SUPERH"))
+    (item " Hitachi Super-H       ")
+    (item (link-ext "http://www.superh.com/")))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_SYSTEM_370"))
+    (item " IBM System/370        ")
+    (item "n/a"))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_SYSTEM_390"))
+    (item " IBM System/390        ")
+    (item "n/a"))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_X86"))
+    (item " x86 (IA-32)           ")
+    (item (link-ext "http://developer.intel.com/products/processor/manuals/index.htm")))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_X86_64"))
+    (item " x86_64 (AMD64, EM64T) ")
+    (item (link-ext "http://www.intel.com/technology/intel64/index.htm")))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_Z_ARCHITECTURE"))
+    (item " IBM Z Architecture    ")
+    (item (link-ext "http://www-03.ibm.com/systems/z/destinationz/")))
+)

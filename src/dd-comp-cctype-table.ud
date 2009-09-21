@@ -6,197 +6,197 @@
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_AMSTERDAM_KIT"))
     (item " The Amsterdam Compiler Kit      ")
-    (item (link-ext " http://tack.sourceforge.net/")))
+    (item (link-ext "http://tack.sourceforge.net/")))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_BORLAND_CXX"))
     (item " Borland C++                     ")
-    (item (link-ext " http://www.borland.com/")))
+    (item (link-ext "http://www.borland.com/")))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_BORLAND_TURBO_C"))
     (item " Borland Turbo C                 ")
-    (item (link-ext " http://www.borland.com/")))
+    (item (link-ext "http://www.borland.com/")))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_CODEWARRIOR"))
     (item " Codewarrior C                   ")
-    (item (link-ext " http://www2.metrowerks.com/")))
+    (item (link-ext "http://www2.metrowerks.com/")))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_COMEAU_CXX"))
     (item " Comeau C++                      ")
-    (item (link-ext " http://www.comeaucomputing.com/")))
+    (item (link-ext "http://www.comeaucomputing.com/")))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_COMPAQ_C"))
     (item " Compaq C                        ")
-    (item (link-ext " http://h30097.www3.hp.com/linux/compaq_c/index.html")))
+    (item (link-ext "http://h30097.www3.hp.com/linux/compaq_c/index.html")))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_COMPAQ_CXX"))
     (item " Compaq C++                      ")
-    (item (link-ext " http://h30097.www3.hp.com/linux/compaq_cxx/")))
+    (item (link-ext "http://h30097.www3.hp.com/linux/compaq_cxx/")))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_CRAY_C"))
     (item " Cray C                          ")
-    (item (link-ext " http://www.cray.com/")))
+    (item (link-ext "http://www.cray.com/")))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_DIAB"))
     (item " Wind River Compiler             ")
-    (item (link-ext " http://www.windriver.com/products/development_suite/wind_river_compiler/")))
+    (item (link-ext "http://www.windriver.com/products/development_suite/wind_river_compiler/")))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_DIGITAL_MARS"))
     (item " Digital Mars                    ")
-    (item (link-ext " http://www.digitalmars.com/")))
+    (item (link-ext "http://www.digitalmars.com/")))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_DJGPP"))
     (item " DJGPP                           ")
-    (item (link-ext " http://www.delorie.com/djgpp/")))
+    (item (link-ext "http://www.delorie.com/djgpp/")))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_EKOPATH"))
     (item " EKOPath Compiler Suite          ")
-    (item (link-ext " n/a")))
+    (item "n/a"))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_GCC"))
     (item " GNU C Compiler                  ")
-    (item (link-ext " http://gcc.gnu.org")))
+    (item (link-ext "http://gcc.gnu.org")))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_GREENHILL"))
     (item " Greenhills C                    ")
-    (item (link-ext " http://www.ghs.com/products/optimizingC++EC++Compilers.html")))
+    (item (link-ext "http://www.ghs.com/products/optimizingC++EC++Compilers.html")))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_HP_ACC"))
     (item " HP aCC C++                      ")
-    (item (link-ext " http://www.hp.com/go/c++")))
+    (item (link-ext "http://www.hp.com/go/c++")))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_HP_C"))
     (item " HP C                            ")
-    (item (link-ext " http://www.hp.com")))
+    (item (link-ext "http://www.hp.com")))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_IAR"))
     (item " IAR C Compiler                  ")
-    (item (link-ext " http://iar.com/website1/1.0.1.0/50/1/")))
+    (item (link-ext "http://iar.com/website1/1.0.1.0/50/1/")))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_IBM_XL"))
     (item " IBM XL C                        ")
-    (item (link-ext " http://www-01.ibm.com/software/awdtools/xlc/aix/")))
+    (item (link-ext "http://www-01.ibm.com/software/awdtools/xlc/aix/")))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_INTEL"))
     (item " Intel C                         ")
-    (item (link-ext " http://software.intel.com/en-us/intel-compilers/")))
+    (item (link-ext "http://software.intel.com/en-us/intel-compilers/")))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_KAI"))
     (item " Kai C/C++                       ")
-    (item (link-ext " http://www.kai.com/")))
+    (item (link-ext "http://www.kai.com/")))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_KEIL_C166"))
     (item " Keil C166 C Compiler            ")
-    (item (link-ext " http://www.keil.com/c166/")))
+    (item (link-ext "http://www.keil.com/c166/")))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_KEIL_C51"))
     (item " Keil C51 C Compiler             ")
-    (item (link-ext " http://www.keil.com/c51")))
+    (item (link-ext "http://www.keil.com/c51")))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_KEIL_CARM"))
     (item " Keil CARM C Compiler            ")
-    (item (link-ext " http://www.keil.com/arm/carm.asp")))
+    (item (link-ext "http://www.keil.com/arm/carm.asp")))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_LCC"))
     (item " LCC                             ")
-    (item (link-ext " http://www.cs.princeton.edu/software/lcc/")))
+    (item (link-ext "http://www.cs.princeton.edu/software/lcc/")))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_LLVM"))
     (item " LLVM                            ")
-    (item (link-ext " http://llvm.org/")))
+    (item (link-ext "http://llvm.org/")))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_METAWARE"))
     (item " MetaWare Compiler               ")
-    (item (link-ext " http://www.arc.com/software/development/metawarecompiler.html")))
+    (item (link-ext "http://www.arc.com/software/development/metawarecompiler.html")))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_MICROTEC"))
     (item " Microtec C Compiler             ")
-    (item (link-ext " http://www.mentor.com/products/embedded_software/microtec")))
+    (item (link-ext "http://www.mentor.com/products/embedded_software/microtec")))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_MINGW32"))
     (item " MinGW                           ")
-    (item (link-ext " http://www.mingw.org/")))
+    (item (link-ext "http://www.mingw.org/")))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_MIPSPRO"))
     (item " MIPSpro C                       ")
-    (item (link-ext " http://www.sgi.com/products/software/irix/tools/c++.html")))
+    (item (link-ext "http://www.sgi.com/products/software/irix/tools/c++.html")))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_MPW"))
     (item " Macintosh Programmer's Workshop ")
-    (item (link-ext " http://developer.apple.com/tools/mpw-tools/")))
+    (item (link-ext "http://developer.apple.com/tools/mpw-tools/")))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_NORCROFT"))
     (item " Norcroft C                      ")
-    (item (link-ext " n/a")))
+    (item "n/a"))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_PACIFIC"))
     (item " Pacific C Compiler              ")
-    (item (link-ext " http://www.htsoft.com/products/compilers/PACIFICc.php")))
+    (item (link-ext "http://www.htsoft.com/products/compilers/PACIFICc.php")))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_PALM"))
     (item " Palm C                          ")
-    (item (link-ext " n/a")))
+    (item "n/a"))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_PCC"))
     (item " PCC Portable C Compiler         ")
-    (item (link-ext " http://pcc.ludd.ltu.se/")))
+    (item (link-ext "http://pcc.ludd.ltu.se/")))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_PELLES"))
     (item " Pelles C Compiler               ")
-    (item (link-ext " http://www.christian-heffner.de/")))
+    (item (link-ext "http://www.christian-heffner.de/")))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_PORTLAND"))
     (item " Portland C Compiler             ")
-    (item (link-ext " http://www.pgroup.com/")))
+    (item (link-ext "http://www.pgroup.com/")))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_REALVIEW"))
     (item " Realview C Compiler             ")
-    (item (link-ext " http://www.keil.com/arm/realview.asp")))
+    (item (link-ext "http://www.keil.com/arm/realview.asp")))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_SAS"))
     (item " SAS/C Compiler                  ")
-    (item (link-ext " http://www.sas.com/products/sasc/index.html")))
+    (item (link-ext "http://www.sas.com/products/sasc/index.html")))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_SCO"))
     (item " SCO C Compiler                  ")
-    (item (link-ext " http://www.sco.com/developers/products/devkits.html")))
+    (item (link-ext "http://www.sco.com/developers/products/devkits.html")))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_SMALLDEV"))
     (item " SDCC Small Device C Compiler    ")
-    (item (link-ext " http://sdcc.sourceforge.net/")))
+    (item (link-ext "http://sdcc.sourceforge.net/")))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_SUN_C"))
     (item " Sun C (Sun Studio)              ")
-    (item (link-ext " http://developers.sun.com/sunstudio/")))
+    (item (link-ext "http://developers.sun.com/sunstudio/")))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_SUN_CXX"))
     (item " Sun C++ (Sun Studio)            ")
-    (item (link-ext " http://developers.sun.com/sunstudio/")))
+    (item (link-ext "http://developers.sun.com/sunstudio/")))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_SYSTEMS"))
     (item " Systems/C Compiler              ")
-    (item (link-ext " http://www.dignus.com/dcc/")))
+    (item (link-ext "http://www.dignus.com/dcc/")))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_TENDRA"))
     (item " TenDRA C                        ")
-    (item (link-ext " http://www.tendra.org/")))
+    (item (link-ext "http://www.tendra.org/")))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_TINYC"))
     (item " Tiny C                          ")
-    (item (link-ext " http://bellard.org/tcc/")))
+    (item (link-ext "http://bellard.org/tcc/")))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_ULTIMATE"))
     (item " Ultimate C                      ")
-    (item (link-ext " n/a")))
+    (item "n/a"))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_USL_C"))
     (item " USL C/C++                       ")
-    (item (link-ext " n/a")))
+    (item "n/a"))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_VISUAL_CXX"))
     (item " Visual C++                      ")
-    (item (link-ext " http://www.microsoft.com/express/vc/")))
+    (item (link-ext "http://www.microsoft.com/express/vc/")))
   (t-row
     (item (item constant "SD_SYSINFO_CCTYPE_WATCOM"))
     (item " Watcom C                        ")
-    (item (link-ext " http://www.openwatcom.org/")))
+    (item (link-ext "http://www.openwatcom.org/")))
 )

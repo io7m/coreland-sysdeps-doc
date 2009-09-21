@@ -7,4 +7,6 @@
   (include "dd-comp-arch.ud")
   (include "dd-comp-cctype.ud")
   (include "dd-comp-ccversion.ud")
+  (include "dd-comp-compile.ud")
+  (include "dd-comp-locker.ud")
 )

@@ -73,6 +73,9 @@ table.command_options td { vertical-align: top; padding-right: 4em; }
 table.cctypes { border: 1px solid #ddd; padding: 1em; }
 table.cctypes td { vertical-align: top; padding-right: 1em; }
 
+table.arches { border: 1px solid #ddd; padding: 1em; }
+table.arches td { vertical-align: top; padding-right: 1em; }
+
 table.install_config { }
 table.install_config td {
   vertical-align: top;
@@ -118,6 +121,7 @@ table.exception_table td {
 
 .quote,
 .source,
+.program_synopsis,
 .function_synopsis,
 .ada_type_synopsis,
 .tag_synopsis

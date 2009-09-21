@@ -1,0 +1,33 @@
+(section
+  (ref "dd_comp_sd_compile")
+  (title "sd-compile")
+
+  (subsection
+    (title "Synopsis")
+    (para-verbatim program_synopsis
+"sd-compile: usage: source object result cc cflags ld ldflags"))
+
+  (subsection
+    (title "Description")
+    (para "The " (item command "sd-compile") " program compiles the C source
+      file " (item parameter "source") ", writing the object code to "
+      (item parameter "object") " using the compiler " (item parameter "cc")
+      " with flags " (item parameter "cflags") ". It then links "
+      (item parameter "object") " into the executable " (item parameter "result")
+      " using the C linker " (item parameter "ld") " with "
+      (item parameter "ldflags") ".")
+    (para "If " (item parameter "result") " already exists when the command
+      is executed, no compilation takes place.")
+    (para "The program is intended to but is not required to be run under the
+      protection of a lock created with " (link "dd_comp_sd_locker" "sd-locker")
+      " in order to safely compile support programs in parallel builds."))
+
+  (subsection
+    (title "Preconditions")
+    (para "None"))
+
+  (subsection
+    (title "Postconditions")
+    (para "On successful execution, the command will create "
+      (item parameter "object") " and " (item parameter "result") "."))
+)

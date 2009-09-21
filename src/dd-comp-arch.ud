@@ -1,4 +1,5 @@
 (section
+  (ref "dd_comp_sd_arch")
   (title "sd-arch")
 
   (subsection
@@ -6,7 +7,7 @@
     (para "The " (item command "sd-arch") " program detects and prints the
       current hardware architecture. The output will be one of the following
       values:")
-    (para-verbatim example (render "dd-comp-arch.txt"))
+    (para (include "dd-comp-arch-table.ud"))
     (para "The " (item command "sd-arch") " program is created by compiling
       and linking " (item file_name "sd-arch.c") ". The "
       (item file_name "sd-arch.c") " file is automatically generated from "
