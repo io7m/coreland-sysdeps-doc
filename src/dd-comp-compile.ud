@@ -29,5 +29,6 @@
   (subsection
     (title "Postconditions")
     (para "On successful execution, the command will create "
-      (item parameter "object") " and " (item parameter "result") "."))
+      (item parameter "object") " and " (item parameter "result") " and
+      return an exit code indicating success."))
 )

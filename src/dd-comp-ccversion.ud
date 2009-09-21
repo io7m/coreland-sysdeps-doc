@@ -38,5 +38,6 @@
   (subsection
     (title "Postconditions")
     (para "The output of the " (item command "sd-ccversion") " program will be
-      a non-empty string."))
+      a non-empty string. The program will return an exit code indicating
+      success."))
 )

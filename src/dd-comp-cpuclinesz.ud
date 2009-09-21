@@ -28,5 +28,5 @@
   (subsection
     (title "Postconditions")
     (para "On successful execution, the command will print a non-zero length
-      numeric string."))
+      numeric string and return an exit code indicating success."))
 )

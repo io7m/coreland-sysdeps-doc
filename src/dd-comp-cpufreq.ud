@@ -27,5 +27,5 @@
   (subsection
     (title "Postconditions")
     (para "On successful execution, the command will print a numeric string and
-      return a successful exit code."))
+      return an exit code indicating success."))
 )

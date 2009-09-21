@@ -38,5 +38,5 @@
   (subsection
     (title "Postconditions")
     (para "On successful execution, the command will print zero or more lines and
-      return a successful exit code."))
+      return an exit code indicating success."))
 )

@@ -28,7 +28,7 @@
 
   (subsection
     (title "Postconditions")
-    (para "On successful execution, the command will return a successful exit
-      code.")
+    (para "On successful execution, the command will return an exit
+      code indicating success.")
     (para "The command may produce no output."))
 )
