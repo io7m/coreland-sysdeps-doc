@@ -1,0 +1,31 @@
+(section
+  (ref "dd_comp_cpul3cache")
+  (title "sd-cpul3cache")
+
+  (subsection
+    (title "Synopsis")
+    (para-verbatim program_synopsis
+"sd-cpul3cache: usage: os"))
+
+  (subsection
+    (title "Description")
+    (para "The " (item command "sd-cpul3cache") " program detects and prints the
+      L3 cache size in bytes of the first CPU in the system. If the
+      size cannot be detected for any reason, the value printed will be "
+      (item constant "0") ".")
+    (para "The program may execute platform-specific code and therefore needs
+      to be told which operating system it is executing under. The operating
+      system is specified with the " (item parameter "os") " parameter, which
+      must be set to one of the values from " (link "dd_comp_os" "sd-os") "."))
+
+  (subsection
+    (title "Preconditions")
+    (para "The program requires the value of the environment variable "
+      (item variable "SYSDEP_BASE_DIRECTORY") " to be set to the location
+      of the base " (item package "sysdeps") " directory."))
+
+  (subsection
+    (title "Postconditions")
+    (para "On successful execution, the command will print a numeric string and
+      return an exit code indicating success."))
+)
