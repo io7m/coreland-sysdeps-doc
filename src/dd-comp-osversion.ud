@@ -1,0 +1,30 @@
+(section
+  (ref "dd_comp_osversion")
+  (title "sd-osversion")
+
+  (subsection
+    (title "Synopsis")
+    (para-verbatim program_synopsis
+"sd-osversion: usage: os"))
+
+  (subsection
+    (title "Description")
+    (para "The " (item command "sd-osversion") " program detects and prints
+      the version of the current operating system in a non-uniform but sanitized
+      manner.")
+    (para "The program may execute platform-specific code and therefore needs
+      to be told which operating system it is executing under. The operating
+      system is specified with the " (item parameter "os") " parameter, which
+      must be set to one of the values from " (link "dd_comp_os" "sd-os") "."))
+
+  (subsection
+    (title "Preconditions")
+    (para "The program requires the value of the environment variable "
+      (item variable "SYSDEP_BASE_DIRECTORY") " to be set to the location
+      of the base " (item package "sysdeps") " directory."))
+
+  (subsection
+    (title "Postconditions")
+    (para "On successful execution, the command will print a non-zero length
+      string and return an exit code indicating success."))
+)

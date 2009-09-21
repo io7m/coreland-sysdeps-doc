@@ -20,4 +20,5 @@
   (include "dd-comp-cpunum.ud")
   (include "dd-comp-locker.ud")
   (include "dd-comp-os.ud")
+  (include "dd-comp-osversion.ud")
 )
