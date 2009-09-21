@@ -3,12 +3,34 @@
   (title "sd-cpuidx86")
 
   (subsection
+    (title "Synopsis")
+    (para-verbatim program_synopsis "sd-cpuidx86: usage: prop"))
+
+  (subsection
     (title "Description")
     (para "The " (item command "sd-cpuidx86") " program detects CPU features and
       prints the values of various selectable properties of the CPU that the
       program is running on when asked.")
     (para "The " (item command "sd-cpuidx86") " program is created by compiling
-      and linking " (item file_name "sd-cpuidx86.c") "."))
+      and linking " (item file_name "sd-cpuidx86.c") ".")
+    (para "The program accepts the following values for " (item parameter "prop") ":")
+    (para
+      (table options
+        (t-row (item "Option") (item "Description"))
+        (t-row (item constant "mmx") (item "Print " (item constant "1") " if MMX is supported, " (item constant "0") " otherwise"))
+        (t-row (item constant "mmx2") (item "Print " (item constant "1") " if MMX2 is supported, " (item constant "0") " otherwise"))
+        (t-row (item constant "3dnow") (item "Print " (item constant "1") " if 3DNow! is supported, " (item constant "0") " otherwise"))
+        (t-row (item constant "3dnowext") (item "Print " (item constant "1") " if Enhanced 3DNow! is supported, " (item constant "0") " otherwise"))
+        (t-row (item constant "sse") (item "Print " (item constant "1") " if SSE is supported, " (item constant "0") " otherwise"))
+        (t-row (item constant "sse2") (item "Print " (item constant "1") " if SSE2 is supported, " (item constant "0") " otherwise"))
+        (t-row (item constant "sse3") (item "Print " (item constant "1") " if SSE3 is supported, " (item constant "0") " otherwise"))
+        (t-row (item constant "sse4.1") (item "Print " (item constant "1") " if SSE4.1 is supported, " (item constant "0") " otherwise"))
+        (t-row (item constant "sse4.2") (item "Print " (item constant "1") " if SSE4.2 is supported, " (item constant "0") " otherwise"))
+        (t-row (item constant "l1icachesize") (item "Print size of L1 instruction cache in bytes, if any"))
+        (t-row (item constant "l1dcachesize") (item "Print size of L1 data cache in bytes, if any"))
+        (t-row (item constant "l2cachesize") (item "Print size of L2 cache in bytes, if any"))
+        (t-row (item constant "l3cachesize") (item "Print size of L3 cache in bytes, if any"))
+        (t-row (item constant "cacheline") (item "Print size of cache line in bytes, if any")))))
 
   (subsection
     (title "Preconditions")
@@ -30,7 +52,7 @@
         (t-row (item constant "SD_SYSINFO_ARCH_X86_64") (item constant "SD_SYSINFO_CCTYPE_SUN_C"))
         (t-row (item constant "SD_SYSINFO_ARCH_X86_64") (item constant "SD_SYSINFO_CCTYPE_MINGW32"))))
     (para
-      "Due to the compiler specific nature of inline assembler, support for
+      "Due to the compiler-specific nature of inline assembler, support for
        more compilers has to be added by hand.")
     (para "If the " (item constant "CPUID") " instruction is not supported on
       the current hardware or if the program does not contain support code
@@ -53,5 +75,7 @@
       data for caches are not always clearly documented.")
     (para "Compilers have absolutely no standard for assembler syntax or
       the methods used to inline assembler in C code, despite all running
-      on the same (x86) architecture."))
+      on the same (x86) architecture. It is incredibly frustrating writing
+      the same section of code over and over with slightly different syntax
+      just to please the various assemblers."))
 )
