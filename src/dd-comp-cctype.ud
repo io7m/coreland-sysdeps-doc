@@ -4,9 +4,9 @@
   (subsection
     (title "Description")
     (para "The " (item command "sd-cctype") " program detects and prints the
-      current C compiler type. The output will be one of the following
-      values:")
-    (para-verbatim example (render "dd-comp-cctype.txt"))
+      current C compiler type. The output will be one of the values in the
+      first column:")
+    (para (include "dd-comp-cctype-table.ud"))
     (para "The " (item command "sd-cctype") " program is created by compiling
       and linking " (item file_name "sd-cctype.c") ". The "
       (item file_name "sd-cctype.c") " file is automatically generated from "
