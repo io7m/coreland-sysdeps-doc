@@ -1,2 +1,30 @@
 (section
-  (ref "dd_comp_os"))
+  (ref "dd_comp_os")
+  (title "sd-os")
+
+  (subsection
+    (title "Description")
+    (para "The " (item command "sd-os") " program detects and prints the
+      current operating system. The output will be one of the values in the
+      first column:")
+    (para (include "dd-comp-os-table.ud"))
+    (para "The " (item command "sd-os") " program is created by compiling
+      and linking " (item file_name "sd-os.c") ". The "
+      (item file_name "sd-os.c") " file is automatically generated from "
+      (item file_name "GENERATION/os.txt") " in the " (item package "sysdeps")
+      " source distribution.")
+    (para "The program is simply a long list of tests against predefined
+      preprocessor macros. There are no known conditions apart from outright
+      system failure in which this program can fail to compile and/or execute
+      successfully."))
+
+  (subsection
+    (title "Preconditions")
+    (para "None"))
+
+  (subsection
+    (title "Postconditions")
+    (para "The output of the " (item command "sd-os") " program will be
+      a non-empty string. The program will return an exit code indicating
+      success."))
+)

@@ -1,0 +1,154 @@
+(table oses
+  (t-row
+    (item "Value")
+    (item "Description")
+    (item "URL"))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_AIX"))
+    (item " IBM AIX           ")
+    (item (link-ext "http://www.ibm.com/aix")))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_AMIGAOS"))
+    (item " Amiga OS          ")
+    (item (link-ext "http://os.amiga.com/")))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_BEOS"))
+    (item " BeOS              ")
+    (item (link-ext "http://www.beincorporated.com/")))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_BSD_OS"))
+    (item " BSDOS             ")
+    (item "n/a"))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_CRAY_UNICOS"))
+    (item " Cray UNICOS       ")
+    (item (link-ext "http://cray.com")))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_DARWIN"))
+    (item " Darwin            ")
+    (item (link-ext "http://developer.apple.com/Darwin/")))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_DG_UX"))
+    (item " DG/UX             ")
+    (item "n/a"))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_DRAGONFLY"))
+    (item " DragonFly BSD     ")
+    (item (link-ext "http://www.dragonflybsd.org/")))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_DYNIX_PTX"))
+    (item " Sequent Dynix/ptx ")
+    (item "n/a"))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_FREEBSD"))
+    (item " FreeBSD           ")
+    (item (link-ext "http://freebsd.org")))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_GNU_HURD"))
+    (item " GNU Hurd          ")
+    (item (link-ext "http://www.gnu.org/software/hurd/hurd.html")))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_HAIKU"))
+    (item " Haiku             ")
+    (item (link-ext "http://www.haiku-os.org/")))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_HI_UX_MPP"))
+    (item " Hitachi HI-UX/MPP ")
+    (item (link-ext "http://www.hitachi.co.jp/Prod/comp/soft1/sr8000/index-e.html")))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_HPUX"))
+    (item " HPUX              ")
+    (item (link-ext "http://www.hp.com/products1/unix/")))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_IRIX"))
+    (item " IRIX              ")
+    (item (link-ext "http://www.sgi.com/products/software/irix/")))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_LINUX"))
+    (item " Linux             ")
+    (item (link-ext "http://www.kernel.org/")))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_LYNXOS"))
+    (item " Lynx OS           ")
+    (item (link-ext "http://www.lynuxworks.com/")))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_MACOS"))
+    (item " Mac OS            ")
+    (item (link-ext "http://www.apple.com/support/macos9/")))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_MICROWARE_OS_9"))
+    (item " Microware OS-9    ")
+    (item (link-ext "http://www.radisys.com.cn/")))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_MINIX"))
+    (item " MINIX             ")
+    (item (link-ext "http://www.minix3.org/")))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_MPE_IX"))
+    (item " HP MPE/iX         ")
+    (item (link-ext "http://www.hp.com/products1/evolution/e3000/mpeix/")))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_MSDOS"))
+    (item " MS DOS            ")
+    (item (link-ext "http://www.microsoft.com/")))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_MS_WINDOWS"))
+    (item " MS Windows        ")
+    (item (link-ext "http://www.microsoft.com/")))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_NETBSD"))
+    (item " NetBSD            ")
+    (item (link-ext "http://www.netbsd.org/")))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_OPENBSD"))
+    (item " OpenBSD           ")
+    (item (link-ext "http://www.openbsd.org/")))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_OS2"))
+    (item " IBM OS/2          ")
+    (item (link-ext "http://www.ibm.com/software/os/warp/")))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_PYRAMID_DC_OS"))
+    (item " Pyramid DC/OS     ")
+    (item "n/a"))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_QNX"))
+    (item " QNX               ")
+    (item (link-ext "http://www.qnx.com/")))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_RELIANT_UNIX"))
+    (item " Reliant UNIX      ")
+    (item "n/a"))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_SCO_OPENSERVER"))
+    (item " SCO OpenServer    ")
+    (item (link-ext "http://www.sco.com/products/openserver507/")))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_SUNOS"))
+    (item " SunOS / Solaris   ")
+    (item (link-ext "http://www.sun.com/software/solaris/")))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_SYMBIAN_OS"))
+    (item " Symbian OS        ")
+    (item (link-ext "http://www.symbian.org/")))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_TRU64_OSF_1"))
+    (item " HP Tru64 UNIX     ")
+    (item (link-ext "http://h30097.www3.hp.com/")))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_ULTRIX"))
+    (item " DEC ULTRIX        ")
+    (item "n/a"))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_UNIXWARE"))
+    (item " SCO UnixWare      ")
+    (item (link-ext "http://www.sco.com/products/unixware714/")))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_VMS"))
+    (item " OpenVMS           ")
+    (item (link-ext "http://h71000.www7.hp.com/")))
+  (t-row
+    (item (item constant "SD_SYSINFO_ARCH_Z_OS_OS390"))
+    (item " IBM z/OS          ")
+    (item (link-ext "http://www.ibm.com/servers/eserver/zseries/zos/")))
+)

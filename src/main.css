@@ -76,6 +76,9 @@ table.cctypes td { vertical-align: top; padding-right: 1em; }
 table.arches { border: 1px solid #ddd; padding: 1em; }
 table.arches td { vertical-align: top; padding-right: 1em; }
 
+table.oses { border: 1px solid #ddd; padding: 1em; }
+table.oses td { vertical-align: top; padding-right: 1em; }
+
 table.cpuid_support { border: 1px solid #ddd; padding: 1em; }
 table.cpuid_support td { vertical-align: top; padding-right: 1em; }
 

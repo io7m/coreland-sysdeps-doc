@@ -39,6 +39,47 @@ echo ")"
   fatal "could not write src/dd-comp-cpufeat-table.ud"
 
 #
+# Create OS description table.
+#
+(
+IFS="
+"
+cat <<EOF
+(table oses
+  (t-row
+    (item "Value")
+    (item "Description")
+    (item "URL"))
+EOF
+
+LINE=1
+for line in `cat ${SYSDEPS_SOURCE}/GENERATION/os.txt`
+do
+  os_type="SD_SYSINFO_ARCH_`echo ${line} | awk '{print $2}'`"
+  desc_line=`sed -e "${LINE}q;d" < ${SYSDEPS_SOURCE}/GENERATION/os_desc.txt`
+  desc=`echo ${desc_line} | awk -F\| '{print $2}'`
+  url=`echo ${desc_line}  | awk -F\| '{print $3}' | tr -d ' '`
+
+  if [ "${url}" = "n/a" ]
+  then
+    item="\"n/a\""
+  else
+    item="(link-ext \"${url}\")"
+  fi
+
+  cat <<EOF
+  (t-row
+    (item (item constant "${os_type}"))
+    (item "${desc}")
+    (item ${item}))
+EOF
+  LINE=`expr ${LINE} + 1`
+done
+echo ")"
+) > src/dd-comp-os-table.ud ||
+  fatal "could not write src/dd-comp-os-table.ud"
+
+#
 # Create architecture description table.
 #
 (
