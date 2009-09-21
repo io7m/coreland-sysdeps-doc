@@ -5,4 +5,6 @@
     (item package "sysdeps") " directory.")
 
   (include "dd-comp-arch.ud")
+  (include "dd-comp-cctype.ud")
+  (include "dd-comp-ccversion.ud")
 )

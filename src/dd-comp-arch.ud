@@ -3,11 +3,11 @@
 
   (subsection
     (title "Description")
-    (para "The " (item command "sd-arch") " component detects and prints the
+    (para "The " (item command "sd-arch") " program detects and prints the
       current hardware architecture. The output will be one of the following
       values:")
     (para-verbatim example (render "dd-comp-arch.txt"))
-    (para "The " (item command "sd-arch") " component is created by compiling
+    (para "The " (item command "sd-arch") " program is created by compiling
       and linking " (item file_name "sd-arch.c") ". The "
       (item file_name "sd-arch.c") " file is automatically generated from "
       (item file_name "GENERATION/os.txt") " in the " (item package "sysdeps")
@@ -23,6 +23,6 @@
 
   (subsection
     (title "Postconditions")
-    (para "The output of the " (item command "sd-arch") " component will be
+    (para "The output of the " (item command "sd-arch") " program will be
       a non-empty string."))
 )

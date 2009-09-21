@@ -1,0 +1,28 @@
+(section
+  (title "sd-cctype")
+
+  (subsection
+    (title "Description")
+    (para "The " (item command "sd-cctype") " program detects and prints the
+      current C compiler type. The output will be one of the following
+      values:")
+    (para-verbatim example (render "dd-comp-cctype.txt"))
+    (para "The " (item command "sd-cctype") " program is created by compiling
+      and linking " (item file_name "sd-cctype.c") ". The "
+      (item file_name "sd-cctype.c") " file is automatically generated from "
+      (item file_name "GENERATION/cctype.txt") " in the " (item package "sysdeps")
+      " source distribution.")
+    (para "The program is simply a long list of tests against predefined
+      preprocessor macros. There are no known conditions apart from outright
+      system failure in which this program can fail to compile and/or execute
+      successfully."))
+
+  (subsection
+    (title "Preconditions")
+    (para "None"))
+
+  (subsection
+    (title "Postconditions")
+    (para "The output of the " (item command "sd-cctype") " program will be
+      a non-empty string."))
+)

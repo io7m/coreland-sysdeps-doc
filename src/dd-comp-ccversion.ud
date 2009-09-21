@@ -1,0 +1,41 @@
+(section
+  (title "sd-ccversion")
+
+  (subsection
+    (title "Description")
+    (para "The " (item command "sd-ccversion") " program detects, formats and prints
+      the version number of the current C compiler. There is no standard for
+      C compiler version numbers so the program attempts to map vendor-specific
+      version strings into a standard format.")
+    (para "The standard format is a number string of the form:")
+    (para-verbatim bnf example
+"<digit>   ::= \"0\" | \"1\" | \"2\" | \"3\" | \"4\" | \"5\" | \"6\" | \"7\" | \"8\" | \"9\"
+<dot>     ::= \".\"
+<number>  ::= <digit> { <digit> }
+<version> ::= <number> <dot> <number> <dot> <number>")
+    (para "When an appropriate value cannot be determined for a component,
+      the component is given the value " (item constant "0") ".")
+    (para "As a concrete example, the " (link-ext "http://gcc.gnu.org" "GNU C")
+      " compiler gives the \"major\" version
+      number in " (item macro "__GNUC__") ", the \"minor\" version number in "
+      (item macro "__GNUC_MINOR__") " and in newer versions of the compiler, the
+      \"patch\" level in " (item macro "__GNUC_PATCHLEVEL__") ". The "
+      (item command "sd-ccversion") " program will map these values to the standard
+      form, resulting in version numbers such as " (item constant "4.4.1")
+      " for GCC " (item constant "4.4.1") " and " (item constant "2.95.0")
+      " for GCC " (item constant "2.95.3") " (which predates "
+      (item macro "__GNUC_PATCHLEVEL__") ").")
+    (para "As another example, the " (link-ext "http://tack.sourceforge.net/"
+      "Amsterdam Compiler Kit") " helpfully doesn't expose any version number
+      information at all and the " (item command "sd-ccversion") " program will
+      therefore report a version string of " (item constant "0.0.0") "."))
+
+  (subsection
+    (title "Preconditions")
+    (para "None"))
+
+  (subsection
+    (title "Postconditions")
+    (para "The output of the " (item command "sd-ccversion") " program will be
+      a non-empty string."))
+)
