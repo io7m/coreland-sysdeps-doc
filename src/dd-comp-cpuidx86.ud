@@ -42,4 +42,16 @@
     (para "On successful execution, the program will print a numeric string
       representing the value of the requested information and will return
       an exit code indicating success."))
+
+  (subsection
+    (title "Comments")
+
+    (para "The " (item command "sd-cpuidx86") " program is the most difficult
+      program in the " (item package "sysdeps") " package to keep portable
+      in any sense of the word and the most difficult to keep up-to-date.")
+    (para "New CPU models are being released all the time and the descriptor
+      data for caches are not always clearly documented.")
+    (para "Compilers have absolutely no standard for assembler syntax or
+      the methods used to inline assembler in C code, despite all running
+      on the same (x86) architecture."))
 )

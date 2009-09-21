@@ -12,6 +12,7 @@
   (include "dd-comp-cpufeat.ud")
   (include "dd-comp-cpufreq.ud")
   (include "dd-comp-cpuhasfeat.ud")
+  (include "dd-comp-cpuidx86.ud")
   (include "dd-comp-locker.ud")
   (include "dd-comp-os.ud")
 )
