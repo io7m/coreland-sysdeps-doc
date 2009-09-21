@@ -1,0 +1,64 @@
+(section
+  (title "Platform Assumptions")
+
+  (para "The " (item package "sysdeps") " package basically assumes that
+    it is running on an abstract operating system that just barely conforms
+    to the POSIX specification. It uses a subset of the shell
+    command language that has, historically, been shown to be consistently
+    implemented across all known operating systems.")
+
+  (subsection
+    (title "Shell Environment")
+    (para "The " (item package "sysdeps") " package assumes a barely functional "
+      (link-ext "http://www.opengroup.org/onlinepubs/009695399/utilities/xcu_chap02.html"
+      "IEEE 1003.1 (POSIX) shell") " and a minimal set of utilities.")
+    (para "It will unconditionally use " (item file_name "/bin/sh") " as the
+      path to a compatible shell - this is not configurable.")
+    (para "The platform-independent parts of the package use only these
+      utilities:")
+    (list
+      (item command "awk")
+      (item command "basename")
+      (item command "cat")
+      (item command "cp")
+      (item command "echo")
+      (item command "exit")
+      (item command "mv")
+      (item command "pwd")
+      (item command "rm")
+      (item command "sed")
+      (item command "touch")))
+
+  (subsection
+    (title "C Compiler")
+    (para "The " (item package "sysdeps") " package assumes an ISO C
+      compiler is always available. It will use any compiler specified but
+      assumes that it supports the following set of command line options (loosely
+      based on the POSIX specification for the " (item command "c99")
+      " command):")
+    (table command_options
+      (t-row
+        (item "Option")
+        (item "Definition"))
+      (t-row
+        (item "-c")
+        (item "Suppress the link-edit phase of the compilation, and do not
+          remove any object files that are produced."))
+      (t-row
+        (item "-o file")
+        (item "Use the pathname " (item file_name "file") ", instead of the
+          default " (item file_name "a.out") ", for the executable file
+          produced. If the -o option is present with -c, the resulting
+          object file is named " (item file_name "file") "."))
+      (t-row
+        (item "-D name=value")
+        (item "Define name as if by a C-language #define directive. If no
+          value is given, a value of 1 shall be used."))
+      (t-row
+        (item "-I directory")
+        (item "Change the algorithm for searching for headers whose names are
+          not absolute pathnames to look in the directory named by the "
+          (item file_name "directory") " pathname before looking in the usual
+          places.")))
+    (para "Every compiler tested, to date, supports this interface."))
+)

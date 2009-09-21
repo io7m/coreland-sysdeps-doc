@@ -2,13 +2,6 @@
   (title "License")
 
   (para
-    (item package "lua-ada") " is placed into the public domain, for
+    (item package "sysdeps") " is placed into the public domain, for
     free use by anyone for any purpose. It may be freely modified and
-    distributed and comes with absolutely no warranty.")
-
-  (para
-    "This documentation reproduces large amounts of the original Lua
-     reference manual and is therefore made available under the same
-     license:")
-
-  (para-verbatim (render "../LICENSE")))
+    distributed and comes with absolutely no warranty."))

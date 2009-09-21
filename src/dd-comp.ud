@@ -1,0 +1,8 @@
+(section
+  (title "Component Reference")
+
+  (para "This section documents the various components present in the base "
+    (item package "sysdeps") " directory.")
+
+  (include "dd-comp-arch.ud")
+)

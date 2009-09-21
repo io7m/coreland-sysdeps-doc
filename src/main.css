@@ -67,6 +67,9 @@ table.ud_footnote_tab td { vertical-align: top; }
 table.options { }
 table.options td { vertical-align: top; padding: 0.5em; }
 
+table.command_options { }
+table.command_options td { vertical-align: top; padding-right: 4em; }
+
 table.install_config { }
 table.install_config td {
   vertical-align: top;
