@@ -1,5 +1,5 @@
 (section
-  (ref "dd_comp_sd_compile")
+  (ref "dd_comp_compile")
   (title "sd-compile")
 
   (subsection
@@ -19,7 +19,7 @@
     (para "If " (item parameter "result") " already exists when the command
       is executed, no compilation takes place.")
     (para "The program is intended to but is not required to be run under the
-      protection of a lock created with " (link "dd_comp_sd_locker" "sd-locker")
+      protection of a lock created with " (link "dd_comp_locker" "sd-locker")
       " in order to safely compile support programs in parallel builds."))
 
   (subsection

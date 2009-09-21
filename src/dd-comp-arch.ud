@@ -1,5 +1,5 @@
 (section
-  (ref "dd_comp_sd_arch")
+  (ref "dd_comp_arch")
   (title "sd-arch")
 
   (subsection

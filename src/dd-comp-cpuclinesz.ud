@@ -1,0 +1,32 @@
+(section
+  (ref "dd_comp_cpuclinesz")
+  (title "sd-cpuclinesz")
+
+  (subsection
+    (title "Synopsis")
+    (para-verbatim program_synopsis
+"sd-cpuclinesz: usage: os"))
+
+  (subsection
+    (title "Description")
+    (para "The " (item command "sd-cpuclinesz") " program detects and prints the
+      cache line size in bytes of the first CPU in the current system.")
+    (para "The output is a simple natural number.")
+    (para "The program may execute platform-specific code and therefore needs
+      to be told which operating system it is executing under. The operating
+      system is specified with the " (item parameter "os") " parameter which
+      must be set to one of the values from " (link "dd_comp_os" "sd-os") ".")
+    (para "If the cache line size cannot be detected for any reason, the
+      program prints " (item constant "0") "."))
+
+  (subsection
+    (title "Preconditions")
+    (para "The program requires the value of the environment variable "
+      (item variable "SYSDEP_BASE_DIRECTORY") " to be set to the location
+      of the base " (item package "sysdeps") " directory."))
+
+  (subsection
+    (title "Postconditions")
+    (para "On successful execution, the command will print a non-zero length
+      numeric string."))
+)

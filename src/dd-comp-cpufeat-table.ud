@@ -1,0 +1,35 @@
+(table arches
+  (t-row
+    (item "Value")
+    (item "Description"))
+  (t-row
+    (item (item constant "SD_SYSINFO_CPU_EXT_MMX"))
+    (item " Intel multimedia meaningless initialism extensions"))
+  (t-row
+    (item (item constant "SD_SYSINFO_CPU_EXT_MMX2"))
+    (item " Intel multimedia meaningless initialism extensions 2 (SSE)"))
+  (t-row
+    (item (item constant "SD_SYSINFO_CPU_EXT_3DNOW"))
+    (item " AMD 3DNow! extensions"))
+  (t-row
+    (item (item constant "SD_SYSINFO_CPU_EXT_3DNOWEXT"))
+    (item " Enhanced AMD 3DNow! extensions"))
+  (t-row
+    (item (item constant "SD_SYSINFO_CPU_EXT_SSE"))
+    (item " Intel Streaming SIMD extensions"))
+  (t-row
+    (item (item constant "SD_SYSINFO_CPU_EXT_SSE2"))
+    (item " Intel Streaming SIMD extensions, version 2"))
+  (t-row
+    (item (item constant "SD_SYSINFO_CPU_EXT_SSE3"))
+    (item " Intel Streaming SIMD extensions, version 3"))
+  (t-row
+    (item (item constant "SD_SYSINFO_CPU_EXT_SSE4_1"))
+    (item " Intel Streaming SIMD extensions, version 4.1"))
+  (t-row
+    (item (item constant "SD_SYSINFO_CPU_EXT_SSE4_2"))
+    (item " Intel Streaming SIMD extensions, version 4.2"))
+  (t-row
+    (item (item constant "SD_SYSINFO_CPU_EXT_ALTIVEC"))
+    (item " Freescale AltiVec extensions"))
+)

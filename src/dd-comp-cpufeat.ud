@@ -1,0 +1,34 @@
+(section
+  (ref "dd_comp_cpufeat")
+  (title "sd-cpufeat")
+
+  (subsection
+    (title "Synopsis")
+    (para-verbatim program_synopsis
+"sd-cpufeat: usage: os"))
+
+  (subsection
+    (title "Description")
+    (para "The " (item command "sd-cpufeat") " program detects and prints various
+      CPU extensions supported by the first CPU in the current system.")
+    (para "The output will be a string of whitespace delimited tokens with
+      values taken from the first column of the following table, in no particular
+      order:")
+    (para (include "dd-comp-cpufeat-table.ud"))
+    (para "The program may execute platform-specific code and therefore needs
+      to be told which operating system it is executing under. The operating
+      system is specified with the " (item parameter "os") " parameter, which
+      must be set to one of the values from " (link "dd_comp_os" "sd-os") "."))
+
+  (subsection
+    (title "Preconditions")
+    (para "The program requires the value of the environment variable "
+      (item variable "SYSDEP_BASE_DIRECTORY") " to be set to the location
+      of the base " (item package "sysdeps") " directory."))
+
+  (subsection
+    (title "Postconditions")
+    (para "On successful execution, the command will return a successful exit
+      code.")
+    (para "The command may produce no output."))
+)

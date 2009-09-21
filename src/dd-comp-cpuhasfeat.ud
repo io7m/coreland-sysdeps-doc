@@ -1,0 +1,42 @@
+(section
+  (ref "dd_comp_cpuhasfeat")
+  (title "sd-cpuhasfeat")
+
+  (subsection
+    (title "Synopsis")
+    (para-verbatim program_synopsis
+"sd-cpuhasfeat: usage: os"))
+
+  (subsection
+    (title "Description")
+    (para "The " (item command "sd-cpuhasfeat") " program detects and prints various
+      CPU extensions supported by the first CPU in the current system. It works
+      identically to " (link "dd_comp_cpufeat" "sd-cpufeat") " except that each
+      supported feature is printed in the form of a C preprocessor #define
+      statement, one per line, and the " (item constant "SD_SYSINFO_CPU_EXT")
+      " prefix is changed to " (item constant "SD_SYSINFO_HAVE_CPU_EXT") ".")
+    (para "Example output is:")
+    (para-verbatim example
+"#define SD_SYSINFO_HAVE_CPU_EXT_MMX
+#define SD_SYSINFO_HAVE_CPU_EXT_MMX2
+#define SD_SYSINFO_HAVE_CPU_EXT_SSE
+#define SD_SYSINFO_HAVE_CPU_EXT_SSE2
+#define SD_SYSINFO_HAVE_CPU_EXT_SSE3
+#define SD_SYSINFO_HAVE_CPU_EXT_SSE4_1
+#define SD_SYSINFO_HAVE_CPU_EXT_SSE4_2")
+    (para "The program may execute platform-specific code and therefore needs
+      to be told which operating system it is executing under. The operating
+      system is specified with the " (item parameter "os") " parameter, which
+      must be set to one of the values from " (link "dd_comp_os" "sd-os") "."))
+
+  (subsection
+    (title "Preconditions")
+    (para "The program requires the value of the environment variable "
+      (item variable "SYSDEP_BASE_DIRECTORY") " to be set to the location
+      of the base " (item package "sysdeps") " directory."))
+
+  (subsection
+    (title "Postconditions")
+    (para "On successful execution, the command will print zero or more lines and
+      return a successful exit code."))
+)
