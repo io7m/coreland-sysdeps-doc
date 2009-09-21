@@ -1,2 +1,45 @@
 (section
-  (ref "dd_comp_locker"))
+  (ref "dd_comp_locker")
+  (title "sd-locker")
+
+  (subsection
+    (title "Synopsis")
+    (para-verbatim program_synopsis "sd-locker: usage: id file command [arguments]"))
+
+  (subsection
+    (title "Description")
+    (para "The " (item command "sd-locker") " program obtains an exclusive
+      filesystem lock on " (item parameter "file") ", creating "
+      (item parameter "file") " if necessary, and waits indefinitely to
+      acquire the lock. Having obtained the lock, it executes "
+      (item parameter "command") " with " (item parameter "arguments") ", if
+      specified. Any messages that the program may write are prefixed with
+      the numeric identifier " (item parameter "id") ", the value of which
+      is otherwise ignored."))
+
+  (subsection
+    (title "Preconditions")
+    (para "None"))
+
+  (subsection
+    (title "Postconditions")
+    (para "If program execution proceeds as far as executing "
+      (item parameter "command") ", the exit code of the program will be
+      that of " (item parameter "command") ". It will otherwise return
+      an exit code indicating failure."))
+
+  (subsection
+    (title "Comments")
+    (para "The " (item command "sd-locker") " program essentially suffers
+      with a bootstrapping problem - the implementation is OS dependent and
+      therefore the host OS must be detected in order to compile the program
+      which will be used to safely compile the program which will be used to
+      detect the host OS.")
+    (para "At the moment, the implementation source simply attempts to detect
+      if it is running on Win32 (using a check generated from the "
+      (item file_name "os.txt") " data file in the source distribution) and
+      if it is, uses the Win32 file locking functions. It otherwise falls back
+      to a POSIX implementation using " (item c_function "fcntl()") " which has
+      proven to be portable to pretty much everything (and vastly simpler than
+      the convoluted Win32 version)."))
+)
