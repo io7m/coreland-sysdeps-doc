@@ -1,0 +1,36 @@
+(section
+  (ref "dd_comp_configman")
+  (title "sd-configman")
+
+  (subsection
+    (title "Synopsis")
+    (para-verbatim program_synopsis
+"sd-configman: usage: file path prefix"))
+
+  (subsection
+    (title "Description")
+    (para "The " (item command "sd-configman") " program checks for
+      the existence of " (item parameter "file") " in any of the
+      whitespace-delimited directories specified in " (item parameter "path")
+      ".")
+    (para "If " (item parameter "file") " is found, the program prints "
+      (item parameter "file") " prefixed with " (item parameter "prefix") ".")
+    (para "The program is used to manually locate library and header files and
+      construct compiler flags:")
+    (para-verbatim example "sd-configman png.h \"${SYSDEP_STDINC}\" \"-I\"")
+    (para "The above might result in the output:")
+    (para-verbatim example "-I/usr/local/include/png.h"))
+
+  (subsection
+    (title "Preconditions")
+    (para "The program requires the value of the environment variable "
+      (item variable "SYSDEP_BASE_DIRECTORY") " to be set to the location
+      of the base " (item package "sysdeps") " directory."))
+
+  (subsection
+    (title "Postconditions")
+    (para "The " (item command "sd-configman") " will return print a non-zero
+      length string and return an exit code indicating success if "
+      (item parameter "file") " is located, otherwise it will return an exit
+      code indicating failure."))
+)
