@@ -59,6 +59,19 @@
         (item "Change the algorithm for searching for headers whose names are
           not absolute pathnames to look in the directory named by the "
           (item file_name "directory") " pathname before looking in the usual
-          places.")))
+          places."))
+      (t-row
+        (item "-L directory")
+        (item "Change the algorithm for searching for libraries whose names are
+          not absolute pathnames to look in the directory named by the "
+          (item file_name "directory") " pathname before looking in the usual
+          places."))
+      (t-row
+        (item "-l library")
+        (para "Search the library named "
+          (item file_name "liblibrary.${SUFFIX}") ". A library will
+          be searched when its name is encountered, so the placement of a "
+          (item option "-l") " operand is significant.")))
+
     (para "Every compiler tested, to date, supports this interface."))
 )
