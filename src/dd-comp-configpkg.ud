@@ -1,0 +1,36 @@
+(section
+  (ref "dd_comp_configpkg")
+  (title "sd-configpkg")
+
+  (subsection
+    (title "Synopsis")
+    (para-verbatim program_synopsis
+"sd-configpkg: usage: pkg flags"))
+
+  (subsection
+    (title "Description")
+    (para "The " (item command "sd-configpkg") " program executes "
+      (link-ext "http://pkg-config.freedesktop.org/wiki/" "pkg-config")
+      " for " (item parameter "pkg") ", requesting that it print the
+      information specified by " (item parameter "flags") ". It suppresses
+      any errors printed by " (item parameter "pkg-config") " but accurately
+      returns the exit code of the program.")
+    (para "As an example:")
+    (para-verbatim example "sd-configpkg libpng --cflags")
+    (para "Might give the output:")
+    (para-verbatim example "-I/usr/local/include"))
+
+  (subsection
+    (title "Preconditions")
+    (para "The program requires the value of the environment variable "
+      (item variable "SYSDEP_BASE_DIRECTORY") " to be set to the location
+      of the base " (item package "sysdeps") " directory."))
+
+  (subsection
+    (title "Postconditions")
+    (para "The " (item command "sd-configpkg") " will return the exit code of
+      the " (item command "pkg-config") " or an exit code indicating
+      failure if the program cannot be executed.")
+    (para "The " (item command "sd-configpkg") " may fail for any of the
+      reasons that " (item command "pkg-config") " may fail."))
+)
