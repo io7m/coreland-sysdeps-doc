@@ -163,7 +163,7 @@
     (ref "dd_env_SYSDEP_CROSS_COMPILE")
     (title "SYSDEP_CROSS_COMPILE")
     (para example (item variable "SYSDEP_CROSS_COMPILE") " : " "number")
-    (para " Currently cross compiling?.")
+    (para " Currently cross compiling.")
     (para "Example value:")
     (para-verbatim example " 1                                              "))
   (subsection
