@@ -35,8 +35,7 @@ EOF
   LINE=`expr ${LINE} + 1`
 done
 echo ")"
-) > src/dd-comp-cpufeat-table.ud ||
-  fatal "could not write src/dd-comp-cpufeat-table.ud"
+) > src/dd-comp-cpufeat-table.ud || fatal "could not write src/dd-comp-cpufeat-table.ud"
 
 #
 # Create OS description table.
@@ -76,8 +75,7 @@ EOF
   LINE=`expr ${LINE} + 1`
 done
 echo ")"
-) > src/dd-comp-os-table.ud ||
-  fatal "could not write src/dd-comp-os-table.ud"
+) > src/dd-comp-os-table.ud || fatal "could not write src/dd-comp-os-table.ud"
 
 #
 # Create architecture description table.
@@ -117,8 +115,7 @@ EOF
   LINE=`expr ${LINE} + 1`
 done
 echo ")"
-) > src/dd-comp-arch-table.ud ||
-  fatal "could not write src/dd-comp-arch-table.ud"
+) > src/dd-comp-arch-table.ud || fatal "could not write src/dd-comp-arch-table.ud"
 
 #
 # Create sd-cctype output.
@@ -158,5 +155,99 @@ EOF
   LINE=`expr ${LINE} + 1`
 done
 echo ")"
-) > src/dd-comp-cctype-table.ud ||
-  fatal "could not write src/dd-comp-cctype-table.ud"
+) > src/dd-comp-cctype-table.ud || fatal "could not write src/dd-comp-cctype-table.ud"
+
+#
+# Copy images.
+#
+
+cp src/*.png release || fatal "could not copy images"
+
+#
+# Write variable lists.
+#
+
+variables_exported()
+{
+  SOURCE="$1"
+  OUTPUT="$2"
+
+  VARIABLES=`grep 'export' ${SYSDEPS_SOURCE}/${SOURCE} | sort | uniq | sed 's/export //g'` ||
+    fatal "could not read ${SYSDEPS_SOURCE}/${SOURCE}"
+
+  for VAR in ${VARIABLES}
+  do
+    echo "${VAR}" >> "${OUTPUT}.tmp" || fatal "could not write ${OUTPUT}.tmp"
+  done
+
+  mv "${OUTPUT}.tmp" "${OUTPUT}" || fatal "could not write ${OUTPUT}"
+}
+
+variables_used()
+{
+  SOURCE="$1"
+  EXPORTED="$2"
+  OUTPUT="$3"
+
+  VARIABLES=`egrep -o '\\${SYSDEP_[A-Z_]+}' ${SYSDEPS_SOURCE}/${SOURCE} |
+    tr -d '${}' | sort | uniq | sort` ||
+      fatal "could not read ${SYSDEPS_SOURCE}/${SOURCE}"
+
+  for VAR in ${VARIABLES}
+  do
+    grep "${VAR}" "${EXPORTED}" 1>/dev/null
+    case $? in
+      0) ;;
+      1) echo "${VAR}" >> "${OUTPUT}.tmp" || fatal "could not write ${OUTPUT}.tmp" ;;
+      *) fatal "error searching for variable" ;;
+    esac
+  done
+
+  mv "${OUTPUT}.tmp" "${OUTPUT}" || fatal "could not write ${OUTPUT}"
+}
+
+variables_exported SYSDEPS/sysdep-boot src/dd-core-boot-postcon.txt
+variables_used     SYSDEPS/sysdep-boot src/dd-core-boot-postcon.txt src/dd-core-boot-precon.txt
+
+variables_exported SYSDEPS/sysdep-subs src/dd-core-subs-postcon.txt
+variables_used     SYSDEPS/sysdep-subs src/dd-core-subs-postcon.txt src/dd-core-subs-precon.txt
+
+variables_exported SYSDEPS/sysdep-compilers src/dd-core-compilers-postcon.txt
+variables_used     SYSDEPS/sysdep-compilers src/dd-core-compilers-postcon.txt src/dd-core-compilers-precon.txt
+
+variables_exported SYSDEPS/sysdep-system src/dd-core-system-postcon.txt
+variables_used     SYSDEPS/sysdep-system src/dd-core-system-postcon.txt src/dd-core-system-precon.txt
+
+#
+# Write documentation for environment variables.
+#
+
+(
+IFS="
+"
+for line in `cat ${SYSDEPS_SOURCE}/GENERATION/environ.txt`
+do
+  var=`echo ${line} | awk -F\| '{print $1}' | tr -d ' '`
+  type=`echo ${line} | awk -F\| '{print $2}' | tr -d ' '`
+  val=`echo ${line} | awk -F\| '{print $3}'`
+  desc=`echo ${line} | awk -F\| '{print $NF}'`
+
+  case ${type} in
+    version) type="(link \"dd_type_version\" \"${type}\")" ;;
+    os-type) type="(link \"dd_type_os\"      \"${type}\")" ;;
+    cc-type) type="(link \"dd_type_cc\"      \"${type}\")" ;;
+    arch)    type="(link \"dd_type_arch\"    \"${type}\")" ;;
+    *)       type="\"${type}\""                            ;;
+  esac
+
+  cat <<EOF
+  (subsection
+    (ref "dd_env_${var}")
+    (title "${var}")
+    (para example (item variable "${var}") " : " ${type})
+    (para "${desc}.")
+    (para "Example value:")
+    (para-verbatim example "${val}"))
+EOF
+done
+) > src/dd-env-sections.ud || fatal "could not write src/dd-env-sections.ud"

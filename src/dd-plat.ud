@@ -71,7 +71,8 @@
         (para "Search the library named "
           (item file_name "liblibrary.${SUFFIX}") ". A library will
           be searched when its name is encountered, so the placement of a "
-          (item option "-l") " operand is significant.")))
+          (item option "-l") " operand is significant. The value of the " 
+          (item variable "${SUFFIX}") " variable is implementation-defined.")))
 
     (para "Every compiler tested, to date, supports this interface."))
 )

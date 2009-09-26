@@ -1,6 +1,14 @@
 (section
   (title "Developer Documentation")
+
+  (para "The section provides documentation useful to those wishing to
+    modify or improve the " (item package "sysdeps") " package or for those
+    simply interested in the implementation of it.")
+
   (contents)
+  (include "dd-arch.ud")
   (include "dd-plat.ud")
+  (include "dd-core.ud")
   (include "dd-comp.ud")
+  (include "dd-env.ud")
 )
