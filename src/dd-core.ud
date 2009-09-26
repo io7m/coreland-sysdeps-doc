@@ -1,0 +1,15 @@
+(section
+  (title "Core Reference")
+
+  (para "This section documents the core components present in the base "
+    (item package "sysdeps") " directory.")
+
+  (contents)
+
+  (include "dd-core-boot.ud")
+  (include "dd-core-compilers.ud")
+  (include "dd-core-mod-clean.ud")
+  (include "dd-core-mod-exec.ud")
+  (include "dd-core-subs.ud")
+  (include "dd-core-system.ud")
+)

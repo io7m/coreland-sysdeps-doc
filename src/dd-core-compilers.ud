@@ -1,0 +1,27 @@
+(section
+  (ref "dd_core_compilers")
+  (title "sysdep-compilers")
+
+  (subsection
+    (title "Synopsis")
+    (para-verbatim program_synopsis "sysdep-compilers"))
+
+  (subsection
+    (title "Description")
+    (para "The " (item command "sysdep-compilers") " program sets
+      up the environment for compilation. It reads various configuration
+      files in order to determine which compilers to use and checks that
+      they are functional. It also determines whether or not the current
+      build execution is cross-compiling.")
+    (para "It must only be run once per module execution."))
+
+  (subsection
+    (title "Preconditions")
+    (para "The following variables must be defined in the environment:")
+    (para-verbatim (render "dd-core-compilers-precon.txt")))
+
+  (subsection
+    (title "Postconditions")
+    (para "The following variables will be defined in the environment:")
+    (para-verbatim (render "dd-core-compilers-postcon.txt")))
+)

@@ -1,0 +1,20 @@
+(section
+  (ref "dd_core_mod-exec")
+  (title "sysdep-mod-exec")
+
+  (subsection
+    (title "Description")
+    (para-verbatim program_synopsis "sysdep-mod-exec module"))
+
+  (subsection
+    (title "Description")
+    (para "The " (item command "sysdep-mod-exec") " program."))
+
+  (subsection
+    (title "Preconditions")
+    (para "None"))
+
+  (subsection
+    (title "Postconditions")
+    (para "None"))
+)

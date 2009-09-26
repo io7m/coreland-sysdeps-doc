@@ -1,0 +1,26 @@
+(section
+  (ref "dd_core_subs")
+  (title "sysdep-subs")
+
+  (subsection
+    (title "Description")
+    (para-verbatim program_synopsis "sysdep-subs module"))
+
+  (subsection
+    (title "Description")
+    (para "The " (item command "sysdep-subs") " program defines and exports
+      a set of functions and variables that are used by every other component
+      in the " (item package "sysdeps") " package.")
+    (para "It may be run an indefinite number of times per module execution."))
+
+  (subsection
+    (title "Preconditions")
+    (para "The following variables must be defined in the environment:")
+    (para-verbatim (render "dd-core-subs-precon.txt")))
+
+  (subsection
+    (title "Postconditions")
+    (para "The following variables will be explicitly exported in the
+      environment:")
+    (para-verbatim (render "dd-core-subs-postcon.txt")))
+)

@@ -1,0 +1,20 @@
+(section
+  (ref "dd_core_mod-clean")
+  (title "sysdep-mod-clean")
+
+  (subsection
+    (title "Description")
+    (para-verbatim program_synopsis "sysdep-mod-clean module"))
+
+  (subsection
+    (title "Description")
+    (para "The " (item command "sysdep-mod-clean") " program."))
+
+  (subsection
+    (title "Preconditions")
+    (para "None"))
+
+  (subsection
+    (title "Postconditions")
+    (para "None"))
+)

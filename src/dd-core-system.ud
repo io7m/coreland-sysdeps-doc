@@ -1,0 +1,31 @@
+(section
+  (ref "dd_core_system")
+  (title "sysdep-system")
+
+  (subsection
+    (title "Description")
+    (para-verbatim program_synopsis "sysdep-system module"))
+
+  (subsection
+    (title "Description")
+    (para "The " (item command "sysdep-system") " program compiles various
+      support programs and attempts to determine basic information about
+      the system such as the current architecture, compiler, operating
+      system etc. It also uses this information to select \"sensible\"
+      search paths for compilation.")
+    (para "The actual system discovery work is performed by the many "
+      (link "dd_comp" "subcomponents") ". The " (item command "sysdep-system")
+      " simply organizes the resulting information.")
+    (para "The " (item command "sysdep-system") " program must only be run
+      once per module execution."))
+
+  (subsection
+    (title "Preconditions")
+    (para "The following variables must be defined in the environment:")
+    (para-verbatim (render "dd-core-system-precon.txt")))
+
+  (subsection
+    (title "Postconditions")
+    (para "The following variables will be defined in the environment:")
+    (para-verbatim (render "dd-core-system-postcon.txt")))
+)
