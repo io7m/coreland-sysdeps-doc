@@ -1,15 +1,18 @@
 (section
-  (title "Component Reference")
+  (ref "dd_comp")
+  (title "Subcomponent Reference")
 
-  (para "This section documents the various components present in the base "
+  (para "This section documents the various subcomponents present in the base "
     (item package "sysdeps") " directory.")
 
+  (contents)
   (include "dd-comp-arch.ud")
   (include "dd-comp-cctype.ud")
   (include "dd-comp-ccversion.ud")
   (include "dd-comp-compile.ud")
   (include "dd-comp-configbin.ud")
   (include "dd-comp-configman.ud")
+  (include "dd-comp-configpkg.ud")
   (include "dd-comp-cpuclinesz.ud")
   (include "dd-comp-cpufeat.ud")
   (include "dd-comp-cpufreq.ud")

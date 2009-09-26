@@ -7,6 +7,7 @@
     (para "The " (item command "sd-arch") " program detects and prints the
       current hardware architecture. The output will be one of the following
       values:")
+    (ref "dd_type_arch")
     (para (include "dd-comp-arch-table.ud"))
     (para "The " (item command "sd-arch") " program is created by compiling
       and linking " (item file_name "sd-arch.c") ". The "

@@ -7,6 +7,7 @@
     (para "The " (item command "sd-os") " program detects and prints the
       current operating system. The output will be one of the values in the
       first column:")
+    (ref "dd_type_os")
     (para (include "dd-comp-os-table.ud"))
     (para "The " (item command "sd-os") " program is created by compiling
       and linking " (item file_name "sd-os.c") ". The "

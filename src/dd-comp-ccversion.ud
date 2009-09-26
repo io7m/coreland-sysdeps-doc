@@ -8,12 +8,17 @@
       the version number of the current C compiler. There is no standard for
       C compiler version numbers so the program attempts to map vendor-specific
       version strings into a standard format.")
-    (para "The standard format is a number string of the form:")
+
+    (subsection
+      (title "Standard version format")
+      (ref "dd_type_version")
+      (para "The standard format is a number string of the form:")
     (para-verbatim bnf example
 "<digit>   ::= \"0\" | \"1\" | \"2\" | \"3\" | \"4\" | \"5\" | \"6\" | \"7\" | \"8\" | \"9\"
 <dot>     ::= \".\"
 <number>  ::= <digit> { <digit> }
-<version> ::= <number> <dot> <number> <dot> <number>")
+<version> ::= <number> <dot> <number> <dot> <number>"))
+
     (para "When an appropriate value cannot be determined for a component,
       the component is given the value " (item constant "0") ".")
     (para "As a concrete example, the " (link-ext "http://gcc.gnu.org" "GNU C")
