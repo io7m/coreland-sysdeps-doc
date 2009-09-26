@@ -1,4 +1,6 @@
-SYSDEP_FILE
-SYSDEP_LINE
-SYSDEP_UTIL_ECHO
-SYSDEP_UTIL_TR
+(list
+(item (link "dd_env_SYSDEP_FILE" "SYSDEP_FILE"))
+(item (link "dd_env_SYSDEP_LINE" "SYSDEP_LINE"))
+(item (link "dd_env_SYSDEP_UTIL_ECHO" "SYSDEP_UTIL_ECHO"))
+(item (link "dd_env_SYSDEP_UTIL_TR" "SYSDEP_UTIL_TR"))
+)

@@ -22,10 +22,10 @@
   (subsection
     (title "Preconditions")
     (para "The following variables must be defined in the environment:")
-    (para-verbatim (render "dd-core-system-precon.txt")))
+    (include "dd-core-system-precon.txt"))
 
   (subsection
     (title "Postconditions")
     (para "The following variables will be defined in the environment:")
-    (para-verbatim (render "dd-core-system-postcon.txt")))
+    (include "dd-core-system-postcon.txt"))
 )

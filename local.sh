@@ -175,10 +175,15 @@ variables_exported()
   VARIABLES=`grep 'export' ${SYSDEPS_SOURCE}/${SOURCE} | sort | uniq | sed 's/export //g'` ||
     fatal "could not read ${SYSDEPS_SOURCE}/${SOURCE}"
 
-  for VAR in ${VARIABLES}
-  do
-    echo "${VAR}" >> "${OUTPUT}.tmp" || fatal "could not write ${OUTPUT}.tmp"
-  done
+  (
+    exec 1>"${OUTPUT}.tmp"
+    echo "(list" || exit 1
+    for VAR in ${VARIABLES}
+    do
+      echo "(item (link \"dd_env_${VAR}\" \"${VAR}\"))" || exit 1
+    done
+    echo ")"
+  ) || fatal "could not write ${OUTPUT}.tmp"
 
   mv "${OUTPUT}.tmp" "${OUTPUT}" || fatal "could not write ${OUTPUT}"
 }
@@ -193,15 +198,18 @@ variables_used()
     tr -d '${}' | sort | uniq | sort` ||
       fatal "could not read ${SYSDEPS_SOURCE}/${SOURCE}"
 
+  echo "(list" >> "${OUTPUT}.tmp" || fatal "could not write ${OUTPUT}.tmp"
   for VAR in ${VARIABLES}
   do
     grep "${VAR}" "${EXPORTED}" 1>/dev/null
     case $? in
       0) ;;
-      1) echo "${VAR}" >> "${OUTPUT}.tmp" || fatal "could not write ${OUTPUT}.tmp" ;;
+      1) echo "(item (link \"dd_env_${VAR}\" \"${VAR}\"))" >> "${OUTPUT}.tmp" ||
+        fatal "could not write ${OUTPUT}.tmp" ;;
       *) fatal "error searching for variable" ;;
     esac
   done
+  echo ")" >> "${OUTPUT}.tmp" || fatal "could not write ${OUTPUT}.tmp"
 
   mv "${OUTPUT}.tmp" "${OUTPUT}" || fatal "could not write ${OUTPUT}"
 }

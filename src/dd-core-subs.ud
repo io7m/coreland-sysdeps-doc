@@ -16,11 +16,11 @@
   (subsection
     (title "Preconditions")
     (para "The following variables must be defined in the environment:")
-    (para-verbatim (render "dd-core-subs-precon.txt")))
+    (include "dd-core-subs-precon.txt"))
 
   (subsection
     (title "Postconditions")
     (para "The following variables will be explicitly exported in the
       environment:")
-    (para-verbatim (render "dd-core-subs-postcon.txt")))
+    (include "dd-core-subs-postcon.txt"))
 )
