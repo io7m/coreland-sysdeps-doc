@@ -1,0 +1,8 @@
+(section
+  (title "Environment")
+
+  (para "This section documents the various environment variables exposed to
+    modules.")
+
+  (include "dd-env-sections.ud")
+)
