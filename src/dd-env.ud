@@ -1,5 +1,5 @@
 (section
-  (title "Environment")
+  (title "Environment Reference")
 
   (para "This section documents the various environment variables exposed to
     modules.")
