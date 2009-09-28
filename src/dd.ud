@@ -8,6 +8,7 @@
   (contents)
   (include "dd-arch.ud")
   (include "dd-plat.ud")
+  (include "dd-suppreq.ud")
   (include "dd-core.ud")
   (include "dd-comp.ud")
   (include "dd-env.ud")
