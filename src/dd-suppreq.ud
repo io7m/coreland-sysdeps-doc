@@ -1,4 +1,46 @@
 (section
   (title "Supported Platform Requirements")
 
+  (para "A platform must satisfy the following requirements in order to be
+    considered explicitly supported:")
+
+  (list
+    (item
+      (para "A full serial execution of all modules, resulting in no
+        warnings or errors. This step can be performed by running the
+        following command in the base directory of the "
+        (item package "sysdeps") " source distribution:")
+      (para-verbatim example "make clean-all && make"))
+    (item
+      (para "A full parallel execution of all modules, resulting in no
+        warnings or errors. As many tasks as is considered beneficial to
+        performance should be used. On the average multicore machine at
+        the time of writing, on the average modern POSIX operating system,
+        around 32 processes are suggesed. This step can be performed by running
+        one of the following commands in the base directory of the "
+        (item package "sysdeps") " source distribution:")
+      (list
+        (item
+          (para "BSD make:")
+          (para-verbatim example "make -j 32 clean-all && make -j 32"))
+        (item
+          (para "GNU make:")
+          (para-verbatim example "make -j 32 clean-all && make -j 32"))
+        (item
+          (para "Solaris dmake:")
+          (para-verbatim example "dmake -j 32 clean-all && dmake -j 32")))
+      (para "The output of all modules must be verified to be the same as
+        that produced by serial execution (except for any difference in
+        the order of output due to non-determinism).")
+      (para "This step may be skipped if the given platform does not support "
+        (item command "make") " concurrency."))
+    (item
+      (para "The values of the following variables must be accurate:")
+      (list
+        (item (link "dd_env_SYSDEP_ADA_TYPE" "SYSDEP_ADA_TYPE"))
+        (item (link "dd_env_SYSDEP_ARCH" "SYSDEP_ARCH"))
+        (item (link "dd_env_SYSDEP_CCTYPE" "SYSDEP_CCTYPE"))
+        (item (link "dd_env_SYSDEP_OS" "SYSDEP_OS"))
+        (item (link "dd_env_SYSDEP_OSVERSION" "SYSDEP_OSVERSION")))))
+
 )
