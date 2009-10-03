@@ -8,6 +8,8 @@
   (include "mr-sd-direntry.ud")
   (include "mr-sd-float32.ud")
   (include "mr-sd-float64.ud")
-
+  (include "mr-sd-int16.ud")
+  (include "mr-sd-int32.ud")
+  (include "mr-sd-int64.ud")
 
 )
