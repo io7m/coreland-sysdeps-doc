@@ -264,6 +264,15 @@ done
 # Create source for all modules.
 #
 
+rm -f src/mr.ud.tmp || fatal "could not remove src/mr.ud.tmp"
+
+cat >> src/mr.ud.tmp << EOF
+(section
+  (title "Module Reference")
+  (contents)
+
+EOF
+
 for module_path in `ls ${SYSDEPS_SOURCE}/SYSDEPS/modules`
 do
   module=`basename ${module_path}` || fatal "could not retrieve module name"
@@ -272,4 +281,12 @@ do
     fatal "could not write src/mr-${module}.ud.tmp"
   mv "src/mr-${module}.ud.tmp" "src/mr-${module}.ud" ||
     fatal "could not write src/mr-${module}.ud"
+
+  echo "  (include \"mr-${module}.ud\")" >> src/mr.ud.tmp ||
+    fatal "could not write src/mr.ud.tmp"
 done
+
+echo ")" >> src/mr.ud.tmp || 
+  fatal "could not write src/mr.ud.tmp"
+mv src/mr.ud.tmp src/mr.ud ||
+  fatal "could not write src/mr.ud"
