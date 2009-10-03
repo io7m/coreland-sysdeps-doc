@@ -11,5 +11,6 @@
   (include "mr-sd-int16.ud")
   (include "mr-sd-int32.ud")
   (include "mr-sd-int64.ud")
+  (include "mr-sd-io-notice.ud")
 
 )

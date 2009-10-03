@@ -62,6 +62,33 @@ cat <<EOF
 EOF
 
 #
+# Read list of config files.
+#
+
+if [ -f "${dir}/config" ]
+then
+  cat <<EOF
+  (subsection
+    (title "Configuration")
+    (para "The module is influenced by the following configuration files:")
+    (list
+EOF
+
+  CONFIGS=`cat ${dir}/config` || fatal "could not read ${dir}/config"
+
+  for file in ${CONFIGS}
+  do
+    cat <<EOF
+      (item file_name "${file}")
+EOF
+  done
+  cat <<EOF
+    ))
+
+EOF
+fi
+
+#
 # Read list of preprocessor defines.
 #
 

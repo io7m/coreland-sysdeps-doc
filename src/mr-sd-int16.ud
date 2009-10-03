@@ -43,6 +43,13 @@ typedef int sd_int16;
     ))
 
   (subsection
+    (title "Configuration")
+    (para "The module is influenced by the following configuration files:")
+    (list
+      (item file_name "conf-sd-int16")
+    ))
+
+  (subsection
     (title "Defines")
     (para "The module defines the following preprocessor constants:")
     (table definitions
