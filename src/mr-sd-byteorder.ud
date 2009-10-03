@@ -1,0 +1,52 @@
+(section
+  (ref "mr_sd-byteorder")
+  (title "sd-byteorder")
+
+  (subsection
+    (title "Synopsis")
+    (para "Detection of host byte ordering."))
+
+  (subsection
+    (title "Description")
+(para "This module creates the appropriate typedef for the "
+  (item file_name "_sd_byteorder.h") " header file.")
+
+(para "It does a simple pointer check to see if integers stored in
+  memory are in little endian or big endian format. There are no plans to
+  support middle endian byte ordering at this time.")
+
+(para "Example output:")
+
+(para-verbatim example
+"#ifndef _SD_BYTEORDER_H
+#define _SD_BYTEORDER_H
+
+#define SD_BYTEORDER_BIG    0
+#define SD_BYTEORDER_LITTLE 1
+
+#define SD_BYTEORDER SD_BYTEORDER_LITTLE
+#endif
+")
+  )
+
+  (subsection
+    (title "Creates")
+    (para "The module creates the following files:")
+    (list
+      (item file_name "_sd_byteorder.h")
+    ))
+
+  (subsection
+    (title "Output")
+    (para "The module writes lines with the following forms to "
+      (item file_name "sysdeps.out") ":")
+    (para-verbatim example (render "mr-sd-byteorder-sysdeps-bnf.txt")))
+  (subsection
+    (title "Author Information")
+    (para
+      (table author_info
+        (t-row
+          (item "Author Email") (item email_address "sysdeps@coreland.ath.cx"))
+        (t-row
+          (item "Author URL")    (item (link-ext "http://coreland.ath.cx"))))))
+)

@@ -114,6 +114,12 @@ table.comparison td {
   padding-right: 3em;
 }
 
+table.author_info { }
+table.author_info td {
+  vertical-align: top;
+  padding-right: 3em;
+}
+
 table.exception_table { }
 table.exception_table td {
   vertical-align: top;
