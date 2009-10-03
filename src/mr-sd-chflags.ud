@@ -1,0 +1,60 @@
+(section
+  (ref "mr_sd-chflags")
+  (title "sd-chflags")
+
+  (subsection
+    (title "Synopsis")
+    (para "Detect chflags() usability."))
+
+  (subsection
+    (title "Description")
+(para "This module does a simple compile-time check to see if
+  the " (item c_function "chflags()") " system call is implemented.")
+
+(para "Example output:")
+
+(para-verbatim example
+"#ifndef _SD_CHFLAGS_H
+#define _SD_CHFLAGS_H
+
+#define SD_CHFLAGS_SUPPORTED 1
+
+#endif
+")
+  )
+
+  (subsection
+    (title "Creates")
+    (para "The module creates the following files:")
+    (list
+      (item file_name "_sd_chflags.h")
+    ))
+
+  (subsection
+    (title "Defines")
+    (para "The module defines the following preprocessor constants:")
+    (table definitions
+      (t-row
+        (item "Constant")
+        (item "Type")
+        (item "Attributes"))
+      (t-row
+        (item constant "SD_CHFLAGS_SUPPORTED ")
+        (item " integer 0 .. 1 ")
+        (item constant " optional"))
+    ))
+
+  (subsection
+    (title "Output")
+    (para "The module writes lines with the following forms to "
+      (item file_name "sysdeps.out") ":")
+    (para-verbatim example (render "mr-sd-chflags-sysdeps-bnf.txt")))
+  (subsection
+    (title "Author Information")
+    (para
+      (table author_info
+        (t-row
+          (item "Author Email") (item email_address "sysdeps@coreland.ath.cx"))
+        (t-row
+          (item "Author URL")    (item (link-ext "http://coreland.ath.cx"))))))
+)

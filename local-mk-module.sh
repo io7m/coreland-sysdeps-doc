@@ -62,6 +62,47 @@ cat <<EOF
 EOF
 
 #
+# Read list of preprocessor defines.
+#
+
+if [ -f "${dir}/defines" ]
+then
+  cat <<EOF
+  (subsection
+    (title "Defines")
+    (para "The module defines the following preprocessor constants:")
+    (table definitions
+      (t-row
+        (item "Constant")
+        (item "Type")
+        (item "Attributes"))
+EOF
+
+  OLD_IFS="${IFS}"
+  IFS="
+"
+
+  for line in `cat ${dir}/defines`
+  do
+    name=`echo ${line} | awk -F: '{print $1}'`
+    type=`echo ${line} | awk -F: '{print $2}'`
+    attr=`echo ${line} | awk -F: '{print $3}'`
+  cat <<EOF
+      (t-row
+        (item constant "${name}")
+        (item "${type}")
+        (item constant "${attr}"))
+EOF
+  done
+  cat <<EOF
+    ))
+
+EOF
+fi
+
+IFS="${OLD_IFS}"
+
+#
 # Read lines written to sysdeps.out.
 #
 

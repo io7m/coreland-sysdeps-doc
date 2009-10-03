@@ -1,0 +1,2 @@
+<chflags>      ::= "chflags" | "none"
+<chflags-spec> ::= "sd-chflags:" <chflags>

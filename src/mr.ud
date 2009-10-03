@@ -1,4 +1,7 @@
 (section
   (title "Module Reference")
+  (contents)
+
   (include "mr-sd-byteorder.ud")
+  (include "mr-sd-chflags.ud")
 )
