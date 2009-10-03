@@ -5,4 +5,7 @@
   (include "mr-sd-altivec-flags.ud")
   (include "mr-sd-byteorder.ud")
   (include "mr-sd-chflags.ud")
+  (include "mr-sd-direntry.ud")
+  (include "mr-sd-float32.ud")
+
 )
