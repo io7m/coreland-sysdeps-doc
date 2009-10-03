@@ -1,0 +1,80 @@
+(section
+  (ref "mr_sd-io-notice")
+  (title "sd-io-notice")
+
+  (subsection
+    (title "Synopsis")
+    (para "Test for IO notification mechanisms such as kqueue or epoll."))
+
+  (subsection
+    (title "Description")
+(para "This module tests the availability of various IO notification
+mechanisms.")
+
+(para "The module can currently detect:")
+
+(para
+  (list
+    (item "System-V poll()")
+    (item "UNIX select()")
+    (item "BSD kqueue")
+    (item "Linux epoll")))
+
+(para "Example output:")
+
+(para-verbatim example
+"#ifndef _SD_IO_NOTICE_H
+#define _SD_IO_NOTICE_H
+#define SD_IO_NOTICE_SUPPORTED_KQUEUE 1
+#define SD_IO_NOTICE_SUPPORTED_POLL 1
+#define SD_IO_NOTICE_SUPPORTED_SELECT 1
+#endif")
+  )
+
+  (subsection
+    (title "Creates")
+    (para "The module creates the following files:")
+    (list
+      (item file_name "_sd_io-notice.h")
+    ))
+
+  (subsection
+    (title "Defines")
+    (para "The module defines the following preprocessor constants:")
+    (table definitions
+      (t-row
+        (item "Constant")
+        (item "Type")
+        (item "Attributes"))
+      (t-row
+        (item constant "SD_IO_NOTICE_SUPPORT_KQUEUE ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_IO_NOTICE_SUPPORT_EPOLL  ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_IO_NOTICE_SUPPORT_POLL   ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_IO_NOTICE_SUPPORT_SELECT ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+    ))
+
+  (subsection
+    (title "Output")
+    (para "The module writes lines with the following forms to "
+      (item file_name "sysdeps.out") ":")
+    (para-verbatim example (render "mr-sd-io-notice-sysdeps-bnf.txt")))
+  (subsection
+    (title "Author Information")
+    (para
+      (table author_info
+        (t-row
+          (item "Author Email") (item email_address "sysdeps@coreland.ath.cx"))
+        (t-row
+          (item "Author URL")    (item (link-ext "http://coreland.ath.cx"))))))
+)

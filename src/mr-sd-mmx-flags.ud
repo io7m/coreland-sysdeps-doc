@@ -1,0 +1,39 @@
+(section
+  (ref "mr_sd-mmx-flags")
+  (title "sd-mmx-flags")
+
+  (subsection
+    (title "Synopsis")
+    (para "Compiler flags to enable MMX, if supported."))
+
+  (subsection
+    (title "Description")
+(para "If the current compiler supports MMX intrinsics, this
+  modules outputs the compiler flags required to enable support.")
+
+(para "Example output:")
+
+(para-verbatim example "-mmmx")
+  )
+
+  (subsection
+    (title "Creates")
+    (para "The module creates the following files:")
+    (list
+      (item file_name "flags-mmx")
+    ))
+
+  (subsection
+    (title "Output")
+    (para "The module writes lines with the following forms to "
+      (item file_name "sysdeps.out") ":")
+    (para-verbatim example (render "mr-sd-mmx-flags-sysdeps-bnf.txt")))
+  (subsection
+    (title "Author Information")
+    (para
+      (table author_info
+        (t-row
+          (item "Author Email") (item email_address "sysdeps@coreland.ath.cx"))
+        (t-row
+          (item "Author URL")    (item (link-ext "http://coreland.ath.cx"))))))
+)
