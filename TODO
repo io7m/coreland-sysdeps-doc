@@ -6,6 +6,7 @@ Documentation outline:
     How to use tools, etc
     Module writing
     Explicitly supported platforms/issues
+    Module reference
 
   Developer documentation
     Platform assumptions
@@ -23,4 +24,3 @@ Documentation outline:
       Correct detection of system features in as many modules as possible.
     Rationale
 
-  Module reference
