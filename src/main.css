@@ -43,6 +43,7 @@ table.ud_footnote_tab td { vertical-align: top; }
 .command,
 .constant,
 .c_function,
+.c_type,
 .db_column,
 .db_table,
 .exception,
