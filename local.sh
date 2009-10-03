@@ -259,3 +259,17 @@ do
 EOF
 done
 ) > src/dd-env-sections.ud || fatal "could not write src/dd-env-sections.ud"
+
+#
+# Create source for all modules.
+#
+
+for module_path in `ls ${SYSDEPS_SOURCE}/SYSDEPS/modules`
+do
+  module=`basename ${module_path}` || fatal "could not retrieve module name"
+
+  ./local-mk-module.sh "${module_path}" > "src/mr-${module}.ud.tmp" ||
+    fatal "could not write src/mr-${module}.ud.tmp"
+  mv "src/mr-${module}.ud.tmp" "src/mr-${module}.ud" ||
+    fatal "could not write src/mr-${module}.ud"
+done
