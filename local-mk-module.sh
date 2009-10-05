@@ -21,7 +21,7 @@ synopsis=`cat ${dir}/synopsis` || fatal "could not read ${dir}/synopsis"
 
 cat <<EOF
 (section
-  (ref "mr_${module}")
+  (ref "ud_mr_${module}")
   (title "${module}")
 
   (subsection
@@ -32,6 +32,65 @@ cat <<EOF
     (title "Description")
 EOF
 cat ${dir}/description.ud || fatal "could not read ${dir}/description.ud"
+
+if [ -f "${dir}/config_bin" ]
+then
+  config_bin=`head -n 1 ${dir}/config_bin`           || fatal "could not read ${dir}/config_bin"
+  config_bin_args=`head -n 1 ${dir}/config_bin_args` || fatal "could not read ${dir}/config_bin_args"
+
+  cat <<EOF
+    (para "The module will attempt to execute the following command in order
+      to retrieve the desired information from the environment:")
+    (para-verbatim example "${config_bin} ${config_bin_args}")
+EOF
+fi
+
+if [ -f "${dir}/pkg" ]
+then
+  pkg=`head -n 1 ${dir}/pkg`                         || fatal "could not read ${dir}/pkg"
+  pkg_config_args=`head -n 1 ${dir}/pkg_config_args` || fatal "could not read ${dir}/pkg_config_args"
+
+  cat <<EOF
+    (para "The module will attempt to execute the following "
+      (item command "pkg-config") " command in order
+      to retrieve the desired information from the environment:")
+    (para-verbatim example "pkg-config ${pkg_config_args} ${pkg}")
+EOF
+fi
+
+if [ -f "${dir}/header" ]
+then
+  header=`head -n 1 ${dir}/header` || fatal "could not read ${dir}/header"
+
+  cat <<EOF
+    (para "The module will attempt to manually search for the following
+      C header files:")
+    (para (item file_name "${header}"))
+EOF
+fi
+
+if [ -f "${dir}/dynlib" ]
+then
+  dynlib=`head -n 1 ${dir}/dynlib` || fatal "could not read ${dir}/dynlib"
+
+  cat <<EOF
+    (para "The module will attempt to manually search for the following
+      dynamic library file:")
+    (para (item file_name "${dynlib}.\${SO_SUFFIX}"))
+EOF
+fi
+
+if [ -f "${dir}/slib" ]
+then
+  slib=`head -n 1 ${dir}/slib` || fatal "could not read ${dir}/slib"
+
+  cat <<EOF
+    (para "The module will attempt to manually search for the following
+      static library file:")
+    (para (item file_name "lib${slib}.a"))
+EOF
+fi
+
 cat <<EOF
   )
 
@@ -145,7 +204,7 @@ cat <<EOF
 EOF
 
 #
-# Read author information.
+# Read module metadata.
 #
 
 author_email=`head -n 1 ${dir}/author_email` || fatal "could not read ${dir}/author_email"
@@ -153,9 +212,21 @@ author_url=`head -n 1 ${dir}/author_url`     || fatal "could not read ${dir}/aut
 
 cat <<EOF
   (subsection
-    (title "Author Information")
+    (title "Module Metadata")
     (para
-      (table author_info
+      (table module_metadata
+EOF
+
+if [ -f "${dir}/package_url" ]
+then
+  package_url=`head -n 1 ${dir}/package_url` || fatal "could not read ${dir}/package_url"
+cat <<EOF
+        (t-row
+          (item "Package URL")  (item (link-ext "${package_url}")))
+EOF
+fi
+
+cat <<EOF
         (t-row
           (item "Author Email") (item email_address "${author_email}"))
         (t-row

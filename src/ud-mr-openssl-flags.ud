@@ -1,0 +1,54 @@
+(section
+  (ref "ud_mr_openssl-flags")
+  (title "openssl-flags")
+
+  (subsection
+    (title "Synopsis")
+    (para "Compiler flags to compile against OpenSSL."))
+
+  (subsection
+    (title "Description")
+(para "This module determines the compiler flags required to compile against "
+  (link-ext "http://openssl.org" "OpenSSL"))
+    (para "The module will attempt to manually search for the following
+      C header files:")
+    (para (item file_name "openssl/opensslv.h"))
+  )
+
+  (subsection
+    (title "Creates")
+    (para "The module creates the following files:")
+    (list
+      (item file_name "flags-openssl")
+    ))
+
+  (subsection
+    (title "Defines")
+    (para "The module defines the following preprocessor constants:")
+    (table definitions
+      (t-row
+        (item "Constant")
+        (item "Type")
+        (item "Attributes"))
+      (t-row
+        (item constant "SD_HAVE_OPENSSL ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+    ))
+
+  (subsection
+    (title "Output")
+    (para "The module writes lines with the following forms to "
+      (item file_name "sysdeps.out") ":")
+    (para-verbatim example (render "mr-openssl-flags-sysdeps-bnf.txt")))
+  (subsection
+    (title "Module Metadata")
+    (para
+      (table module_metadata
+        (t-row
+          (item "Package URL")  (item (link-ext "http://openssl.org")))
+        (t-row
+          (item "Author Email") (item email_address "sysdeps@coreland.ath.cx"))
+        (t-row
+          (item "Author URL")    (item (link-ext "http://coreland.ath.cx"))))))
+)

@@ -1,0 +1,52 @@
+(section
+  (ref "ud_mr_vector-flags")
+  (title "vector-flags")
+
+  (subsection
+    (title "Synopsis")
+    (para "Compiler flags to compile against vector."))
+
+  (subsection
+    (title "Description")
+(para "This module determines the compiler flags required to compile against "
+  (link-ext "http://coreland.ath.cx/code/vector" "vector"))
+  )
+
+  (subsection
+    (title "Creates")
+    (para "The module creates the following files:")
+    (list
+      (item file_name "flags-vector")
+      (item file_name "flags-cc-vector")
+    ))
+
+  (subsection
+    (title "Defines")
+    (para "The module defines the following preprocessor constants:")
+    (table definitions
+      (t-row
+        (item "Constant")
+        (item "Type")
+        (item "Attributes"))
+      (t-row
+        (item constant "SD_HAVE_VECTOR ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+    ))
+
+  (subsection
+    (title "Output")
+    (para "The module writes lines with the following forms to "
+      (item file_name "sysdeps.out") ":")
+    (para-verbatim example (render "mr-vector-flags-sysdeps-bnf.txt")))
+  (subsection
+    (title "Module Metadata")
+    (para
+      (table module_metadata
+        (t-row
+          (item "Package URL")  (item (link-ext "http://coreland.ath.cx/code/vector")))
+        (t-row
+          (item "Author Email") (item email_address "sysdeps@coreland.ath.cx"))
+        (t-row
+          (item "Author URL")    (item (link-ext "http://coreland.ath.cx"))))))
+)

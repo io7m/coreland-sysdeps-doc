@@ -8,6 +8,7 @@
 (item (link "dd_env_SYSDEP_UTIL_EXIT" "SYSDEP_UTIL_EXIT"))
 (item (link "dd_env_SYSDEP_UTIL_GREP" "SYSDEP_UTIL_GREP"))
 (item (link "dd_env_SYSDEP_UTIL_HEAD" "SYSDEP_UTIL_HEAD"))
+(item (link "dd_env_SYSDEP_UTIL_MKDIR" "SYSDEP_UTIL_MKDIR"))
 (item (link "dd_env_SYSDEP_UTIL_MV" "SYSDEP_UTIL_MV"))
 (item (link "dd_env_SYSDEP_UTIL_PWD" "SYSDEP_UTIL_PWD"))
 (item (link "dd_env_SYSDEP_UTIL_RM" "SYSDEP_UTIL_RM"))

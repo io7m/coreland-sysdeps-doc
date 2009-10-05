@@ -1,0 +1,40 @@
+(section
+  (ref "ud_mr_sdl-ada-annex-flags")
+  (title "sdl-ada-annex-flags")
+
+  (subsection
+    (title "Synopsis")
+    (para "Compiler flags to compile against sdl-ada-annex."))
+
+  (subsection
+    (title "Description")
+(para "This module determines the compiler flags required to compile against "
+  (link-ext "http://coreland.ath.cx/code/sdl-ada-annex" "sdl-ada-annex"))
+    (para "The module will attempt to execute the following command in order
+      to retrieve the desired information from the environment:")
+    (para-verbatim example "sdl-ada-annex-conf compile incdir cflags")
+  )
+
+  (subsection
+    (title "Creates")
+    (para "The module creates the following files:")
+    (list
+      (item file_name "flags-sdl-ada-annex")
+    ))
+
+  (subsection
+    (title "Output")
+    (para "The module writes lines with the following forms to "
+      (item file_name "sysdeps.out") ":")
+    (para-verbatim example (render "mr-sdl-ada-annex-flags-sysdeps-bnf.txt")))
+  (subsection
+    (title "Module Metadata")
+    (para
+      (table module_metadata
+        (t-row
+          (item "Package URL")  (item (link-ext "http://coreland.ath.cx/code/sdl-ada-annex")))
+        (t-row
+          (item "Author Email") (item email_address "sysdeps@coreland.ath.cx"))
+        (t-row
+          (item "Author URL")    (item (link-ext "http://coreland.ath.cx"))))))
+)

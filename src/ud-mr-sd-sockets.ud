@@ -1,0 +1,35 @@
+(section
+  (ref "ud_mr_sd-sockets")
+  (title "sd-sockets")
+
+  (subsection
+    (title "Synopsis")
+    (para "Linker flags to link against the system socket libraries."))
+
+  (subsection
+    (title "Description")
+(para "This module determines the linker flags required to use the
+  system BSD socket libraries.")
+  )
+
+  (subsection
+    (title "Creates")
+    (para "The module creates the following files:")
+    (list
+      (item file_name "libs-sockets")
+    ))
+
+  (subsection
+    (title "Output")
+    (para "The module writes lines with the following forms to "
+      (item file_name "sysdeps.out") ":")
+    (para-verbatim example (render "mr-sd-sockets-sysdeps-bnf.txt")))
+  (subsection
+    (title "Module Metadata")
+    (para
+      (table module_metadata
+        (t-row
+          (item "Author Email") (item email_address "sysdeps@coreland.ath.cx"))
+        (t-row
+          (item "Author URL")    (item (link-ext "http://coreland.ath.cx"))))))
+)

@@ -1,0 +1,40 @@
+(section
+  (ref "ud_mr_vector-libs")
+  (title "vector-libs")
+
+  (subsection
+    (title "Synopsis")
+    (para "Linker flags to link against vector."))
+
+  (subsection
+    (title "Description")
+(para "This module determines the linker flags required to link against "
+  (link-ext "http://coreland.ath.cx/code/vector" "vector"))
+    (para "The module will attempt to execute the following command in order
+      to retrieve the desired information from the environment:")
+    (para-verbatim example "vector-conf compile dlibdir ldflags")
+  )
+
+  (subsection
+    (title "Creates")
+    (para "The module creates the following files:")
+    (list
+      (item file_name "libs-vector")
+    ))
+
+  (subsection
+    (title "Output")
+    (para "The module writes lines with the following forms to "
+      (item file_name "sysdeps.out") ":")
+    (para-verbatim example (render "mr-vector-libs-sysdeps-bnf.txt")))
+  (subsection
+    (title "Module Metadata")
+    (para
+      (table module_metadata
+        (t-row
+          (item "Package URL")  (item (link-ext "http://coreland.ath.cx/code/vector")))
+        (t-row
+          (item "Author Email") (item email_address "sysdeps@coreland.ath.cx"))
+        (t-row
+          (item "Author URL")    (item (link-ext "http://coreland.ath.cx"))))))
+)

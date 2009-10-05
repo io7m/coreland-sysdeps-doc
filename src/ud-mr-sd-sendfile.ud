@@ -1,0 +1,73 @@
+(section
+  (ref "ud_mr_sd-sendfile")
+  (title "sd-sendfile")
+
+  (subsection
+    (title "Synopsis")
+    (para "Detect sendfile() implementations."))
+
+  (subsection
+    (title "Description")
+(para "This module attempts to determine which of the many incompatible
+  implementations of " (item c_function "sendfile()") " the current
+  host system is using. It also attempts to determine the linker flags
+  required to use the implementation.")
+
+(para "Example output:")
+
+(para-verbatim example
+"#ifndef _SD_SENDFILE_H
+#define _SD_SENDFILE_H
+#define SD_HAVE_SENDFILE 1
+#define SD_HAVE_SENDFILE_BSD 1
+#endif")
+  )
+
+  (subsection
+    (title "Creates")
+    (para "The module creates the following files:")
+    (list
+      (item file_name "_sd_sendfile.h")
+      (item file_name "libs-sendfile")
+    ))
+
+  (subsection
+    (title "Defines")
+    (para "The module defines the following preprocessor constants:")
+    (table definitions
+      (t-row
+        (item "Constant")
+        (item "Type")
+        (item "Attributes"))
+      (t-row
+        (item constant "SD_HAVE_SENDFILE      ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_SENDFILE_BSD  ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_SENDFILE_HPUX ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_SENDFILE_SYSV ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+    ))
+
+  (subsection
+    (title "Output")
+    (para "The module writes lines with the following forms to "
+      (item file_name "sysdeps.out") ":")
+    (para-verbatim example (render "mr-sd-sendfile-sysdeps-bnf.txt")))
+  (subsection
+    (title "Module Metadata")
+    (para
+      (table module_metadata
+        (t-row
+          (item "Author Email") (item email_address "sysdeps@coreland.ath.cx"))
+        (t-row
+          (item "Author URL")    (item (link-ext "http://coreland.ath.cx"))))))
+)

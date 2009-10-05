@@ -1,0 +1,56 @@
+(section
+  (ref "ud_mr_sd-longlong")
+  (title "sd-longlong")
+
+  (subsection
+    (title "Synopsis")
+    (para "Check for presence of 'long long' type in C compiler."))
+
+  (subsection
+    (title "Description")
+(para "This module does a simple compile-time check to determine whether or
+  not the " (item constant "long long") " type is supported by the current
+  C compiler.")
+(para "Example output:")
+(para-verbatim example
+"#ifndef _SD_LONGLONG_H
+#define _SD_LONGLONG_H
+#define SD_HAVE_LONGLONG 1
+#endif")
+  )
+
+  (subsection
+    (title "Creates")
+    (para "The module creates the following files:")
+    (list
+      (item file_name "_sd_longlong.h")
+    ))
+
+  (subsection
+    (title "Defines")
+    (para "The module defines the following preprocessor constants:")
+    (table definitions
+      (t-row
+        (item "Constant")
+        (item "Type")
+        (item "Attributes"))
+      (t-row
+        (item constant "SD_HAVE_LONGLONG ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+    ))
+
+  (subsection
+    (title "Output")
+    (para "The module writes lines with the following forms to "
+      (item file_name "sysdeps.out") ":")
+    (para-verbatim example (render "mr-sd-longlong-sysdeps-bnf.txt")))
+  (subsection
+    (title "Module Metadata")
+    (para
+      (table module_metadata
+        (t-row
+          (item "Author Email") (item email_address "sysdeps@coreland.ath.cx"))
+        (t-row
+          (item "Author URL")    (item (link-ext "http://coreland.ath.cx"))))))
+)

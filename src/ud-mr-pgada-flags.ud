@@ -1,0 +1,40 @@
+(section
+  (ref "ud_mr_pgada-flags")
+  (title "pgada-flags")
+
+  (subsection
+    (title "Synopsis")
+    (para "Compiler flags to compile against postgres-ada."))
+
+  (subsection
+    (title "Description")
+(para "This module determines the compiler flags required to compile against "
+  (link-ext "http://coreland.ath.cx/code/postgres-ada" "postgres-ada"))
+    (para "The module will attempt to execute the following command in order
+      to retrieve the desired information from the environment:")
+    (para-verbatim example "pgada-conf compile incdir cflags")
+  )
+
+  (subsection
+    (title "Creates")
+    (para "The module creates the following files:")
+    (list
+      (item file_name "flags-pgada")
+    ))
+
+  (subsection
+    (title "Output")
+    (para "The module writes lines with the following forms to "
+      (item file_name "sysdeps.out") ":")
+    (para-verbatim example (render "mr-pgada-flags-sysdeps-bnf.txt")))
+  (subsection
+    (title "Module Metadata")
+    (para
+      (table module_metadata
+        (t-row
+          (item "Package URL")  (item (link-ext "http://coreland.ath.cx/code/postgres-ada")))
+        (t-row
+          (item "Author Email") (item email_address "sysdeps@coreland.ath.cx"))
+        (t-row
+          (item "Author URL")    (item (link-ext "http://coreland.ath.cx"))))))
+)

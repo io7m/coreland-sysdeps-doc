@@ -121,8 +121,8 @@ table.definitions td {
   padding-right: 3em;
 }
 
-table.author_info { }
-table.author_info td {
+table.module_metadata { }
+table.module_metadata td {
   vertical-align: top;
   padding-right: 3em;
 }

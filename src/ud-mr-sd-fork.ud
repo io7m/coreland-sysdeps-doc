@@ -1,0 +1,63 @@
+(section
+  (ref "ud_mr_sd-fork")
+  (title "sd-fork")
+
+  (subsection
+    (title "Synopsis")
+    (para "Header file for fork() portability."))
+
+  (subsection
+    (title "Description")
+(para "This module executes compile-time checks to determine the availability
+  of both the " (item c_function "fork") " and " (item c_function "vfork")
+  " system calls.")
+(para "Example output:")
+(para-verbatim example
+"#ifndef _SD_FORK_H
+#define _SD_FORK_H
+
+#define SD_HAVE_FORK 1
+#define SD_HAVE_VFORK 1
+
+#endif")
+  )
+
+  (subsection
+    (title "Creates")
+    (para "The module creates the following files:")
+    (list
+      (item file_name "_sd_fork.h")
+    ))
+
+  (subsection
+    (title "Defines")
+    (para "The module defines the following preprocessor constants:")
+    (table definitions
+      (t-row
+        (item "Constant")
+        (item "Type")
+        (item "Attributes"))
+      (t-row
+        (item constant "SD_HAVE_FORK  ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_VFORK ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+    ))
+
+  (subsection
+    (title "Output")
+    (para "The module writes lines with the following forms to "
+      (item file_name "sysdeps.out") ":")
+    (para-verbatim example (render "mr-sd-fork-sysdeps-bnf.txt")))
+  (subsection
+    (title "Module Metadata")
+    (para
+      (table module_metadata
+        (t-row
+          (item "Author Email") (item email_address "sysdeps@coreland.ath.cx"))
+        (t-row
+          (item "Author URL")    (item (link-ext "http://coreland.ath.cx"))))))
+)

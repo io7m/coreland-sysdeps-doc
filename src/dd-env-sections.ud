@@ -349,6 +349,13 @@
     (para "Example value:")
     (para-verbatim example " mv                                             "))
   (subsection
+    (ref "dd_env_SYSDEP_UTIL_MKDIR")
+    (title "SYSDEP_UTIL_MKDIR")
+    (para example (item variable "SYSDEP_UTIL_MKDIR") " : " "string")
+    (para " POSIX mkdir utility.")
+    (para "Example value:")
+    (para-verbatim example " mkdir                                          "))
+  (subsection
     (ref "dd_env_SYSDEP_UTIL_PWD")
     (title "SYSDEP_UTIL_PWD")
     (para example (item variable "SYSDEP_UTIL_PWD") " : " "string")

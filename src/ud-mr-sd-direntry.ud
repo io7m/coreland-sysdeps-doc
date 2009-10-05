@@ -1,0 +1,47 @@
+(section
+  (ref "ud_mr_sd-direntry")
+  (title "sd-direntry")
+
+  (subsection
+    (title "Synopsis")
+    (para "Portability typedef for struct direct/dirent."))
+
+  (subsection
+    (title "Description")
+(para "Some older systems use " (item struct "struct direct")
+" as opposed to the more usual " (item struct "struct dirent")
+". This modules detects which the system has and writes the appropriate
+typedef, including the required headers, to a header file.")
+
+(para-verbatim example
+"#ifndef _SD_DIRENTRY_H
+#define _SD_DIRENTRY_H
+
+#include <sys/types.h>
+#include <dirent.h>
+#define sd_direntry struct dirent
+
+#endif")
+  )
+
+  (subsection
+    (title "Creates")
+    (para "The module creates the following files:")
+    (list
+      (item file_name "_sd_direntry.h")
+    ))
+
+  (subsection
+    (title "Output")
+    (para "The module writes lines with the following forms to "
+      (item file_name "sysdeps.out") ":")
+    (para-verbatim example (render "mr-sd-direntry-sysdeps-bnf.txt")))
+  (subsection
+    (title "Module Metadata")
+    (para
+      (table module_metadata
+        (t-row
+          (item "Author Email") (item email_address "sysdeps@coreland.ath.cx"))
+        (t-row
+          (item "Author URL")    (item (link-ext "http://coreland.ath.cx"))))))
+)

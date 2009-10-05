@@ -264,29 +264,34 @@ done
 # Create source for all modules.
 #
 
-rm -f src/mr.ud.tmp || fatal "could not remove src/mr.ud.tmp"
+rm -f src/ud-mr.ud.tmp || fatal "could not remove src/ud-mr.ud.tmp"
 
-cat >> src/mr.ud.tmp << EOF
+cat >> src/ud-mr.ud.tmp << EOF
 (section
   (title "Module Reference")
   (contents)
 
 EOF
 
-for module_path in `ls ${SYSDEPS_SOURCE}/SYSDEPS/modules`
-do
-  module=`basename ${module_path}` || fatal "could not retrieve module name"
+for module_path in `echo ${SYSDEPS_SOURCE}/SYSDEPS/modules/*`
+do 
+  if [ -d "${module_path}" ]
+  then
+    module=`basename ${module_path}` || fatal "could not retrieve module name"
 
-  ./local-mk-module.sh "${module_path}" > "src/mr-${module}.ud.tmp" ||
-    fatal "could not write src/mr-${module}.ud.tmp"
-  mv "src/mr-${module}.ud.tmp" "src/mr-${module}.ud" ||
-    fatal "could not write src/mr-${module}.ud"
+    echo "info: updating ${module} docs" 1>&2
 
-  echo "  (include \"mr-${module}.ud\")" >> src/mr.ud.tmp ||
-    fatal "could not write src/mr.ud.tmp"
+    ./local-mk-module.sh "${module_path}" > "src/ud-mr-${module}.ud.tmp" ||
+      fatal "could not write src/ud-mr-${module}.ud.tmp"
+    mv "src/ud-mr-${module}.ud.tmp" "src/ud-mr-${module}.ud" ||
+      fatal "could not write src/ud-mr-${module}.ud"
+
+    echo "  (include \"ud-mr-${module}.ud\")" >> src/ud-mr.ud.tmp ||
+      fatal "could not write src/ud-mr.ud.tmp"
+  fi
 done
 
-echo ")" >> src/mr.ud.tmp || 
-  fatal "could not write src/mr.ud.tmp"
-mv src/mr.ud.tmp src/mr.ud ||
-  fatal "could not write src/mr.ud"
+echo ")" >> src/ud-mr.ud.tmp || 
+  fatal "could not write src/ud-mr.ud.tmp"
+mv src/ud-mr.ud.tmp src/ud-mr.ud ||
+  fatal "could not write src/ud-mr.ud"

@@ -1,0 +1,39 @@
+(section
+  (ref "ud_mr_sd-sse3-flags")
+  (title "sd-sse3-flags")
+
+  (subsection
+    (title "Synopsis")
+    (para "Compiler flags to enable SSE3 intrinsics."))
+
+  (subsection
+    (title "Description")
+(para "If the current compiler supports SSE3 intrinsics, this
+  modules outputs the compiler flags required to enable support.")
+
+(para "Example output:")
+
+(para-verbatim example "-msse3")
+  )
+
+  (subsection
+    (title "Creates")
+    (para "The module creates the following files:")
+    (list
+      (item file_name "flags-sse3")
+    ))
+
+  (subsection
+    (title "Output")
+    (para "The module writes lines with the following forms to "
+      (item file_name "sysdeps.out") ":")
+    (para-verbatim example (render "mr-sd-sse3-flags-sysdeps-bnf.txt")))
+  (subsection
+    (title "Module Metadata")
+    (para
+      (table module_metadata
+        (t-row
+          (item "Author Email") (item email_address "sysdeps@coreland.ath.cx"))
+        (t-row
+          (item "Author URL")    (item (link-ext "http://coreland.ath.cx"))))))
+)
