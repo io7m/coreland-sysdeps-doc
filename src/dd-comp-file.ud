@@ -1,0 +1,61 @@
+(section
+  (ref "dd_comp_file")
+  (title "sd-file")
+
+  (subsection
+    (title "Synopsis")
+    (para-verbatim program_synopsis
+"sd-file: usage: command file [...]"))
+
+  (subsection
+    (title "Description")
+    (para "The " (item command "sd-file") " program performs basic file
+      operations on any file named " (item parameter "file") " that exists
+      in a predefined search path. The program has the following subcommands,
+      specified by " (item option "parameter") ":")
+    (para
+      (table options
+        (t-row
+          (item "Command")
+          (item "Arguments")
+          (item "Description"))
+        (t-row
+          (item "get")
+          (item "default")
+          (item "Print the contents of the named file if it exists and return
+            an exit code indicating success, or print the given default text
+            and return an exit code indicating failure."))
+        (t-row
+          (item "exists")
+          (item " ")
+          (item "Return an exit code indicating success if the named file
+            exists on the search path, or return an exit code indicating
+            failure."))
+        (t-row
+          (item "path_to")
+          (item " ")
+          (item "Print the path to the named file if it exists on the search
+            path, or return an exit code indicating failure."))))
+      (para
+        "The " (item command "sd-file") " program is used to simplify and
+        centralize code that needs to search for configuration files in
+        various places. It is only used by " (item package "sysdeps")
+        " internally and is not intended for use by modules.")
+      (para
+        "The default search path, in order, is:")
+      (para
+        (list
+          (item (link "dd_env_SYSDEP_OUTPUT_DIRECTORY" "SYSDEP_OUTPUT_DIRECTORY"))
+          (item (link "dd_env_SYSDEP_BASE_DIRECTORY" "SYSDEP_BASE_DIRECTORY")))))
+
+  (subsection
+    (title "Preconditions")
+    (para "The program requires the value of the environment variable "
+      (item variable "SYSDEP_BASE_DIRECTORY") " to be set to the location
+      of the base " (item package "sysdeps") " directory."))
+
+  (subsection
+    (title "Postconditions")
+    (para "The " (item command "sd-file") " will return the exit code of
+      the subcommand it is instructed to execute."))
+)
