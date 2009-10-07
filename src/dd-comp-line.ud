@@ -1,0 +1,24 @@
+(section
+  (ref "dd_comp_line")
+  (title "sd-line")
+
+  (subsection
+    (title "Synopsis")
+    (para-verbatim program_synopsis
+"sd-line: usage: line < file"))
+
+  (subsection
+    (title "Description")
+    (para "The " (item command "sd-line") " program prints line "
+      (item parameter "line") " of the data read on standard input."))
+
+  (subsection
+    (title "Preconditions")
+    (para "The program requires the value of the environment variable "
+      (item variable "SYSDEP_BASE_DIRECTORY") " to be set to the location
+      of the base " (item package "sysdeps") " directory."))
+
+  (subsection
+    (title "Postconditions")
+    (para "None."))
+)

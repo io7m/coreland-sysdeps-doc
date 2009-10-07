@@ -24,6 +24,7 @@
   (include "dd-comp-cpul3cache.ud")
   (include "dd-comp-cpunum.ud")
   (include "dd-comp-file.ud")
+  (include "dd-comp-line.ud")
   (include "dd-comp-locker.ud")
   (include "dd-comp-os.ud")
   (include "dd-comp-osversion.ud")
