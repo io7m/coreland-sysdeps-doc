@@ -1,0 +1,6 @@
+(section
+  (ref "doc_conventions")
+  (title "Document Conventions")
+
+  (para "All syntax definitions given in this document are given in ISO/IEC 14977 : 1996 Extended
+    Backus-Naur Form " (footnote (link-ext "http://www.cl.cam.ac.uk/~mgk25/iso-14977.pdf")) "."))
