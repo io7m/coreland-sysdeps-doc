@@ -3,7 +3,9 @@ Documentation outline:
   Orientation
 
   User documentation
+    How it works
     How to use tools, etc
+    Cross compilation
     Module writing
     Explicitly supported platforms/issues
     Module reference
