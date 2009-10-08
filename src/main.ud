@@ -14,5 +14,6 @@
 (contents)
 
 (include "pkg.ud")
+(include "dc.ud")
 (include "ud.ud")
 (include "dd.ud")
