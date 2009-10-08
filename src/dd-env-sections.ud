@@ -251,6 +251,13 @@
     (para "Example value:")
     (para-verbatim example " /usr/lib /usr/local/lib                        "))
   (subsection
+    (ref "dd_env_SYSDEP_STDBIN")
+    (title "SYSDEP_STDBIN")
+    (para example (item variable "SYSDEP_STDBIN") " : " "string-list")
+    (para " Path to search for configuration binaries (value is dependent on cross-compilation - see documentation).")
+    (para "Example value:")
+    (para-verbatim example " ${PATH}                                        "))
+  (subsection
     (ref "dd_env_SYSDEP_SUBS_FILE")
     (title "SYSDEP_SUBS_FILE")
     (para example (item variable "SYSDEP_SUBS_FILE") " : " "string")
