@@ -14,4 +14,6 @@
 (item (link "dd_env_SYSDEP_UTIL_AWK" "SYSDEP_UTIL_AWK"))
 (item (link "dd_env_SYSDEP_UTIL_CAT" "SYSDEP_UTIL_CAT"))
 (item (link "dd_env_SYSDEP_UTIL_ECHO" "SYSDEP_UTIL_ECHO"))
+(item (link "dd_env_SYSDEP_UTIL_GREP" "SYSDEP_UTIL_GREP"))
+(item (link "dd_env_SYSDEP_UTIL_TR" "SYSDEP_UTIL_TR"))
 )
