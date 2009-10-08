@@ -4,26 +4,62 @@
 
   (subsection
     (title "Synopsis")
-    (para "Linker flags to link against the system socket libraries."))
+    (para "Determine current system socket support."))
 
   (subsection
     (title "Description")
-(para "This module determines the linker flags required to use the
-  system BSD socket libraries.")
+(para "This module attempts to determine the type of socket support
+  on the current system. This may be POSIX or Winsock, for example. The
+  current system may not support sockets at all. The module also attempts
+  to determine the linker flags required to use the socket library, if any.")
+
+(para "Example output:")
+
+(para-verbatim example
+"#ifndef _SD_SOCKETS_H
+#define _SD_SOCKETS_H
+
+#define SD_SOCKET_SUPPORTED 1
+#define SD_SOCKET_SUPPORTED_WINSOCK 1
+
+#endif")
   )
 
   (subsection
     (title "Creates")
     (para "The module creates the following files:")
     (list
+      (item file_name "_sd_sockets.h")
       (item file_name "libs-sockets")
+    ))
+
+  (subsection
+    (title "Defines")
+    (para "The module defines the following preprocessor constants:")
+    (table definitions
+      (t-row
+        (item "Constant")
+        (item "Type")
+        (item "Attributes"))
+      (t-row
+        (item constant "SD_SOCKET_SUPPORTED         ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_SOCKET_SUPPORTED_POSIX   ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_SOCKET_SUPPORTED_WINSOCK ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
     ))
 
   (subsection
     (title "Output")
     (para "The module writes lines with the following forms to "
       (item file_name "sysdeps.out") ":")
-    (para-verbatim example (render "mr-sd-sockets-sysdeps-bnf.txt")))
+    (para-verbatim example (render "ud-mr-sd-sockets-sysdeps-bnf.txt")))
   (subsection
     (title "Module Metadata")
     (para

@@ -22,6 +22,10 @@ typedef, including the required headers, to a header file.")
 #define sd_direntry struct dirent
 
 #endif")
+
+(para "This module is dependent solely on operating system headers
+  and should therefore give the correct results for the target
+  operating system when cross-compiling.")
   )
 
   (subsection
@@ -35,7 +39,7 @@ typedef, including the required headers, to a header file.")
     (title "Output")
     (para "The module writes lines with the following forms to "
       (item file_name "sysdeps.out") ":")
-    (para-verbatim example (render "mr-sd-direntry-sysdeps-bnf.txt")))
+    (para-verbatim example (render "ud-mr-sd-direntry-sysdeps-bnf.txt")))
   (subsection
     (title "Module Metadata")
     (para

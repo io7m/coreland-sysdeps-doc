@@ -26,7 +26,7 @@
     (title "Output")
     (para "The module writes lines with the following forms to "
       (item file_name "sysdeps.out") ":")
-    (para-verbatim example (render "mr-corelib-libs-S-sysdeps-bnf.txt")))
+    (para-verbatim example (render "ud-mr-corelib-libs-S-sysdeps-bnf.txt")))
   (subsection
     (title "Module Metadata")
     (para
