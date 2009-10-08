@@ -192,15 +192,15 @@ IFS="${OLD_IFS}"
 # Read lines written to sysdeps.out.
 #
 
-cp "${dir}/sysdeps_bnf" "src/mr-${module}-sysdeps-bnf.txt" ||
-  fatal "could not copy ${dir}/sysdeps_bnf to src/mr-${module}-sysdeps-bnf.txt"
+cp "${dir}/sysdeps_bnf" "src/ud-mr-${module}-sysdeps-bnf.txt" ||
+  fatal "could not copy ${dir}/sysdeps_bnf to src/ud-mr-${module}-sysdeps-bnf.txt"
 
 cat <<EOF
   (subsection
     (title "Output")
     (para "The module writes lines with the following forms to "
       (item file_name "sysdeps.out") ":")
-    (para-verbatim example (render "mr-${module}-sysdeps-bnf.txt")))
+    (para-verbatim example (render "ud-mr-${module}-sysdeps-bnf.txt")))
 EOF
 
 #
