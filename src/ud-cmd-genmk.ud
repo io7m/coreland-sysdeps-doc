@@ -1,0 +1,62 @@
+(section
+  (ref "ud_cmd_genmk")
+  (title "sd-genmk")
+
+  (subsection
+    (title "Description")
+    (para "The " (item command "sd-genmk") " command creates a "
+      (item command "make") "-independent " (item file_name "Makefile")
+      " fragment with appropriate targets for all modules currently present
+      in the " (item file_name "modules") " directory.")
+    (para "The command will write one target for the first file in the list
+      of created files for each module and cause the other files in the list
+      to depend on the creation of this file. The target will simply execute "
+      (link "ud_cmd_run" "sd-run") " for the module in question. As an example,
+      for the " (link "r_mr_sd-pthreads" "sd-pthreads") " module, the following
+      will be written:")
+    (para-verbatim example
+"libs-pthreads:
+        @echo SYSDEPS sd-pthreads run create flags-pthr_rt libs-pthr_rt flags-pthreads libs-pthreads 
+        @(cd SYSDEPS && ./sd-run modules/sd-pthreads)
+flags-pthreads: libs-pthreads
+libs-pthr_rt: libs-pthreads
+flags-pthr_rt: libs-pthreads")
+    (para "The command also creates a target named "
+      (item constant "sysdeps_clean") " which will execute "
+        (link "ud_cmd_clean" "sd-clean") " to be executed for each module.")
+    (para "The generated " (item file_name "Makefile") " fragment is written
+      in a manner that will cause parallel " (item command "make") " invocations
+      (eg. '" (item command "make -j 32") "') to execute completely safely.")
+    (para "The " (item command "sd-genmk") " command is included in the base "
+      (item file_name "SYSDEPS") " directory."))
+
+  (subsection
+    (title "Preconditions")
+    (para "The " (item command "sd-genmk") " command must be run from the base "
+      (item file_name "SYSDEPS") " directory."))
+
+  (subsection
+    (title "Postconditions")
+    (para "The " (item command "sd-genmk") " will write a "
+      (item file_name "Makefile") " fragment to standard out."))
+
+  (subsection
+    (title "Comments")
+    (para "The output of the command is known to work identically for all
+      of the following " (item command "make") " implementations:")
+    (para
+      (list
+        (item "DragonFlyBSD make")
+        (item "FreeBSD make")
+        (item "GNU make")
+        (item "HPUX make")
+        (item "IRIX make")
+        (item "MINIX make")
+        (item "NetBSD pmake/make")
+        (item "OpenBSD make")
+        (item "SunOS/Solaris make and parallel dmake")
+        (item "Tru64 make")
+      ))
+    (para "The author is anxious to hear of any implementation that
+      rejects or fails to correctly execute the output."))
+)
