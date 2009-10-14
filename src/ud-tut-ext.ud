@@ -1,4 +1,217 @@
 (section
   (title "Tutorial - External packages")
   (contents)
+
+  (para "This tutorial demonstrates how " (item package "sysdeps") " can be
+    used to retrieve compiler flags for compiling against external packages.")
+
+  (subsection
+    (title "Image Loading")
+
+    (para-verbatim example
+"$ mkdir new-project-tiff
+$ cd new-project-tiff
+$ echo cc > conf-cc
+$ echo cc > conf-ld
+$ sysdeps-init")
+
+    (para "The following program uses " (link-ext "http://libtiff.org/" "LibTIFF")
+      " to load a TIFF file.")
+
+    (para-verbatim example
+"#include <tiffio.h>
+
+int
+main (void)
+{
+  TIFF *tif;
+
+  tif = TIFFOpen (\"example.tiff\", \"r\");
+
+  TIFFClose (tif);
+  return 0;
+}")
+
+    (para "The program will almost inevitably fail to compile as the compiler
+      likely has no idea where the TIFF library is:")
+
+    (para-verbatim example
+"$ cc -o main main.c
+main.c:1:20: error: tiffio.h: No such file or directory
+main.c: In function 'main':
+main.c:6: error: 'TIFF' undeclared (first use in this function)
+main.c:6: error: (Each undeclared identifier is reported only once
+main.c:6: error: for each function it appears in.)
+main.c:6: error: 'tif' undeclared (first use in this function)")
+
+    (para "The " (item package "sysdeps") " package provides modules to
+      retrieve compiler and linker flags. Modules are, by convention,
+      split into \"flags\" modules to retrieve compiler flags and \"libs\"
+      modules to retrieve linker flags:")
+
+    (para-verbatim example
+"$ sysdeps-list | grep -i tiff
+tiff-flags: Compiler flags to compile against TIFF.
+tiff-libs: Linker flags to link against TIFF.
+
+$ sysdeps-init
+$ sysdeps-add tiff-flags tiff-libs")
+
+    (para "By convention, \"flags\" modules create files named "
+      (item file_name "flags-*") " and \"libs\" modules create files named "
+      (item file_name "libs-*") ". Note that there are also \"libs\" modules
+      for some packages that provide linker flags to statically link against
+      a given library.")
+
+    (para "In this case, two files will be creates - "
+      (item file_name "flags-tiff") " and " (item file_name "libs-tiff") ".
+      The " (item package "sysdeps") " package provides a command for listing files
+      that will be created by all of the current modules - "
+      (link "ud_cmd_creates" "sd-creates") ":")
+
+    (para-verbatim example
+"$ (cd SYSDEPS && ./sd-creates)
+flags-tiff
+libs-tiff")
+
+    (para "Executing the modules creates the files:")
+
+    (para-verbatim example
+"$ (cd SYSDEPS && ./sd-run modules/tiff-flags)
+$ (cd SYSDEPS && ./sd-run modules/tiff-libs)")
+
+    (para "Note that the commands might well say something like this:")
+
+    (para-verbatim example
+"$ (cd SYSDEPS && ./sd-run modules/tiff-libs)
+tiff-libs: info: all search types failed")
+
+    (para "This usually means that the given library is not installed
+      (it might also mean that your operating system distribution
+      has put it somewhere that " (item package "sysdeps") " could not
+      find it - this should be reported as a bug if it happens frequently
+      with a standard operating system install).")
+
+    (para "Note that " (item package "sysdeps") " follows the ideal
+      \"mechanism, not policy\". A missing library is not considered a
+      fatal error - as will be demonstrated, the system simply states
+      whether or not a library could be found and the decision of whether
+      or not to make this an \"error\" is left to the developer.")
+
+    (para "Assuming the modules executed with no error, the contents of
+      the created files will be something like the following:")
+
+    (para-verbatim example
+"$ cat flags-tiff
+-I/usr/local/include  -DSD_HAVE_LIBTIFF
+
+$ cat libs-tiff
+-L/usr/local/lib -ltiff")
+
+    (para "The program can now be compiled using this information:")
+
+    (para-verbatim example
+"$ cc -o main main.c `head -n 1 flags-tiff` `head -n 1 libs-tiff`
+$ ./main"))
+
+  (subsection
+    (title "Failing Gracefully")
+
+    (para "At the moment, if the TIFF library cannot be found, the program
+      will simply fail to compile. As shown earlier, the "
+      (item package "sysdeps") " package defines "
+      (item constant "SD_HAVE_LIBTIFF") " when the library has been found.
+      The program can use the existence of this definition to check whether
+      or not the library was located:")
+
+    (para-verbatim example
+"#ifndef SD_HAVE_LIBTIFF
+#error \"This program requires libTIFF to compile\"
+#endif
+
+#include <tiffio.h>
+
+int
+main (void)
+{
+  TIFF *tif;
+
+  tif = TIFFOpen (\"example.tiff\", \"r\");
+
+  TIFFClose (tif);
+  return 0;
+}")
+
+  (para "As mentioned, it is left up to the developer to handle missing
+    libraries correctly. The above method is not recommended in real
+    programs.")
+
+  (para "The conventional method to check if libraries were found or not 
+    is to compile a small test program at the start of the build that checks
+    for the existence of required libraries and halts the build if the correct
+    definitions are not present:")
+
+  (para-verbatim example
+"#include <stdio.h>
+#include <stdlib.h>
+
+int
+main (void)
+{
+  int return_code = EXIT_SUCCESS;
+
+#ifndef SD_HAVE_LIBTIFF
+  printf (\"libTIFF required but not found (http://libtiff.org)\n\");
+  return_code = EXIT_FAILURE;
+#endif
+
+  if (return_code != EXIT_SUCCESS)
+    printf (\"One or more required libraries could not be located.\n\");
+
+  return return_code;
+}")
+
+  (para-verbatim example
+"$ cc -o check check.c `head -n 1 flags-tiff` `head -n 1 libs-tiff`
+$ ./check
+libTIFF required but not found (http://libtiff.org)
+One or more required libraries could not be located.
+$ echo $?
+1")
+
+  (para "Essentially, then, " (item package "sysdeps") " automates the
+    difficult and extremely error-prone work of locating external libraries
+    and presents the developer with simple boolean policy choices.")
+
+  (para "It also guarantees safe worst-case behaviour: if a user downloads
+    a source package that uses " (item package "sysdeps") " and it cannot
+    locate required libraries on the user's system, they can simply \"echo\"
+    the correct compiler flags (assuming they actually know them) into the
+    relevant files and the build will continue as if nothing was wrong:")
+
+  (para-verbatim example
+"$ make
+(cd SYSDEPS && ./sd-run modules/tiff-flags)
+tiff-flags: info: all search types failed
+(cd SYSDEPS && ./sd-run modules/tiff-libs)
+tiff-libs: info: all search types failed
+cc -o check check.c `head -n 1 flags-tiff` `head -n 1 libs-tiff`
+./check
+libTIFF required but not found (http://libtiff.org)
+One or more required libraries could not be located.
+
+*** Error code 1
+
+$ echo '-I/bizarre/path/to/include  -DSD_HAVE_LIBTIFF' > flags-tiff
+$ echo '-L/bizarre/path/to/lib -ltiff'                 > libs-tiff
+$ make
+cc -o check check.c `head -n 1 flags-tiff` `head -n 1 libs-tiff`
+./check
+cc -o main main.c `head -n 1 flags-tiff` `head -n 1 libs-tiff`
+$ ./main")
+
+  (para "Contrast this behaviour with that of other build systems that
+    either require painful hand-editing of configuration files that cannot be
+    easily automated or simply make it outright impossible to supply the
+    correct flags at compile time."))
 )

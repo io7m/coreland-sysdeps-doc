@@ -9,5 +9,6 @@
   (include "ud-cmd-run.ud")
   (include "ud-cmd-clean.ud")
   (include "ud-cmd-genmk.ud")
+  (include "ud-cmd-creates.ud")
 
 )
