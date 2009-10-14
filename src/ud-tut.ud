@@ -1,6 +1,8 @@
 (section
   (title "Tutorial")
 
+  (contents)
+
   (subsection
     (title "First Steps")
 
@@ -14,19 +16,22 @@
 "$ mkdir new-project
 $ cd new-project")
 
-    (para "The " (item package "sysdeps") " system is self-contained and
-      all necessary files are included along with the project using the
-      system. This ensures that the system itself does not create any
-      dependencies on external tools.")
+    (subsection
+      (title "Initialization")
 
-    (para "To initialize the " (item package "sysdeps") " system, the "
-      (item command "sysdeps-init") " command is provided. The command
-      reads the " (item variable "SYSDEP_REPOSITORY") " environment
-      variable and interprets the value of this variable as a filesystem
-      path to the currently installed " (item package "sysdeps")
-      " repository.")
+      (para "The " (item package "sysdeps") " system is self-contained and
+        all necessary files are included along with the project using the
+        system. This ensures that the system itself does not create any
+        dependencies on external tools.")
 
-    (para-verbatim example
+      (para "To initialize the " (item package "sysdeps") " system, the "
+        (item command "sysdeps-init") " command is provided. The command
+        reads the " (item variable "SYSDEP_REPOSITORY") " environment
+        variable and interprets the value of this variable as a filesystem
+        path to the currently installed " (item package "sysdeps")
+        " repository.")
+
+      (para-verbatim example
 "$ SYSDEP_REPOSITORY=/usr/local/share/coreland/sysdeps-repos
 $ export SYSDEP_REPOSITORY
 
@@ -83,94 +88,102 @@ drwxr-xr-x  2 cpj wheel    512 14 Oct 02:00 modules/
 -rw-r--r--  1 cpj wheel  17456 14 Oct 02:00 sysdep-system
 -rw-r--r--  1 cpj wheel   3786 14 Oct 02:00 ver_gnat.adb")
 
-  (para "Note that the contents of this directory are mostly internal to "
-    (item package "sysdeps") ". Only a few of the programs provide services
-    directly.")
+      (para "Note that the contents of this directory are mostly internal to "
+        (item package "sysdeps") ". Only a few of the programs provide services
+        directly.")
 
-  (para-verbatim example
-"$ cat > main.c <<EOF
-> #include <stdio.h>
->
-> inline void
-> hello (void)
-> {
->   printf (\"hello\\n\");
-> }
->
-> int
-> main (void)
-> {
->   hello ();
->   return 0;
-> }
-> EOF")
+      (para "This directory is referred to by the " (item package "sysdeps")
+        " system as the \"base\" directory."))
 
-  (para "The above program might compile and run perfectly well on a given
-    system:")
+    (subsection
+      (title "Compilation Error!")
 
-  (para-verbatim example
+      (para "A simple C program, " (item file_name "main.c") ".")
+
+      (para-verbatim example
+"#include <stdio.h>
+
+inline void
+hello (void)
+{
+  printf (\"hello\\n\");
+}
+
+int
+main (void)
+{
+  hello ();
+  return 0;
+}")
+
+      (para "The above program might compile and run perfectly well on a given
+        system:")
+
+      (para-verbatim example
 "$ cc -o main main.c
 $ ./main
 hello")
 
-  (para "When moved to a system with a less capable compiler, however:")
+      (para "When moved to a system with a less capable compiler, however:")
 
-  (para-verbatim example
+      (para-verbatim example
 "$ cc -o main main.c
-main.c:3: syntax: unknown identifier `inline'")
+main.c:3: syntax: unknown identifier `inline'"))
 
-  (para "The " (item package "sysdeps") " package can be used to make this
-    code portable. In this particular case, the " (link "r_mr_sd-inline" "sd-inline")
-    " module is required. The " (item command "sysdeps-list") " command can
-    be combined with standard tools to provide a basic module search facility:")
+    (subsection
+      (title "A Modular Approach")
 
-  (para-verbatim example
+      (para "The " (item package "sysdeps") " package can be used to make this
+        code portable. In this particular case, the " (link "r_mr_sd-inline" "sd-inline")
+        " module is required. The " (item command "sysdeps-list") " command can
+        be combined with standard tools to provide a basic module search facility:")
+
+      (para-verbatim example
 "$ sysdeps-list | grep inline
 sd-inline: Check for presence of 'inline' keyword in C compiler.")
 
-  (para "The module is added with the " (item command "sysdeps-add") " command:")
+      (para "The module is added with the " (item command "sysdeps-add") " command:")
 
-  (para-verbatim example
+      (para-verbatim example
 "$ sysdeps-add sd-inline")
 
-  (para "The module is copied from the repository into the "
-    (item file_name "modules") " directory:")
+      (para "The module is copied from the repository into the "
+        (item file_name "modules") " directory:")
 
-  (para-verbatim example
+      (para-verbatim example
 "$ ls -alF SYSDEPS/modules
 total 6
 drwxr-xr-x  3 cpj wheel   512 14 Oct 02:28 ./
 drwxr-xr-x  3 cpj wheel  1024 14 Oct 02:00 ../
 drwxr-xr-x  2 cpj wheel   512 14 Oct 02:28 sd-inline/")
 
-  (para "The module itself is executed by calling the " (link "ud_cmd_run" "sd-run")
-    " command in the " (item file_name "SYSDEPS") " directory. The "
-    (item package "sysdeps") " package requires some minor configuration
-    in order to work, however. At a minimum, it needs to be told which
-    compiler executables to use. In order to prevent entire classes of bugs
-    that occur from build systems reading the environment "
-      (footnote (item "Anybody involved in the building of large sets of
-        packages for operating system distributions or with cross compilation
-        will be aware of the silent horrors of errant environment variables and
-        unexpected and impossible-to-locate \"build poisoning\". With the "
-        (item package "sysdeps") " system, all state is visible in one
-        location and nothing is hidden."))
-    ", the " (item package "sysdeps") " package requires the use of trivial
-    configuration files:")
+      (para "The module itself is executed by calling the " (link "ud_cmd_run" "sd-run")
+        " command in the " (item file_name "SYSDEPS") " directory. The "
+        (item package "sysdeps") " package requires some minor configuration
+        in order to work, however. At a minimum, it needs to be told which
+        compiler executables to use. In order to prevent entire classes of bugs
+        that occur from build systems reading the environment "
+          (footnote (item "Anybody involved in the building of large sets of
+            packages for operating system distributions or with cross compilation
+            will be aware of the silent horrors of errant environment variables and
+            unexpected and impossible-to-locate \"build poisoning\". With the "
+            (item package "sysdeps") " system, all state is visible in one
+              location and nothing is hidden."))
+        ", the " (item package "sysdeps") " package requires the use of trivial
+        configuration files:")
 
-  (para-verbatim example
+      (para-verbatim example
 "$ echo 'cc' > conf-cc
 $ echo 'cc' > conf-ld")
 
-  (para "The module can now be executed:")
+      (para "The module can now be executed:")
 
-  (para-verbatim example
+      (para-verbatim example
 "$ (cd SYSDEPS && ./sd-run modules/sd-inline)")
 
-  (para "Execution of the module will have created a couple of new
-    files:")
+      (para "Execution of the module will have created a couple of new files:")
 
-  (para-verbatim example
+      (para-verbatim example
 "total 16
 drwxr-xr-x  3 cpj   wheel   512 14 Oct 02:42 ./
 drwxrwxrwt  8 root  wheel   512 14 Oct 02:30 ../
@@ -181,23 +194,30 @@ drwxr-xr-x  3 cpj   wheel  1536 14 Oct 02:42 SYSDEPS/
 -rw-r--r--  1 cpj   wheel   116 14 Oct 02:08 main.c
 -rw-r--r--  1 cpj   wheel    15 14 Oct 02:42 sysdeps.out")
 
-  (para "The " (item file_name "_sd_inline.h") " is the header file
-    generated by the module. This header contains the definitions based
-    on the values that the module was able to detect. In this case, the
-    header file looks like this:")
+      (para "The " (item package "sysdeps") " system creates files in the
+        directory specified by "
+          (link "dd_env_SYSDEP_OUTPUT_DIRECTORY" "SYSDEP_OUTPUT_DIRECTORY")
+        " which, by default, is the directory containing the "
+        (item file_name "SYSDEPS") " directory. This value is configurable
+        but will not be discussed in this tutorial.")
 
-  (para-verbatim example
+      (para "The " (item file_name "_sd_inline.h") " is the header file
+        generated by the module. This header contains the definitions based
+        on the values that the module was able to detect. In this case, the
+        header file looks like this:")
+
+      (para-verbatim example
 "#ifndef _SD_INLINE_H
 #define _SD_INLINE_H
 #define SD_HAVE_INLINE 1
 #endif")
 
-  (para "The " (item file_name "main.c") " program can now be modified
-    to use this header and can create an appropriate definition if it
-    turns out that the " (item constant "inline") " keyword is not
-    supported on the current platform:")
+      (para "The " (item file_name "main.c") " program can now be modified
+        to use this header and can create an appropriate definition if it
+        turns out that the " (item constant "inline") " keyword is not
+        supported on the current platform:")
 
-  (para-verbatim example
+      (para-verbatim example
 "#include <stdio.h>
 
 #include \"_sd_inline.h\"
@@ -220,19 +240,18 @@ main (void)
   return 0;
 }")
 
-  (para "The other file generated, named " (item file_name "sysdeps.out")
-    " contains the results of module executions. Each module appends one or
-    more lines to this file in a strictly specified and easily parseable
-    format. The contents of the file after the above module execution:")
+      (para "The other file generated, named " (item file_name "sysdeps.out")
+        ", contains the results of module executions. Each module appends one or
+        more lines to this file in a strictly specified and easily parsed
+        format. The contents of the file after the above module execution:")
 
-  (para-verbatim example
-"sd-inline: yes")
+      (para-verbatim example "sd-inline: yes")
 
-  (para "The " (item package "sysdeps") " package is self-cleaning. The
-    module will execute its own cleanup routine when called with the "
-    (link "ud_cmd_clean" "sd-clean") " command:")
+      (para "The " (item package "sysdeps") " package is self-cleaning. The
+        module will execute its own cleanup routine when called with the "
+        (link "ud_cmd_clean" "sd-clean") " command:")
 
-  (para-verbatim example
+      (para-verbatim example
 "$ (cd SYSDEPS && ./sd-clean modules/sd-inline)
 $ ls -alF
 total 12
@@ -243,11 +262,11 @@ drwxr-xr-x  3 cpj   wheel  1536 14 Oct 02:52 SYSDEPS/
 -rw-r--r--  1 cpj   wheel     3 14 Oct 02:42 conf-ld
 -rw-r--r--  1 cpj   wheel   260 14 Oct 02:48 main.c")
 
-  (para "The " (item package "sysdeps") " package is really intended to
-    be called from " (item command "make") " files. The following is an
-    example of how one might be written for the current project:")
+      (para "The " (item package "sysdeps") " package is really intended to
+        be called from " (item command "make") " files. The following is an
+        example of how one might be written for the current project:")
 
-  (para-verbatim example
+      (para-verbatim example
 "CC=`head -n 1 conf-cc`
 LD=`head -n 1 conf-ld`
 
@@ -265,7 +284,7 @@ sysdeps-clean:
 clean: sysdeps-clean
 	rm -f main main.o")
 
-  (para-verbatim example
+      (para-verbatim example
 "$ make
 (cd SYSDEPS && ./sd-run modules/sd-inline)
 `head -n 1 conf-cc` -c -o main.o main.c
@@ -274,7 +293,7 @@ $ make clean
 (cd SYSDEPS && ./sd-clean modules/sd-inline)
 rm -f main main.o")
 
-  (para "The " (item package "sysdeps") " package is entirely safe to
-    run with parallel " (item command "make") " builds."))
+      (para "The " (item package "sysdeps") " package is entirely safe to
+        run with parallel " (item command "make") " builds.")))
 
 )
