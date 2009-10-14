@@ -1,10 +1,10 @@
 (section
-  (ref "ud_cmd_sysdep-init")
-  (title "sysdep-init")
+  (ref "ud_cmd_sysdeps-init")
+  (title "sysdeps-init")
 
   (subsection
     (title "Description")
-    (para "The " (item command "sysdep-init") " command initializes the "
+    (para "The " (item command "sysdeps-init") " command initializes the "
       (item package "sysdeps") " base directory in the current directory. The
       resulting directory will be named " (item file_name "SYSDEPS") ".")
     (para "Files will be copied from the " (item package "sysdeps") " named

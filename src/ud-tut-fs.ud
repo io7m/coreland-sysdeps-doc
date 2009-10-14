@@ -22,7 +22,7 @@ $ cd new-project")
       dependencies on external tools.")
 
     (para "To initialize the " (item package "sysdeps") " system, the "
-      (item command "sysdeps-init") " command is provided. The command
+      (link "ud_cmd_sysdeps-init" "sysdeps-init") " command is provided. The command
       reads the " (item variable "SYSDEP_REPOSITORY") " environment
       variable and interprets the value of this variable as a filesystem
       path to the currently installed " (item package "sysdeps")
@@ -132,7 +132,7 @@ main.c:3: syntax: unknown identifier `inline'"))
 
     (para "The " (item package "sysdeps") " package can be used to make this
       code portable. In this particular case, the " (link "r_mr_sd-inline" "sd-inline")
-      " module is required. The " (item command "sysdeps-list") " command can
+      " module is required. The " (link "ud_cmd_sysdeps-list" "sysdeps-list") " command can
       be combined with standard tools to provide a basic module search facility:")
 
     (para-verbatim example

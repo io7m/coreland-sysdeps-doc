@@ -11,6 +11,6 @@
   (include "ud-cmd-genmk.ud")
   (include "ud-cmd-creates.ud")
 
-  (include "ud-cmd-sysdep-init.ud")
-  (include "ud-cmd-sysdep-list.ud")
+  (include "ud-cmd-sysdeps-init.ud")
+  (include "ud-cmd-sysdeps-list.ud")
 )

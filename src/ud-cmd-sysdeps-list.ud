@@ -1,10 +1,10 @@
 (section
-  (ref "ud_cmd_sysdep-list")
-  (title "sysdep-list")
+  (ref "ud_cmd_sysdeps-list")
+  (title "sysdeps-list")
 
   (subsection
     (title "Description")
-    (para "The " (item command "sysdep-list") " command lists all of the
+    (para "The " (item command "sysdeps-list") " command lists all of the
       available modules in the repository specified by the "
       (item variable "SYSDEP_REPOSITORY") " environment variable.")
     (para "The output format is a list of lines in the following format:")
