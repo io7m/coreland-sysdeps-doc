@@ -11,5 +11,6 @@
 
   (include "ud-tut-fs.ud")
   (include "ud-tut-genmk.ud")
+  (include "ud-tut-ext.ud")
   (include "ud-cmd.ud")
 )
