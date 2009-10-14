@@ -79,7 +79,7 @@ sd-uint64: Unsigned, 64 bit integer typedef."))
       repetitive and error-prone. Thankfully, the " (item package "sysdeps")
       " package provides a tool that will generate completely portable "
       (item file_name "Makefile") " fragments, saving developer time and
-      energy. The tool is known as " (item command "sd-genmk") " and is included
+      energy. The tool is known as " (link "ud_cmd_genmk" "sd-genmk") " and is included
       in the " (item file_name "sysdeps") " base directory:")
 
     (para-verbatim example
@@ -113,7 +113,7 @@ sd-uint64_clean \
 #----------------------------------------------------------------------")
 
     (para "The " (item file_name "Makefile") " now reads, after inserting
-      the output of " (item command "sd-genmk") " and updating the target
+      the output of " (link "ud_cmd_genmk" "sd-genmk") " and updating the target
       for " (item file_name "main.o") ":")
 
     (para-verbatim example
