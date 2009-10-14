@@ -9,6 +9,7 @@
 
   (contents)
 
-  (include "ud-tut.ud")
+  (include "ud-tut-fs.ud")
+  (include "ud-tut-genmk.ud")
   (include "ud-cmd.ud")
 )

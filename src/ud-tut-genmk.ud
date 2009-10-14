@@ -1,0 +1,253 @@
+(section
+  (title "Tutorial - Makefile generation")
+  (contents)
+
+  (subsection
+    (title "Expansion")
+
+    (para "The C program from the " (link "ud_tut_fs" "first tutorial")
+      " has been updated and is now, once again, non-portable "
+      (footnote (item "And contrived.")) ":")
+
+    (para-verbatim example
+"#include <stdio.h>
+
+#include \"_sd_inline.h\"
+
+/* Create empty macro if current platform does not support 'inline' */
+#ifndef SD_HAVE_INLINE
+#  define inline
+#endif
+
+#define FLAG_A 0xff00000000000000
+#define FLAG_B 0x00ff000000000000
+#define FLAG_C 0x0000ff0000000000
+
+inline void
+hello (unsigned long long x)
+{
+  printf (\"hello:\");
+
+  if (x & FLAG_A) printf (\" A\");
+  if (x & FLAG_B) printf (\" B\");
+  if (x & FLAG_C) printf (\" C\");
+
+  printf (\"\n\");
+}
+
+int
+main (void)
+{
+  unsigned long long x;
+
+  x |= FLAG_A;
+  x |= FLAG_C;
+
+  hello (x);
+  return 0;
+}")
+
+  (para "Various compilers do not support the " (item c_type "long long") " type.
+    The program would likely be improved by using an actual 64 bit integer type.
+    It is, however, non-trivial to get access to such a type across
+    implementations. The " (item package "sysdeps") " package provides many
+    modules for these sorts of problems:")
+
+  (para-verbatim example
+"$ sysdeps-list | grep -i 'integer' | grep '^sd-'
+sd-int16: Signed, 16 bit integer typedef.
+sd-int32: Signed, 32 bit integer typedef.
+sd-int64: Signed, 64 bit integer typedef.
+sd-ptr_uint: Integer typedef interchangeable with pointer type.
+sd-uint16: Unsigned, 16 bit integer typedef.
+sd-uint32: Unsigned, 32 bit integer typedef.
+sd-uint64: Unsigned, 64 bit integer typedef."))
+
+  (subsection
+    (title "Abstraction And Generation")
+
+    (para "In this case, the " (link "r_mr_sd-uint64" "sd-uint64") " module
+      might be useful.")
+
+    (para-verbatim example
+"$ sysdeps-add sd-uint64")
+
+    (para "Adding " (item file_name "Makefile") " targets manually is both
+      repetitive and error-prone. Thankfully, the " (item package "sysdeps")
+      " package provides a tool that will generate completely portable "
+      (item file_name "Makefile") " fragments, saving developer time and
+      energy. The tool is known as " (item command "sd-genmk") " and is included
+      in the " (item file_name "sysdeps") " base directory:")
+
+    (para-verbatim example
+"$ (cd SYSDEPS && ./sd-genmk)
+#----------------------------------------------------------------------
+# SYSDEPS start
+
+_sd_inline.h:
+  @echo SYSDEPS sd-inline run create _sd_inline.h
+  @(cd SYSDEPS && ./sd-run modules/sd-inline)
+_sd_uint64.h:
+  @echo SYSDEPS sd-uint64 run create _sd_uint64.h
+  @(cd SYSDEPS && ./sd-run modules/sd-uint64)
+
+
+sd-inline_clean:
+  @echo SYSDEPS sd-inline clean _sd_inline.h
+  @(cd SYSDEPS && ./sd-clean modules/sd-inline)
+sd-uint64_clean:
+  @echo SYSDEPS sd-uint64 clean _sd_uint64.h
+  @(cd SYSDEPS && ./sd-clean modules/sd-uint64)
+
+
+sysdeps_clean:\
+sd-inline_clean \
+sd-uint64_clean \
+
+
+
+# SYSDEPS end
+#----------------------------------------------------------------------")
+
+    (para "The " (item file_name "Makefile") " now reads, after inserting
+      the output of " (item command "sd-genmk") " and updating the target
+      for " (item file_name "main.o") ":")
+
+    (para-verbatim example
+"CC=`head -n 1 conf-cc`
+LD=`head -n 1 conf-ld`
+
+all: main
+
+main: main.o
+	$(LD) -o main main.o
+
+main.o: main.c _sd_inline.h _sd_uint64.h
+	$(CC) -c -o main.o main.c
+
+#----------------------------------------------------------------------
+# SYSDEPS start
+
+_sd_inline.h:
+	@echo SYSDEPS sd-inline run create _sd_inline.h 
+	@(cd SYSDEPS && ./sd-run modules/sd-inline)
+_sd_uint64.h:
+	@echo SYSDEPS sd-uint64 run create _sd_uint64.h 
+	@(cd SYSDEPS && ./sd-run modules/sd-uint64)
+
+
+sd-inline_clean:
+	@echo SYSDEPS sd-inline clean _sd_inline.h 
+	@(cd SYSDEPS && ./sd-clean modules/sd-inline)
+sd-uint64_clean:
+	@echo SYSDEPS sd-uint64 clean _sd_uint64.h 
+	@(cd SYSDEPS && ./sd-clean modules/sd-uint64)
+
+
+sysdeps_clean:\
+sd-inline_clean \
+sd-uint64_clean \
+
+
+
+# SYSDEPS end
+#----------------------------------------------------------------------
+
+clean: sysdeps_clean
+	rm -f main main.o"))
+
+  (subsection
+    (title "Support!")
+
+    (para "The generated " (item file_name "_sd_uint64.h") " header
+      may look something like this:")
+
+    (para-verbatim example
+"#ifndef _SD_UINT64_H
+#define _SD_UINT64_H
+
+#include <stdint.h>
+
+#define SD_UINT64_SUPPORTED 1
+typedef uint64_t sd_uint64;
+
+#endif")
+
+    (para "In this case, " (item package "sysdeps") " determines that
+      the standard C " (item file_name "stdint.h") " header is present
+      and contains an appropriate type. It creates an appropriate typedef
+      so that the name of the type exposed to user code will always be the
+      same, regardless of the underlying type. It also creates a definition
+      that can be used to determine whether or not the system actually supports
+      integer types of the given size.")
+
+    (para "The " (item file_name "main.c") " program is now modified to
+      take advantage of the new information:")
+
+    (para-verbatim example
+"#include <stdio.h>
+
+#include \"_sd_inline.h\"
+#include \"_sd_uint64.h\"
+
+/* Create empty macro if current platform does not support 'inline' */
+#ifndef SD_HAVE_INLINE
+#  define inline
+#endif
+
+/* Explicitly state requirements. */
+#ifndef SD_UINT64_SUPPORTED
+#error \"This program requires 64 bit integer support.\"
+#endif
+
+#define FLAG_A 0xff00000000000000
+#define FLAG_B 0x00ff000000000000
+#define FLAG_C 0x0000ff0000000000
+
+inline void
+hello (sd_uint64 x)
+{
+  printf (\"hello:\");
+
+  if (x & FLAG_A) printf (\" A\");
+  if (x & FLAG_B) printf (\" B\");
+  if (x & FLAG_C) printf (\" C\");
+
+  printf (\"\\n\");
+}
+
+int
+main (void)
+{
+  sd_uint64 x;
+
+  x |= FLAG_A;
+  x |= FLAG_C;
+
+  hello (x);
+  return 0;
+}")
+
+    (para "Note that if the current system does not support 64 bit integers,
+      compilation is explicitly terminated with the " (item constant "#error")
+      " directive. There are other, better solutions to this problem, covered
+      later in the documentation.")
+
+    (para "The program now builds correctly on all platforms, regardless of
+      the underlying definitions for 64 bit types:")
+
+    (para-verbatim example
+"$ make
+SYSDEPS sd-inline run create _sd_inline.h
+SYSDEPS sd-uint64 run create _sd_uint64.h
+`head -n 1 conf-cc` -c -o main.o main.c
+`head -n 1 conf-ld` -o main main.o
+
+$ ./main
+hello: A C
+
+$ make clean
+SYSDEPS sd-inline clean _sd_inline.h
+SYSDEPS sd-uint64 clean _sd_uint64.h
+rm -f main main.o")))
+
