@@ -4,13 +4,116 @@
 
   (para "This tutorial demonstrates how " (item package "sysdeps") " can be
     used to facilitate cross compilation - the process of creating executables
-    and libraries to run on a system other than the one they are compiled on.")
+    and libraries to run on a system of a different architecture than the one
+    they are compiled on.")
 
   (subsection
+    (title "Configuration")
+
     (para-verbatim example
 "$ mkdir new-project-cross
 $ cd new-project-cross
 $ echo cc > conf-cc
 $ echo cc > conf-ld
-$ sysdeps-init"))
+$ sysdeps-init")
+
+    (para "The " (item package "sysdeps") " system is extremely
+      conservative when it comes to cross compilation. The emphasis is on
+      creating executables that actually work correctly as opposed to ensuring
+      that compilation appears to succeed:")
+
+    (para
+      (list
+        (item "The system will not guess reasonable defaults - it demands
+          precise configuration.")
+        (item "The system will refuse to read from information sources other
+          than those that are exactly specified.")))
+
+    (para "The " (item package "sysdeps") " system checks for the existence
+      of a file named " (item file_name "conf-x-cc") " and if found, assumes
+      that the current compilation is a cross compilation. This file, in
+      a similar manner to " (item file_name "conf-cc") " contains the name
+      of the compiler to be used for cross compilation.")
+
+    (pare "The " (item package "sysdeps") " also requires a list of path
+      prefixes that it is allowed to check for libraries, headers and
+      configuration programs when attempting to locate external packages.
+      The paths must be placed in a file called "
+      (item file_name "conf-x-prefix") ". The system will refuse to run
+      if this file does not exist when cross compiling.")
+
+    (para "For this tutorial, it's assumed that the target system is
+      Microsoft Windows and that the compiler used to create binaries
+      for this system is " (link-ext "http://mingw.org" "MinGW") ".")
+
+    (para "Compiler configuration might go something like this:")
+
+    (para-verbatim example
+"$ echo mingw32-gcc > conf-x-cc
+$ echo mingw32-gcc > conf-x-ld")
+
+    (para "For this tutorial, it is assumed that all external packages
+      have been installed with the root at "
+      (item file_name "/usr/x86-ms_windows-6.1") ".")
+
+    (para-verbatim example
+"$ echo /usr/x86-ms_windows-6.1 > conf-x-prefix")
+
+    (para "The " (link "r_mr_sd-sysinfo" "sd-sysinfo") " module is useful
+      for seeing exactly what effect various cross-compilation parameters
+      are having on the compilation environment.")
+
+    (para-verbatim example
+"$ sysdeps-add sd-sysinfo")
+
+    (para "Executing the module will give some indication of what has
+      been accomplished so far:")
+
+    (para-verbatim example
+"$ (cd SYSDEPS && ./sd-run modules/sd-sysinfo)
+sd-sysinfo: info: conf-x-cc exists - assuming cross compilation
+sd-sysinfo: info: using custom x-prefix /tmp/x86-ms_windows-6.1/include
+sd-sysinfo: info: using custom x-prefix /tmp/x86-ms_windows-6.1/lib
+sd-sysinfo: info: using custom x-prefix /tmp/x86-ms_windows-6.1/bin")
+
+    (para "The system explicitly states which directories it will use
+      for searching.")
+
+    (para "Examining the output of the module shows:")
+
+    (para-verbatim example
+"$ cat sysdeps.out
+sysinfo: unknown 0.0 unknown 0.0.0 unknown  
+sysinfo-cflags: 
+sysinfo-ldflags: 
+sysinfo-ada-cflags: 
+sysinfo-ada-bflags: 
+sysinfo-ada-ldflags:")
+
+    (para "Note that the system has refused to guess information
+      about the target platform. The system can be informed about various
+      aspects of the target platform by creating new configuration files:")
+
+    (para-verbatim example
+"$ echo SD_SYSINFO_OS_MS_WINDOWS  > conf-x-systype
+$ echo 6.1                       > conf-x-sysver
+$ echo SD_SYSINFO_ARCH_X86       > conf-x-arch
+$ echo SD_SYSINFO_CCTYPE_MINGW32 > conf-x-cctype
+$ echo 4.2.1                     > conf-x-ccver
+
+$ (cd SYSDEPS && ./sd-clean modules/sd-sysinfo)
+$ (cd SYSDEPS && ./sd-run modules/sd-sysinfo)
+sd-sysinfo: info: conf-x-cc exists - assuming cross compilation
+sd-sysinfo: info: using custom x-prefix /tmp/x86-ms_windows-6.1/include
+sd-sysinfo: info: using custom x-prefix /tmp/x86-ms_windows-6.1/lib
+sd-sysinfo: info: using custom x-prefix /tmp/x86-ms_windows-6.1/bin
+
+$ cat sysdeps.out
+sysinfo: ms_windows 6.1 mingw32 4.2.1 x86  
+sysinfo-cflags: 
+sysinfo-ldflags: 
+sysinfo-ada-cflags: 
+sysinfo-ada-bflags: 
+sysinfo-ada-ldflags:"))
+
 )
