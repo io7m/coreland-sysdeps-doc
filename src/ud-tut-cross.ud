@@ -114,7 +114,10 @@ sysinfo-cflags:
 sysinfo-ldflags:
 sysinfo-ada-cflags:
 sysinfo-ada-bflags:
-sysinfo-ada-ldflags:"))
+sysinfo-ada-ldflags:")
+
+    (para "A list of all configuration files and their meanings can be
+      found in the " (link "r_conf" "Configuration File Reference") "."))
 
   (subsection
     (title "SDL")
