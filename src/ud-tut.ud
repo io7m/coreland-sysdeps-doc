@@ -152,7 +152,9 @@ drwxr-xr-x  2 cpj wheel   512 14 Oct 02:28 sd-inline/")
       (footnote (item "Anybody involved in the building of large sets of
         packages for operating system distributions or with cross compilation
         will be aware of the silent horrors of errant environment variables and
-        unexpected and impossible-to-locate \"build poisoning\"."))
+        unexpected and impossible-to-locate \"build poisoning\". With the "
+        (item package "sysdeps") " system, all state is visible in one
+        location and nothing is hidden."))
     ", the " (item package "sysdeps") " package requires the use of trivial
     configuration files:")
 
