@@ -143,7 +143,7 @@ drwxr-xr-x  3 cpj wheel   512 14 Oct 02:28 ./
 drwxr-xr-x  3 cpj wheel  1024 14 Oct 02:00 ../
 drwxr-xr-x  2 cpj wheel   512 14 Oct 02:28 sd-inline/")
 
-  (para "The module itself is executed by calling the " (item command "sd-run")
+  (para "The module itself is executed by calling the " (link "ud_cmd_run" "sd-run")
     " command in the " (item file_name "SYSDEPS") " directory. The "
     (item package "sysdeps") " package requires some minor configuration
     in order to work, however. At a minimum, it needs to be told which
@@ -228,7 +228,7 @@ main (void)
 
   (para "The " (item package "sysdeps") " package is self-cleaning. The
     module will execute its own cleanup routine when called with the "
-    (item command "sd-clean") " command:")
+    (link "ud_cmd_clean" "sd-clean") " command:")
 
   (para-verbatim example
 "$ (cd SYSDEPS && ./sd-clean modules/sd-inline)

@@ -1,0 +1,33 @@
+(section
+  (ref "ud_cmd_clean")
+  (title "sd-clean")
+
+  (subsection
+    (title "Synopsis")
+    (para-verbatim program_synopsis "sd-clean: usage: modules/module"))
+
+  (subsection
+    (title "Description")
+    (para "The " (item command "sd-clean") " command runs the cleanup procedure
+      for the given module. To reset back to \"distribution clean\" state, this
+      command should be executed once for each module.")
+    (para "This command must not be executed for the same module multiple times
+      in parallel.")
+    (para "The " (item command "sd-clean") " command is included in the base "
+      (item file_name "SYSDEPS") " directory."))
+
+  (subsection
+    (title "Preconditions")
+    (para "The " (item command "sd-clean") " command must be run from the base "
+      (item file_name "SYSDEPS") " directory."))
+
+  (subsection
+    (title "Postconditions")
+    (para "All files specified by "
+      (item file_name "SYSDEP_BASE_DIRECTORY/modules/module/creates") " will be
+      deleted from the "
+        (link "dd_env_SYSDEP_OUTPUT_DIRECTORY" "SYSDEP_OUTPUT_DIRECTORY") ".")
+    (para "A " (item file_name "sysdeps.out") " file in the "
+      (link "dd_env_SYSDEP_OUTPUT_DIRECTORY" "SYSDEP_OUTPUT_DIRECTORY")
+      " will be deleted."))
+)

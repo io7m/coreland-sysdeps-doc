@@ -1,0 +1,32 @@
+(section
+  (ref "ud_cmd_run")
+  (title "sd-run")
+
+  (subsection
+    (title "Synopsis")
+    (para-verbatim program_synopsis "sd-run: usage: modules/module"))
+
+  (subsection
+    (title "Description")
+    (para "The " (item command "sd-run") " command executes the given module.")
+    (para "This command must not be executed for the same module multiple times
+      in parallel.")
+    (para "The " (item command "sd-run") " command is included in the base "
+      (item file_name "SYSDEPS") " directory."))
+
+  (subsection
+    (title "Preconditions")
+    (para "The " (item command "sd-run") " command must be run from the base "
+      (item file_name "SYSDEPS") " directory."))
+
+  (subsection
+    (title "Postconditions")
+    (para "All files specified by "
+      (item file_name "SYSDEP_BASE_DIRECTORY/modules/module/creates") " will be
+      created in the " (link "dd_env_SYSDEP_OUTPUT_DIRECTORY" "SYSDEP_OUTPUT_DIRECTORY")
+      ".")
+    (para "A file named " (item file_name "sysdeps.out") " in the "
+      (link "dd_env_SYSDEP_OUTPUT_DIRECTORY" "SYSDEP_OUTPUT_DIRECTORY")
+      " will have lines appended to it. It will be created if it does not exist."))
+
+)

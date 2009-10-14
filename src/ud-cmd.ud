@@ -1,0 +1,12 @@
+(section
+  (title "User Commands")
+
+  (para "This section documents the " (item package "sysdeps") " commands
+    intended for use by end-users.")
+
+  (contents)
+
+  (include "ud-cmd-run.ud")
+  (include "ud-cmd-clean.ud")
+
+)
