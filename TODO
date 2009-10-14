@@ -8,7 +8,6 @@ Documentation outline:
       Makefile generation
       Using external packages
       Cross compilation
-    User-servicable config file reference.
     Module writing
     Explicitly supported platforms/issues
 
@@ -30,3 +29,5 @@ Documentation outline:
 
   References
     Module reference
+    User-servicable config file reference.
+
