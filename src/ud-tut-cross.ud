@@ -30,16 +30,16 @@ $ sysdeps-init")
           than those that are exactly specified.")))
 
     (para "The " (item package "sysdeps") " system checks for the existence
-      of a file named " (item file_name "conf-x-cc") " and if found, assumes
+      of a file named " (link "r_conf_conf-x-cc" "conf-x-cc") " and if found, assumes
       that the current compilation is a cross compilation. This file, in
-      a similar manner to " (item file_name "conf-cc") " contains the name
+      a similar manner to " (link "r_conf_conf-cc" "conf-cc") " contains the name
       of the compiler to be used for cross compilation.")
 
     (pare "The " (item package "sysdeps") " also requires a list of path
       prefixes that it is allowed to check for libraries, headers and
       configuration programs when attempting to locate external packages.
       The paths must be placed in a file called "
-      (item file_name "conf-x-prefix") ". The system will refuse to run
+      (link "r_conf_conf-x-prefix" "conf-x-prefix") ". The system will refuse to run
       if this file does not exist when cross compiling.")
 
     (para "For this tutorial, it's assumed that the target system is
@@ -163,8 +163,8 @@ $ sysdeps-add sdl-flags sdl-libs")
 
     (para "The " (item package "sysdeps") " system will simply refuse to run any
       configuration programs outside of the install prefixes specified in "
-      (item file_name "conf-x-prefix") ". As a concrete example, if the file
-      contains:")
+      (link "r_conf_conf-x-prefix" "conf-x-prefix") ". As a concrete
+      example, if the file contains:")
 
     (para-verbatim example
 "/usr/x86-ms_windows-6.1
