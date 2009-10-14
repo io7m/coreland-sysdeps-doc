@@ -1,0 +1,16 @@
+(section
+  (title "Tutorial - Cross Compilation")
+  (contents)
+
+  (para "This tutorial demonstrates how " (item package "sysdeps") " can be
+    used to facilitate cross compilation - the process of creating executables
+    and libraries to run on a system other than the one they are compiled on.")
+
+  (subsection
+    (para-verbatim example
+"$ mkdir new-project-cross
+$ cd new-project-cross
+$ echo cc > conf-cc
+$ echo cc > conf-ld
+$ sysdeps-init"))
+)
