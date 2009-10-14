@@ -1,7 +1,7 @@
 (subsection
   (title "MINIX")
 
-  (para "On versions at least as new as " (item version "3.1.3a") ",
+  (para "On versions older than SVN r5496 (2009-10-10),
     the " (item command "head") " utility requires patching in order
     to be POSIX compliant (" (item command "head") " is required to
     support the " (item option "-n") " command-line option)" ".")
