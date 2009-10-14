@@ -1,0 +1,40 @@
+(section
+  (ref "r_mr_getopt-ada-libs-S")
+  (title "getopt-ada-libs-S")
+
+  (subsection
+    (title "Synopsis")
+    (para "Linker flags to statically link against getopt-ada."))
+
+  (subsection
+    (title "Description")
+(para "This module determines the linker flags required to statically link against "
+  (link-ext "http://coreland.ath.cx/code/getopt-ada" "getopt-ada"))
+    (para "The module will attempt to execute the following command in order
+      to retrieve the desired information from the environment:")
+    (para-verbatim example "getopt-ada-conf compile slibdir ldflags")
+  )
+
+  (subsection
+    (title "Creates")
+    (para "The module creates the following files:")
+    (list
+      (item file_name "libs-getopt-ada-S")
+    ))
+
+  (subsection
+    (title "Output")
+    (para "The module writes lines with the following forms to "
+      (item file_name "sysdeps.out") ":")
+    (para-verbatim example (render "r-mr-getopt-ada-libs-S-sysdeps-bnf.txt")))
+  (subsection
+    (title "Module Metadata")
+    (para
+      (table module_metadata
+        (t-row
+          (item "Package URL")  (item (link-ext "http://coreland.ath.cx/code/getopt-ada")))
+        (t-row
+          (item "Author Email") (item email_address "sysdeps@coreland.ath.cx"))
+        (t-row
+          (item "Author URL")    (item (link-ext "http://coreland.ath.cx"))))))
+)

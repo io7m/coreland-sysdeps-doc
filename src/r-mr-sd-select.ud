@@ -1,0 +1,47 @@
+(section
+  (ref "r_mr_sd-select")
+  (title "sd-select")
+
+  (subsection
+    (title "Synopsis")
+    (para "Determine header file includes for select()."))
+
+  (subsection
+    (title "Description")
+(para "This module tries to work out where " (item c_function
+"select()") " is declared and write the correct #include directives into
+a header file.")
+
+(para "If " (item c_function "select()") " is not present on the system (a
+rarity) nothing is written into the header file.")
+
+(para "Example output:")
+
+(para-verbatim example
+"#ifndef _SD_SELECT_H
+#define _SD_SELECT_H
+#include <sys/select.h>
+#endif")
+  )
+
+  (subsection
+    (title "Creates")
+    (para "The module creates the following files:")
+    (list
+      (item file_name "_sd_select.h")
+    ))
+
+  (subsection
+    (title "Output")
+    (para "The module writes lines with the following forms to "
+      (item file_name "sysdeps.out") ":")
+    (para-verbatim example (render "r-mr-sd-select-sysdeps-bnf.txt")))
+  (subsection
+    (title "Module Metadata")
+    (para
+      (table module_metadata
+        (t-row
+          (item "Author Email") (item email_address "sysdeps@coreland.ath.cx"))
+        (t-row
+          (item "Author URL")    (item (link-ext "http://coreland.ath.cx"))))))
+)

@@ -1,0 +1,40 @@
+(section
+  (ref "r_mr_aiff-libs-S")
+  (title "aiff-libs-S")
+
+  (subsection
+    (title "Synopsis")
+    (para "Linker flags to link with libaiff."))
+
+  (subsection
+    (title "Description")
+(para "This module determines the linker flags required to statically link against "
+  (link-ext "http://aifftools.sourceforge.net/libaiff/" "libaiff"))
+    (para "The module will attempt to manually search for the following
+      static library file:")
+    (para (item file_name "libaiff.a"))
+  )
+
+  (subsection
+    (title "Creates")
+    (para "The module creates the following files:")
+    (list
+      (item file_name "libs-aiff-S")
+    ))
+
+  (subsection
+    (title "Output")
+    (para "The module writes lines with the following forms to "
+      (item file_name "sysdeps.out") ":")
+    (para-verbatim example (render "r-mr-aiff-libs-S-sysdeps-bnf.txt")))
+  (subsection
+    (title "Module Metadata")
+    (para
+      (table module_metadata
+        (t-row
+          (item "Package URL")  (item (link-ext "http://aifftools.sourceforge.net/libaiff/")))
+        (t-row
+          (item "Author Email") (item email_address "sysdeps@coreland.ath.cx"))
+        (t-row
+          (item "Author URL")    (item (link-ext "http://coreland.ath.cx"))))))
+)

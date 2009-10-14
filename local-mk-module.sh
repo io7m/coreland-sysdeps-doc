@@ -21,7 +21,7 @@ synopsis=`cat ${dir}/synopsis` || fatal "could not read ${dir}/synopsis"
 
 cat <<EOF
 (section
-  (ref "ud_mr_${module}")
+  (ref "r_mr_${module}")
   (title "${module}")
 
   (subsection
@@ -192,15 +192,15 @@ IFS="${OLD_IFS}"
 # Read lines written to sysdeps.out.
 #
 
-cp "${dir}/sysdeps_bnf" "src/ud-mr-${module}-sysdeps-bnf.txt" ||
-  fatal "could not copy ${dir}/sysdeps_bnf to src/ud-mr-${module}-sysdeps-bnf.txt"
+cp "${dir}/sysdeps_bnf" "src/r-mr-${module}-sysdeps-bnf.txt" ||
+  fatal "could not copy ${dir}/sysdeps_bnf to src/r-mr-${module}-sysdeps-bnf.txt"
 
 cat <<EOF
   (subsection
     (title "Output")
     (para "The module writes lines with the following forms to "
       (item file_name "sysdeps.out") ":")
-    (para-verbatim example (render "ud-mr-${module}-sysdeps-bnf.txt")))
+    (para-verbatim example (render "r-mr-${module}-sysdeps-bnf.txt")))
 EOF
 
 #

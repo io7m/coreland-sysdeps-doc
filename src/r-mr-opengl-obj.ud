@@ -1,0 +1,40 @@
+(section
+  (ref "r_mr_opengl-obj")
+  (title "opengl-obj")
+
+  (subsection
+    (title "Synopsis")
+    (para "Discover locations of possible OpenGL libraries."))
+
+  (subsection
+    (title "Description")
+(para "This module generates a C source file is created that can be
+#include'd. The file contains an array of 0-terminated strings, named
+'opengl_obj'.  The strings contain the full paths to any library files
+that appear to be OpenGL libraries. The paths can be used to dynamically
+load OpenGL shared objects.")
+  )
+
+  (subsection
+    (title "Creates")
+    (para "The module creates the following files:")
+    (list
+      (item file_name "_opengl_obj.c")
+    ))
+
+  (subsection
+    (title "Output")
+    (para "The module writes lines with the following forms to "
+      (item file_name "sysdeps.out") ":")
+    (para-verbatim example (render "r-mr-opengl-obj-sysdeps-bnf.txt")))
+  (subsection
+    (title "Module Metadata")
+    (para
+      (table module_metadata
+        (t-row
+          (item "Package URL")  (item (link-ext "http://www.opengl.org")))
+        (t-row
+          (item "Author Email") (item email_address "sysdeps@coreland.ath.cx"))
+        (t-row
+          (item "Author URL")    (item (link-ext "http://coreland.ath.cx"))))))
+)

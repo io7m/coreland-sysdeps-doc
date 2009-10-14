@@ -1,0 +1,37 @@
+(section
+  (ref "r_mr_alut-libs")
+  (title "alut-libs")
+
+  (subsection
+    (title "Synopsis")
+    (para "Linker flags to link against alut."))
+
+  (subsection
+    (title "Description")
+(para "This module determines the linker flags required to link against "
+  (link-ext "http://www.openal.org" "OpenALUT"))
+  )
+
+  (subsection
+    (title "Creates")
+    (para "The module creates the following files:")
+    (list
+      (item file_name "libs-alut")
+    ))
+
+  (subsection
+    (title "Output")
+    (para "The module writes lines with the following forms to "
+      (item file_name "sysdeps.out") ":")
+    (para-verbatim example (render "r-mr-alut-libs-sysdeps-bnf.txt")))
+  (subsection
+    (title "Module Metadata")
+    (para
+      (table module_metadata
+        (t-row
+          (item "Package URL")  (item (link-ext "http://www.openal.org")))
+        (t-row
+          (item "Author Email") (item email_address "sysdeps@coreland.ath.cx"))
+        (t-row
+          (item "Author URL")    (item (link-ext "http://coreland.ath.cx"))))))
+)

@@ -1,0 +1,40 @@
+(section
+  (ref "r_mr_lua-ada-load-flags")
+  (title "lua-ada-load-flags")
+
+  (subsection
+    (title "Synopsis")
+    (para "Compiler flags to compile against lua-ada-load."))
+
+  (subsection
+    (title "Description")
+(para "This module determines the compiler flags required to compile against "
+  (link-ext "http://coreland.ath.cx/code/lua-ada-load" "lua-ada-load"))
+    (para "The module will attempt to execute the following command in order
+      to retrieve the desired information from the environment:")
+    (para-verbatim example "lua-ada-load-conf compile incdir cflags")
+  )
+
+  (subsection
+    (title "Creates")
+    (para "The module creates the following files:")
+    (list
+      (item file_name "flags-lua-load")
+    ))
+
+  (subsection
+    (title "Output")
+    (para "The module writes lines with the following forms to "
+      (item file_name "sysdeps.out") ":")
+    (para-verbatim example (render "r-mr-lua-ada-load-flags-sysdeps-bnf.txt")))
+  (subsection
+    (title "Module Metadata")
+    (para
+      (table module_metadata
+        (t-row
+          (item "Package URL")  (item (link-ext "http://coreland.ath.cx/code/lua-ada-load")))
+        (t-row
+          (item "Author Email") (item email_address "sysdeps@coreland.ath.cx"))
+        (t-row
+          (item "Author URL")    (item (link-ext "http://coreland.ath.cx"))))))
+)

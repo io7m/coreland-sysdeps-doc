@@ -1,0 +1,47 @@
+(section
+  (ref "r_mr_fltk2-libs")
+  (title "fltk2-libs")
+
+  (subsection
+    (title "Synopsis")
+    (para "Linker flags to link against fltk-2.0.*."))
+
+  (subsection
+    (title "Description")
+(para "This module determines the linker flags required to link against "
+  (link-ext "http://www.fltk.org" "FLTK 2.0.*"))
+    (para "The module will attempt to execute the following command in order
+      to retrieve the desired information from the environment:")
+    (para-verbatim example "fltk2-config --ldflags --use-images")
+    (para "The module will attempt to execute the following "
+      (item command "pkg-config") " command in order
+      to retrieve the desired information from the environment:")
+    (para-verbatim example "pkg-config --libs fltk2")
+    (para "The module will attempt to manually search for the following
+      dynamic library file:")
+    (para (item file_name "fltk2.${SO_SUFFIX}"))
+  )
+
+  (subsection
+    (title "Creates")
+    (para "The module creates the following files:")
+    (list
+      (item file_name "libs-fltk2")
+    ))
+
+  (subsection
+    (title "Output")
+    (para "The module writes lines with the following forms to "
+      (item file_name "sysdeps.out") ":")
+    (para-verbatim example (render "r-mr-fltk2-libs-sysdeps-bnf.txt")))
+  (subsection
+    (title "Module Metadata")
+    (para
+      (table module_metadata
+        (t-row
+          (item "Package URL")  (item (link-ext "http://www.fltk.org")))
+        (t-row
+          (item "Author Email") (item email_address "sysdeps@coreland.ath.cx"))
+        (t-row
+          (item "Author URL")    (item (link-ext "http://coreland.ath.cx"))))))
+)

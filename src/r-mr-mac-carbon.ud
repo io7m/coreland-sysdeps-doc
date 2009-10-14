@@ -1,0 +1,50 @@
+(section
+  (ref "r_mr_mac-carbon")
+  (title "mac-carbon")
+
+  (subsection
+    (title "Synopsis")
+    (para "Compiler and linker flags to use the Darwin Carbon framework."))
+
+  (subsection
+    (title "Description")
+(para "This module attempts to determine the required compiler and linker flags
+  to use the Darwin Carbon framework if it is supported on the current platform.")
+  )
+
+  (subsection
+    (title "Creates")
+    (para "The module creates the following files:")
+    (list
+      (item file_name "libs-carbon")
+      (item file_name "flags-carbon")
+    ))
+
+  (subsection
+    (title "Defines")
+    (para "The module defines the following preprocessor constants:")
+    (table definitions
+      (t-row
+        (item "Constant")
+        (item "Type")
+        (item "Attributes"))
+      (t-row
+        (item constant "SD_HAVE_CARBON ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+    ))
+
+  (subsection
+    (title "Output")
+    (para "The module writes lines with the following forms to "
+      (item file_name "sysdeps.out") ":")
+    (para-verbatim example (render "r-mr-mac-carbon-sysdeps-bnf.txt")))
+  (subsection
+    (title "Module Metadata")
+    (para
+      (table module_metadata
+        (t-row
+          (item "Author Email") (item email_address "sysdeps@coreland.ath.cx"))
+        (t-row
+          (item "Author URL")    (item (link-ext "http://coreland.ath.cx"))))))
+)

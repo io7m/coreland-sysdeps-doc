@@ -1,0 +1,40 @@
+(section
+  (ref "r_mr_sdl-gfx-libs-S")
+  (title "sdl-gfx-libs-S")
+
+  (subsection
+    (title "Synopsis")
+    (para "Linker flags to statically link against SDL_gfx."))
+
+  (subsection
+    (title "Description")
+(para "This module determines the linker flags required to statically link against "
+  (link-ext "http://www.ferzkopp.net" "SDL_gfx"))
+    (para "The module will attempt to manually search for the following
+      static library file:")
+    (para (item file_name "libSDL_gfx.a"))
+  )
+
+  (subsection
+    (title "Creates")
+    (para "The module creates the following files:")
+    (list
+      (item file_name "libs-sdl-gfx-S")
+    ))
+
+  (subsection
+    (title "Output")
+    (para "The module writes lines with the following forms to "
+      (item file_name "sysdeps.out") ":")
+    (para-verbatim example (render "r-mr-sdl-gfx-libs-S-sysdeps-bnf.txt")))
+  (subsection
+    (title "Module Metadata")
+    (para
+      (table module_metadata
+        (t-row
+          (item "Package URL")  (item (link-ext "http://www.ferzkopp.net")))
+        (t-row
+          (item "Author Email") (item email_address "sysdeps@coreland.ath.cx"))
+        (t-row
+          (item "Author URL")    (item (link-ext "http://coreland.ath.cx"))))))
+)

@@ -1,0 +1,41 @@
+(section
+  (ref "r_mr_sd-test-custom")
+  (title "sd-test-custom")
+
+  (subsection
+    (title "Synopsis")
+    (para "Test module. Does nothing."))
+
+  (subsection
+    (title "Description")
+(para "This module does absolutely nothing.")
+  )
+
+  (subsection
+    (title "Creates")
+    (para "The module creates the following files:")
+    (list
+      (item file_name "flags-test-custom")
+    ))
+
+  (subsection
+    (title "Configuration")
+    (para "The module is influenced by the following configuration files:")
+    (list
+      (item file_name "conf-test")
+    ))
+
+  (subsection
+    (title "Output")
+    (para "The module writes lines with the following forms to "
+      (item file_name "sysdeps.out") ":")
+    (para-verbatim example (render "r-mr-sd-test-custom-sysdeps-bnf.txt")))
+  (subsection
+    (title "Module Metadata")
+    (para
+      (table module_metadata
+        (t-row
+          (item "Author Email") (item email_address "sysdeps@coreland.ath.cx"))
+        (t-row
+          (item "Author URL")    (item (link-ext "http://coreland.ath.cx"))))))
+)

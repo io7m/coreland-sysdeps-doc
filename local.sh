@@ -264,11 +264,12 @@ done
 # Create source for all modules.
 #
 
-rm -f src/ud-mr.ud.tmp || fatal "could not remove src/ud-mr.ud.tmp"
+rm -f src/r-mr.ud.tmp || fatal "could not remove src/r-mr.ud.tmp"
 
-cat >> src/ud-mr.ud.tmp << EOF
+cat >> src/r-mr.ud.tmp << EOF
 (section
   (title "Module Reference")
+  (para "This section provides documentation for all included modules.")
   (contents)
 
 EOF
@@ -281,17 +282,17 @@ do
 
     echo "info: updating ${module} docs" 1>&2
 
-    ./local-mk-module.sh "${module_path}" > "src/ud-mr-${module}.ud.tmp" ||
-      fatal "could not write src/ud-mr-${module}.ud.tmp"
-    mv "src/ud-mr-${module}.ud.tmp" "src/ud-mr-${module}.ud" ||
-      fatal "could not write src/ud-mr-${module}.ud"
+    ./local-mk-module.sh "${module_path}" > "src/r-mr-${module}.ud.tmp" ||
+      fatal "could not write src/r-mr-${module}.ud.tmp"
+    mv "src/r-mr-${module}.ud.tmp" "src/r-mr-${module}.ud" ||
+      fatal "could not write src/r-mr-${module}.ud"
 
-    echo "  (include \"ud-mr-${module}.ud\")" >> src/ud-mr.ud.tmp ||
-      fatal "could not write src/ud-mr.ud.tmp"
+    echo "  (include \"r-mr-${module}.ud\")" >> src/r-mr.ud.tmp ||
+      fatal "could not write src/r-mr.ud.tmp"
   fi
 done
 
-echo ")" >> src/ud-mr.ud.tmp || 
-  fatal "could not write src/ud-mr.ud.tmp"
-mv src/ud-mr.ud.tmp src/ud-mr.ud ||
-  fatal "could not write src/ud-mr.ud"
+echo ")" >> src/r-mr.ud.tmp || 
+  fatal "could not write src/r-mr.ud.tmp"
+mv src/r-mr.ud.tmp src/r-mr.ud ||
+  fatal "could not write src/r-mr.ud"

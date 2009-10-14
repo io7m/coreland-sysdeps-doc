@@ -120,7 +120,7 @@ hello")
 main.c:3: syntax: unknown identifier `inline'")
 
   (para "The " (item package "sysdeps") " package can be used to make this
-    code portable. In this particular case, the " (link "ud_mr_sd-inline" "sd-inline")
+    code portable. In this particular case, the " (link "r_mr_sd-inline" "sd-inline")
     " module is required. The " (item command "sysdeps-list") " command can
     be combined with standard tools to provide a basic module search facility:")
 

@@ -1,0 +1,40 @@
+(section
+  (ref "r_mr_circbuf-libs-S")
+  (title "circbuf-libs-S")
+
+  (subsection
+    (title "Synopsis")
+    (para "Linker flags to statically link against circbuf."))
+
+  (subsection
+    (title "Description")
+(para "This module determines the linker flags required to statically link against "
+  (link-ext "http://coreland.ath.cx/code/circbuf" "circbuf"))
+    (para "The module will attempt to execute the following command in order
+      to retrieve the desired information from the environment:")
+    (para-verbatim example "circbuf-conf compile slibdir ldflags")
+  )
+
+  (subsection
+    (title "Creates")
+    (para "The module creates the following files:")
+    (list
+      (item file_name "libs-circbuf-S")
+    ))
+
+  (subsection
+    (title "Output")
+    (para "The module writes lines with the following forms to "
+      (item file_name "sysdeps.out") ":")
+    (para-verbatim example (render "r-mr-circbuf-libs-S-sysdeps-bnf.txt")))
+  (subsection
+    (title "Module Metadata")
+    (para
+      (table module_metadata
+        (t-row
+          (item "Package URL")  (item (link-ext "http://coreland.ath.cx/code/circbuf")))
+        (t-row
+          (item "Author Email") (item email_address "sysdeps@coreland.ath.cx"))
+        (t-row
+          (item "Author URL")    (item (link-ext "http://coreland.ath.cx"))))))
+)

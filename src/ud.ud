@@ -7,7 +7,8 @@
     it uses " (item package "sysdeps") " as part of the build
     system).")
 
+  (contents)
+
   (include "ud-tut.ud")
   (include "ud-cmd.ud")
-  (include "ud-mr.ud")
 )

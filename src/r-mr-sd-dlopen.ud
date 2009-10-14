@@ -1,0 +1,68 @@
+(section
+  (ref "r_mr_sd-dlopen")
+  (title "sd-dlopen")
+
+  (subsection
+    (title "Synopsis")
+    (para "Header file for dlopen()/dlfunc() portability."))
+
+  (subsection
+    (title "Description")
+(para "This module does a simple compile-time check to see if
+  the " (item c_function "dlopen()") " and "
+  (item c_function "dlfunc()") " functions are implemented and
+  will additionally detect any linker flags required to use them.")
+
+(para "Example output:")
+
+(para-verbatim example
+"#ifndef _SD_DLOPEN_H
+#define _SD_DLOPEN_H
+
+#define SD_HAVE_DLOPEN 1
+#define SD_HAVE_DLFUNC 1
+
+#endif
+")
+  )
+
+  (subsection
+    (title "Creates")
+    (para "The module creates the following files:")
+    (list
+      (item file_name "_sd_dlopen.h")
+      (item file_name "libs-dlopen")
+    ))
+
+  (subsection
+    (title "Defines")
+    (para "The module defines the following preprocessor constants:")
+    (table definitions
+      (t-row
+        (item "Constant")
+        (item "Type")
+        (item "Attributes"))
+      (t-row
+        (item constant "SD_HAVE_DLOPEN ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_DLFUNC ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+    ))
+
+  (subsection
+    (title "Output")
+    (para "The module writes lines with the following forms to "
+      (item file_name "sysdeps.out") ":")
+    (para-verbatim example (render "r-mr-sd-dlopen-sysdeps-bnf.txt")))
+  (subsection
+    (title "Module Metadata")
+    (para
+      (table module_metadata
+        (t-row
+          (item "Author Email") (item email_address "sysdeps@coreland.ath.cx"))
+        (t-row
+          (item "Author URL")    (item (link-ext "http://coreland.ath.cx"))))))
+)

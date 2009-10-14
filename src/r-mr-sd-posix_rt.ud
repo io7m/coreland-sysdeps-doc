@@ -1,0 +1,447 @@
+(section
+  (ref "r_mr_sd-posix_rt")
+  (title "sd-posix_rt")
+
+  (subsection
+    (title "Synopsis")
+    (para "Detects POSIX realtime support and the required compiler and linker flags."))
+
+  (subsection
+    (title "Description")
+(para "This module performs compile-time checks against all functions specified
+  by the realtime extensions to POSIX.  It writes a header file with one
+  preprocessor constant for each function that is implemented. The module also
+  determines the linker flags required to use the realtime extensions.")
+
+(para "Example output:")
+
+(para-verbatim example
+"#ifndef _SD_POSIX_RT_H
+#define _SD_POSIX_RT_H
+
+#define SD_HAVE_POSIX_RT_AIO_CANCEL 1
+#define SD_HAVE_POSIX_RT_AIO_ERROR 1
+#define SD_HAVE_POSIX_RT_AIO_FSYNC 1
+#define SD_HAVE_POSIX_RT_AIO_READ 1
+#define SD_HAVE_POSIX_RT_AIO_RETURN 1
+#define SD_HAVE_POSIX_RT_AIO_WRITE 1
+#define SD_HAVE_POSIX_RT_CLOCK_GETRES 1
+#define SD_HAVE_POSIX_RT_CLOCK_GETTIME 1
+#define SD_HAVE_POSIX_RT_CLOCK_SETTIME 1
+#define SD_HAVE_POSIX_RT_FCHMOD 1
+#define SD_HAVE_POSIX_RT_FSYNC 1
+#define SD_HAVE_POSIX_RT_FTRUNCATE 1
+#define SD_HAVE_POSIX_RT_MLOCK 1
+#define SD_HAVE_POSIX_RT_MLOCKALL 1
+#define SD_HAVE_POSIX_RT_MMAP 1
+#define SD_HAVE_POSIX_RT_MPROTECT 1
+#define SD_HAVE_POSIX_RT_MQ_UNLINK 1
+#define SD_HAVE_POSIX_RT_MSYNC 1
+#define SD_HAVE_POSIX_RT_MUNMAP 1
+#define SD_HAVE_POSIX_RT_NANOSLEEP 1
+#define SD_HAVE_POSIX_RT_POSIX_MADVISE 1
+#define SD_HAVE_POSIX_RT_POSIX_MEMALIGN 1
+#define SD_HAVE_POSIX_RT_SCHED_GET_PRIORITY_MAX 1
+#define SD_HAVE_POSIX_RT_SCHED_GETPARAM 1
+#define SD_HAVE_POSIX_RT_SCHED_GETSCHEDULER 1
+#define SD_HAVE_POSIX_RT_SCHED_RR_GET_INTERVAL 1
+#define SD_HAVE_POSIX_RT_SCHED_SETPARAM 1
+#define SD_HAVE_POSIX_RT_SCHED_SETSCHEDULER 1
+#define SD_HAVE_POSIX_RT_SEM_CLOSE 1
+#define SD_HAVE_POSIX_RT_SEM_DESTROY 1
+#define SD_HAVE_POSIX_RT_SEM_GETVALUE 1
+#define SD_HAVE_POSIX_RT_SEM_INIT 1
+#define SD_HAVE_POSIX_RT_SEM_OPEN 1
+#define SD_HAVE_POSIX_RT_SEM_POST 1
+#define SD_HAVE_POSIX_RT_SEM_TIMEDWAIT 1
+#define SD_HAVE_POSIX_RT_SEM_TRYWAIT 1
+#define SD_HAVE_POSIX_RT_SEM_UNLINK 1
+#define SD_HAVE_POSIX_RT_SEM_WAIT 1
+#define SD_HAVE_POSIX_RT_SHM_OPEN 1
+#define SD_HAVE_POSIX_RT_SHM_UNLINK 1
+#define SD_HAVE_POSIX_RT_SIGTIMEDWAIT 1
+#define SD_HAVE_POSIX_RT_SIGWAITINFO 1
+#define SD_HAVE_POSIX_RT_TIMER_CREATE 1
+#define SD_HAVE_POSIX_RT_TIMER_DELETE 1
+#define SD_HAVE_POSIX_RT_TIMER_GETOVERRUN 1
+
+#endif")
+  )
+
+  (subsection
+    (title "Creates")
+    (para "The module creates the following files:")
+    (list
+      (item file_name "libs-posix_rt")
+      (item file_name "flags-posix_rt")
+      (item file_name "_sd_posix_rt.h")
+    ))
+
+  (subsection
+    (title "Defines")
+    (para "The module defines the following preprocessor constants:")
+    (table definitions
+      (t-row
+        (item "Constant")
+        (item "Type")
+        (item "Attributes"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_AIO_CANCEL ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_AIO_ERROR ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_AIO_FSYNC ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_AIO_READ ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_AIO_RETURN ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_AIO_SUSPEND ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_AIO_WRITE ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_CLOCK_GETCPUCLOCKID ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_CLOCK_GETRES ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_CLOCK_GETTIME ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_CLOCK_NANOSLEEP ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_CLOCK_SETTIME ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_FCHMOD ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_FDATASYNC ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_FSYNC ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_FTRUNCATE ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_LIO_LISTIO ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_MLOCK ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_MLOCKALL ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_MMAP ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_MPROTECT ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_MQ_CLOSE ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_MQ_GETATTR ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_MQ_NOTIFY ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_MQ_OPEN ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_MQ_RECEIVE ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_MQ_SEND ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_MQ_SETATTR ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_MQ_TIMEDRECEIVE ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_MQ_TIMEDSEND ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_MQ_UNLINK ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_MSYNC ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_MUNMAP ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_NANOSLEEP ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_POSIX_FADVISE ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_POSIX_FALLOCATE ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_POSIX_MADVISE ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_POSIX_MEM_OFFSET ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_POSIX_MEMALIGN ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_POSIX_SPAWN ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_POSIX_SPAWN_FILE_ACTIONS_ADDCLOSE ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_POSIX_SPAWN_FILE_ACTIONS_ADDDUP2 ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_POSIX_SPAWN_FILE_ACTIONS_ADDOPEN ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_POSIX_SPAWN_FILE_ACTIONS_DESTROY ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_POSIX_SPAWN_FILE_ACTIONS_INIT ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_POSIX_SPAWNATTR_DESTROY ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_POSIX_SPAWNATTR_GETFLAGS ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_POSIX_SPAWNATTR_GETPGROUP ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_POSIX_SPAWNATTR_GETSCHEDPARAM ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_POSIX_SPAWNATTR_GETSCHEDPOLICY ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_POSIX_SPAWNATTR_GETSIGDEFAULT ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_POSIX_SPAWNATTR_GETSIGMASK ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_POSIX_SPAWNATTR_INIT ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_POSIX_SPAWNATTR_SETFLAGS ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_POSIX_SPAWNATTR_SETPGROUP ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_POSIX_SPAWNATTR_SETSCHEDPARAM ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_POSIX_SPAWNATTR_SETSCHEDPOLICY ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_POSIX_SPAWNATTR_SETSIGDEFAULT ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_POSIX_SPAWNATTR_SETSIGMASK ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_POSIX_SPAWNP ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_POSIX_TYPED_MEM_GET_INFO ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_POSIX_TYPED_MEM_OPEN ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_SCHED_GET_PRIORITY_MAX ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_SCHED_GETPARAM ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_SCHED_GETSCHEDULER ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_SCHED_RR_GET_INTERVAL ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_SCHED_SETPARAM ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_SCHED_SETSCHEDULER ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_SEM_CLOSE ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_SEM_DESTROY ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_SEM_GETVALUE ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_SEM_INIT ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_SEM_OPEN ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_SEM_POST ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_SEM_TIMEDWAIT ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_SEM_TRYWAIT ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_SEM_UNLINK ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_SEM_WAIT ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_SHM_OPEN ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_SHM_UNLINK ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_SIGQUEUE ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_SIGTIMEDWAIT ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_SIGWAITINFO ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_TIMER_CREATE ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_TIMER_DELETE ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+      (t-row
+        (item constant "SD_HAVE_POSIX_RT_TIMER_GETOVERRUN ")
+        (item " integer 1 .. 1 ")
+        (item constant " optional"))
+    ))
+
+  (subsection
+    (title "Output")
+    (para "The module writes lines with the following forms to "
+      (item file_name "sysdeps.out") ":")
+    (para-verbatim example (render "r-mr-sd-posix_rt-sysdeps-bnf.txt")))
+  (subsection
+    (title "Module Metadata")
+    (para
+      (table module_metadata
+        (t-row
+          (item "Author Email") (item email_address "sysdeps@coreland.ath.cx"))
+        (t-row
+          (item "Author URL")    (item (link-ext "http://coreland.ath.cx"))))))
+)
