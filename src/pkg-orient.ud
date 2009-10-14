@@ -73,11 +73,11 @@
       writing of build scripts.")
     (para "Modules are added and removed with a set of simple shell commands:")
     (para-verbatim example
-"$ cpj-sysdeps list | grep -i SDL
+"$ sysdeps-list | grep -i SDL
 sdl-flags: compiler flags to compile against SDL (http://www.libsdl.org)
 sdl-libs: linker flags to link against SDL (http://www.libsdl.org)
-$ cpj-sysdeps init
-$ cpj-sysdeps add sdl-flags sdl-libs
+$ sysdeps-init
+$ sysdeps-add sdl-flags sdl-libs
 $ (cd SYSDEPS && ./sd-run modules/sdl-flags)
 $ cat flags-sdl
 -I/usr/local/include/SDL -I/usr/local/include -D_GNU_SOURCE=1 -D_REENTRANT -DHAVE_SDL")
