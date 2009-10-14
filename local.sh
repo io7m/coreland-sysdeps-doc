@@ -261,6 +261,41 @@ done
 ) > src/dd-env-sections.ud || fatal "could not write src/dd-env-sections.ud"
 
 #
+# Write documentation for config files.
+#
+
+(
+IFS="
+"
+for line in `cat ${SYSDEPS_SOURCE}/GENERATION/conf.txt`
+do
+  con=`echo ${line}  | awk -F\| '{print $1}' | tr -d ' '`
+  req=`echo ${line}  | awk -F\| '{print $2}' | tr -d ' '`
+  type=`echo ${line} | awk -F\| '{print $3}' | tr -d ' '`
+  val=`echo ${line}  | awk -F\| '{print $4}'`
+  desc=`echo ${line} | awk -F\| '{print $NF}'`
+
+  case ${type} in
+    version) type="(link \"dd_type_version\" \"${type}\")" ;;
+    os-type) type="(link \"dd_type_os\"      \"${type}\")" ;;
+    cc-type) type="(link \"dd_type_cc\"      \"${type}\")" ;;
+    arch)    type="(link \"dd_type_arch\"    \"${type}\")" ;;
+    *)       type="\"${type}\""                            ;;
+  esac
+
+  cat <<EOF
+  (subsection
+    (ref "r_conf_${con}")
+    (title "${con}")
+    (para example (item file_name "${con}") " : " ${type})
+    (para "${desc}.")
+    (para "Example value:")
+    (para-verbatim example "${val}"))
+EOF
+done
+) > src/r-conf-sections.ud || fatal "could not write src/r-conf-sections.ud"
+
+#
 # Create source for all modules.
 #
 

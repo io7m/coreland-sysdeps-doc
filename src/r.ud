@@ -1,4 +1,5 @@
 (section
   (title "Reference")
   (contents)
+  (include "r-conf.ud")
   (include "r-mr.ud"))

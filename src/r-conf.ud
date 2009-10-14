@@ -1,0 +1,5 @@
+(section
+  (title "Configuration File Reference")
+  (para "This section documentats all configuration files.")
+  (contents)
+  (include "r-conf-sections.ud"))
