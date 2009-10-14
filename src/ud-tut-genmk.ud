@@ -2,6 +2,9 @@
   (title "Tutorial - Makefile generation")
   (contents)
 
+  (para "This tutorial demonstrates how the generation of "
+    (item file_name "Makefile") " targets can be completely automated.")
+
   (subsection
     (title "Expansion")
 
