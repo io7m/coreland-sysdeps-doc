@@ -1,0 +1,22 @@
+(section
+  (ref "ud_cmd_sysdep-init")
+  (title "sysdep-init")
+
+  (subsection
+    (title "Description")
+    (para "The " (item command "sysdep-init") " command initializes the "
+      (item package "sysdeps") " base directory in the current directory. The
+      resulting directory will be named " (item file_name "SYSDEPS") ".")
+    (para "Files will be copied from the " (item package "sysdeps") " named
+      by the environment variable " (item variable "SYSDEP_REPOSITORY") "."))
+
+  (subsection
+    (title "Preconditions")
+    (para "The environment variable " (item variable "SYSDEP_REPOSITORY")
+      " must be defined in the environment."))
+
+  (subsection
+    (title "Postconditions")
+    (para "A directory will be created in the current directory called "
+      (item file_name "SYSDEPS") "."))
+)
