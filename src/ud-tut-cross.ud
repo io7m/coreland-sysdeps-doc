@@ -377,6 +377,13 @@ sdl-flags: debug: 90544: remove sysdeps.out")
 
   (para-verbatim example
 "$ cat flags-sdl
--I/usr/x86-ms_windows-6.1/include/SDL -I/usr/x86-ms_windows-6.1/include -D_GNU_SOURCE=1 -DSD_HAVE_SDL"))
+-I/usr/x86-ms_windows-6.1/include/SDL -I/usr/x86-ms_windows-6.1/include -D_GNU_SOURCE=1 -DSD_HAVE_SDL")
 
-)
+  (para "Using the information that " (item package "sysdeps") " has
+    written, it is now possible to compile the program and be absolutely
+    confident that no host information has leaked into the build.")
+
+  (para-verbatim example
+"$ mingw32-gcc -o main main.c `head -n 1 flags-sdl` `head -n 1 libs-sdl`
+$ file main
+main: MS-DOS executable PE  for MS Windows (console) Intel 80386 32-bit")))
