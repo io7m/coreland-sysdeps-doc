@@ -4,11 +4,11 @@
 
   (subsection
     (title "Synopsis")
-    (para "Linker flags to statically link against PNG."))
+    (para "Linker flags to link against PNG."))
 
   (subsection
     (title "Description")
-(para "This module determines the linker flags required to statically link against "
+(para "This module determines the linker flags required to link against "
   (link-ext "http://www.libpng.org" "PNG"))
     (para "The module will attempt to execute the following command in order
       to retrieve the desired information from the environment:")
