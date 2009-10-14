@@ -139,7 +139,7 @@ main.c:3: syntax: unknown identifier `inline'"))
 "$ sysdeps-list | grep inline
 sd-inline: Check for presence of 'inline' keyword in C compiler.")
 
-    (para "The module is added with the " (item command "sysdeps-add") " command:")
+    (para "The module is added with the " (link "ud_cmd_sysdeps-add" "sysdeps-add") " command:")
 
     (para-verbatim example
 "$ sysdeps-add sd-inline")

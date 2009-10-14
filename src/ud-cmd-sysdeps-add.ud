@@ -1,0 +1,29 @@
+(section
+  (ref "ud_cmd_sysdeps-add")
+  (title "sysdeps-add")
+
+  (subsection
+    (title "Description")
+    (para-verbatim program_synopsis "sysdeps-add: usage: module [modules ...]"))
+
+  (subsection
+    (title "Description")
+    (para "The " (item command "sysdeps-add") " command copies modules from the "
+      (item package "sysdeps") " repository named by the environment variable "
+      (item variable "SYSDEP_REPOSITORY") " into the base directory in the
+      current directory."))
+
+  (subsection
+    (title "Preconditions")
+    (para "There must be an initialized base directory named "
+      (item file_name "SYSDEPS") " in the current directory.")
+    (para "The environment variable " (item variable "SYSDEP_REPOSITORY")
+      " must be defined in the environment."))
+
+  (subsection
+    (title "Postconditions")
+    (para "The program will copy modules from the repository into the base
+      directory.")
+    (para "The program will return an exit code indicating failure if any
+      modules cannot be copied."))
+)

@@ -13,4 +13,5 @@
 
   (include "ud-cmd-sysdeps-init.ud")
   (include "ud-cmd-sysdeps-list.ud")
+  (include "ud-cmd-sysdeps-add.ud")
 )
