@@ -72,9 +72,9 @@ $ echo mingw32-gcc > conf-x-ld")
     (para-verbatim example
 "$ (cd SYSDEPS && ./sd-run modules/sd-sysinfo)
 sd-sysinfo: info: conf-x-cc exists - assuming cross compilation
-sd-sysinfo: info: using custom x-prefix /tmp/x86-ms_windows-6.1/include
-sd-sysinfo: info: using custom x-prefix /tmp/x86-ms_windows-6.1/lib
-sd-sysinfo: info: using custom x-prefix /tmp/x86-ms_windows-6.1/bin")
+sd-sysinfo: info: using custom x-prefix /usr/x86-ms_windows-6.1/include
+sd-sysinfo: info: using custom x-prefix /usr/x86-ms_windows-6.1/lib
+sd-sysinfo: info: using custom x-prefix /usr/x86-ms_windows-6.1/bin")
 
     (para "The system explicitly states which directories it will use
       for searching.")
@@ -83,11 +83,11 @@ sd-sysinfo: info: using custom x-prefix /tmp/x86-ms_windows-6.1/bin")
 
     (para-verbatim example
 "$ cat sysdeps.out
-sysinfo: unknown 0.0 unknown 0.0.0 unknown  
-sysinfo-cflags: 
-sysinfo-ldflags: 
-sysinfo-ada-cflags: 
-sysinfo-ada-bflags: 
+sysinfo: unknown 0.0 unknown 0.0.0 unknown
+sysinfo-cflags:
+sysinfo-ldflags:
+sysinfo-ada-cflags:
+sysinfo-ada-bflags:
 sysinfo-ada-ldflags:")
 
     (para "Note that the system has refused to guess information
@@ -104,16 +104,279 @@ $ echo 4.2.1                     > conf-x-ccver
 $ (cd SYSDEPS && ./sd-clean modules/sd-sysinfo)
 $ (cd SYSDEPS && ./sd-run modules/sd-sysinfo)
 sd-sysinfo: info: conf-x-cc exists - assuming cross compilation
-sd-sysinfo: info: using custom x-prefix /tmp/x86-ms_windows-6.1/include
-sd-sysinfo: info: using custom x-prefix /tmp/x86-ms_windows-6.1/lib
-sd-sysinfo: info: using custom x-prefix /tmp/x86-ms_windows-6.1/bin
+sd-sysinfo: info: using custom x-prefix /usr/x86-ms_windows-6.1/include
+sd-sysinfo: info: using custom x-prefix /usr/x86-ms_windows-6.1/lib
+sd-sysinfo: info: using custom x-prefix /usr/x86-ms_windows-6.1/bin
 
 $ cat sysdeps.out
-sysinfo: ms_windows 6.1 mingw32 4.2.1 x86  
-sysinfo-cflags: 
-sysinfo-ldflags: 
-sysinfo-ada-cflags: 
-sysinfo-ada-bflags: 
+sysinfo: ms_windows 6.1 mingw32 4.2.1 x86
+sysinfo-cflags:
+sysinfo-ldflags:
+sysinfo-ada-cflags:
+sysinfo-ada-bflags:
 sysinfo-ada-ldflags:"))
+
+  (subsection
+    (title "SDL")
+
+    (para-verbatim example
+"$ sysdeps-list | grep SDL
+sdl-flags: Compiler flags to compile against SDL.
+sdl-gfx-flags: Compiler flags to compile against SDL_gfx.
+sdl-gfx-libs-S: Linker flags to statically link against SDL_gfx.
+sdl-image-flags: Compiler flags to compile against SDL_image.
+sdl-image-libs: Linker flags to statically link against SDL_image.
+sdl-libs: Linker flags to link against SDL.
+sdl-mixer-flags: Compiler flags to compile against SDL_mixer.
+sdl-mixer-libs: Linker flags to link against SDL_mixer.
+sdl-ttf-flags: Compiler flags to compile against SDL_ttf.
+sdl-ttf-libs: Linker flags to link against SDL_ttf.
+
+$ sysdeps-add sdl-flags sdl-libs")
+
+    (para "Vendors apparently take great joy in mutilating software packages
+      before distributing. It is common practice to break or remove configuration
+      programs for no apparent reason. The " (item package "sysdeps") " package
+      has multiple methods for locating libraries and headers. It will first try
+      any configuration programs that are supposed to be included with package
+      in question. In the case of " (link-ext "http://libsdl.org" "SDL") ", the
+      program is called " (item command "sdl-config") ":")
+
+    (para-verbatim program_synopsis
+"Usage: sdl-config [--prefix[=DIR]] [--exec-prefix[=DIR]] [--version] [--cflags] [--libs] [--static-libs]")
+
+    (para "If the above program fails, " (item package "sysdeps") " will move
+      on to the next search method - "
+      (link-ext "http://pkg-config.freedesktop.org/" "pkg-config") ", if available.")
+
+    (para "If " (link-ext "http://pkg-config.freedesktop.org/" "pkg-config")
+      " fails, the " (item package "sysdeps") " system will attempt a manual
+      file search. If this step fails, the system will give up. Each failed
+      step will display an error message with a precise description of the
+      reason the step failed.")
+
+    (para "With cross-compilation, the above steps present a problem - attempting
+      to run any of them without strict control will cause information from
+      the host system to \"leak\" into the build. This is known as
+      \"build poisoning\" - the effects of which are not usually apparent
+      until actually executing the compiled program on the target system.")
+
+    (para "The " (item package "sysdeps") " system will simply refuse to run any
+      configuration programs outside of the install prefixes specified in "
+      (item file_name "conf-x-prefix") ". As a concrete example, if the file
+      contains:")
+
+    (para-verbatim example
+"/usr/x86-ms_windows-6.1
+/usr/x86-ms_windows-6.0
+/usr/x86-ms_windows")
+
+    (para "The " (item package "sysdeps") " system would attempt to run, for
+      example:")
+
+    (para-verbatim example
+"/usr/x86-ms_windows-6.1/bin/sdl-config
+/usr/x86-ms_windows-6.0/bin/sdl-config
+/usr/x86-ms_windows/bin/sdl-config
+/usr/x86-ms_windows-6.1/bin/pkg-config
+/usr/x86-ms_windows-6.0/bin/pkg-config
+/usr/x86-ms_windows/bin/pkg-config")
+
+    (para "The system will simply fail if all of the above are unavailable. It
+      will not, for example, gleefully attempt to run any copy of "
+      (item command "sdl-config") " present in " (item variable "$PATH") " like
+      certain other build systems that shall remain nameless.")
+
+    (para "An example of this kind of failure is:")
+
+    (para-verbatim example
+"$ (cd SYSDEPS && ./sd-run modules/sdl-flags)
+sdl-flags: info: conf-x-cc exists - assuming cross compilation
+sdl-flags: info: using custom x-prefix /usr/x86-ms_windows-6.1/include
+sdl-flags: info: using custom x-prefix /usr/x86-ms_windows-6.1/lib
+sdl-flags: info: using custom x-prefix /usr/x86-ms_windows-6.1/bin
+sdl-flags: error: config binary 'sdl-config' failed
+sdl-flags: error: pkg-config failed for 'sdl'
+sdl-flags: error: manual search for SDL.h failed
+sdl-flags: info: all search types failed")
+
+    (para "It's possible to see exactly what happened, in excruciating detail,
+      by enabling internal debugging. This is achieved by creating "
+      (item file_name "conf-debug") " in the base directory:")
+
+    (para-verbatim example
+"$ touch SYSDEPS/conf-debug")
+
+    (para "This will result in the following cascade of information
+      when executing a module:")
+
+    (para-verbatim example
+"$ (cd SYSDEPS && ./sd-run modules/sdl-flags)
+sysdep-main: debug: 6154: SYSDEP_BASE_DIRECTORY /tmp/new-project-cross/SYSDEPS
+sysdep-main: debug: 6154: SYSDEP_OUTPUT_DIRECTORY /tmp/new-project-cross/SYSDEPS/../
+sdl-flags: debug: 9891: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-cc exists
+sdl-flags: info: conf-x-cc exists - assuming cross compilation
+sdl-flags: debug: 17274: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-cc exists
+sdl-flags: debug: 24610: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-ld exists
+sdl-flags: debug: 34631: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-cflags unreadable or nonexistent
+sdl-flags: debug: 34631: sd-file: /tmp/new-project-cross/SYSDEPS//conf-x-cflags unreadable or nonexistent
+sdl-flags: debug: 39966: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-ldflags unreadable or nonexistent
+sdl-flags: debug: 39966: sd-file: /tmp/new-project-cross/SYSDEPS//conf-x-ldflags unreadable or nonexistent
+sdl-flags: debug: 6154: SYSDEP_CC          mingw32-gcc
+sdl-flags: debug: 6154: SYSDEP_CFLAGS      
+sdl-flags: debug: 6154: SYSDEP_LD          mingw32-gcc
+sdl-flags: debug: 6154: SYSDEP_LDFLAGS     
+sdl-flags: debug: 6154: SYSDEP_ADA_COMP    
+sdl-flags: debug: 6154: SYSDEP_ADA_CFLAGS  
+sdl-flags: debug: 6154: SYSDEP_ADA_BIND    
+sdl-flags: debug: 6154: SYSDEP_ADA_BFLAGS  
+sdl-flags: debug: 6154: SYSDEP_ADA_LINK    
+sdl-flags: debug: 6154: SYSDEP_ADA_LDFLAGS 
+sdl-flags: debug: 6154: CC /sbin/mingw32-gcc not executable
+sdl-flags: debug: 6154: CC /bin/mingw32-gcc not executable
+sdl-flags: debug: 6154: CC /usr/sbin/mingw32-gcc not executable
+sdl-flags: debug: 6154: CC /usr/bin/mingw32-gcc not executable
+sdl-flags: debug: 6154: CC /usr/local/sbin/mingw32-gcc not executable
+sdl-flags: debug: 6154: CC /usr/local/bin/mingw32-gcc usable
+sdl-flags: debug: 6154: LD /sbin/mingw32-gcc not executable
+sdl-flags: debug: 6154: LD /bin/mingw32-gcc not executable
+sdl-flags: debug: 6154: LD /usr/sbin/mingw32-gcc not executable
+sdl-flags: debug: 6154: LD /usr/bin/mingw32-gcc not executable
+sdl-flags: debug: 6154: LD /usr/local/sbin/mingw32-gcc not executable
+sdl-flags: debug: 6154: LD /usr/local/bin/mingw32-gcc usable
+sdl-flags: debug: 60137: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-systype exists
+sdl-flags: debug: 79905: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-sysver exists
+sdl-flags: debug: 90290: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-arch exists
+sdl-flags: debug: 97371: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-cctype exists
+sdl-flags: debug: 19180: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-ccver exists
+sdl-flags: debug: 30258: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-cpufeat unreadable or nonexistent
+sdl-flags: debug: 30258: sd-file: /tmp/new-project-cross/SYSDEPS//conf-x-cpufeat unreadable or nonexistent
+sdl-flags: debug: 31687: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-cpunum unreadable or nonexistent
+sdl-flags: debug: 31687: sd-file: /tmp/new-project-cross/SYSDEPS//conf-x-cpunum unreadable or nonexistent
+sdl-flags: debug: 39077: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-cpumodel unreadable or nonexistent
+sdl-flags: debug: 39077: sd-file: /tmp/new-project-cross/SYSDEPS//conf-x-cpumodel unreadable or nonexistent
+sdl-flags: debug: 44889: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-cpufreq unreadable or nonexistent
+sdl-flags: debug: 44889: sd-file: /tmp/new-project-cross/SYSDEPS//conf-x-cpufreq unreadable or nonexistent
+sdl-flags: debug: 51164: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-cpul1ic unreadable or nonexistent
+sdl-flags: debug: 51164: sd-file: /tmp/new-project-cross/SYSDEPS//conf-x-cpul1ic unreadable or nonexistent
+sdl-flags: debug: 58517: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-cpul1dc unreadable or nonexistent
+sdl-flags: debug: 58517: sd-file: /tmp/new-project-cross/SYSDEPS//conf-x-cpul1dc unreadable or nonexistent
+sdl-flags: debug: 67949: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-cpul2c unreadable or nonexistent
+sdl-flags: debug: 67949: sd-file: /tmp/new-project-cross/SYSDEPS//conf-x-cpul2c unreadable or nonexistent
+sdl-flags: debug: 70735: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-cpul3c unreadable or nonexistent
+sdl-flags: debug: 70735: sd-file: /tmp/new-project-cross/SYSDEPS//conf-x-cpul3c unreadable or nonexistent
+sdl-flags: debug: 71453: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-cpucline unreadable or nonexistent
+sdl-flags: debug: 71453: sd-file: /tmp/new-project-cross/SYSDEPS//conf-x-cpucline unreadable or nonexistent
+sdl-flags: debug: 81087: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-adatype unreadable or nonexistent
+sdl-flags: debug: 81087: sd-file: /tmp/new-project-cross/SYSDEPS//conf-x-adatype unreadable or nonexistent
+sdl-flags: debug: 21694: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-adaver unreadable or nonexistent
+sdl-flags: debug: 21694: sd-file: /tmp/new-project-cross/SYSDEPS//conf-x-adaver unreadable or nonexistent
+sdl-flags: debug: 23465: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-prefix exists
+sdl-flags: debug: 29292: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-prefix exists
+sdl-flags: info: using custom x-prefix /usr/x86-ms_windows-6.1/include
+sdl-flags: info: using custom x-prefix /usr/x86-ms_windows-6.1/lib
+sdl-flags: info: using custom x-prefix /usr/x86-ms_windows-6.1/bin
+sdl-flags: debug: 6154: SYSDEP_STDINC  /usr/x86-ms_windows-6.1/include
+sdl-flags: debug: 6154: SYSDEP_STDLIB  /usr/x86-ms_windows-6.1/lib
+sdl-flags: debug: 6154: SYSDEP_STDBIN  /usr/x86-ms_windows-6.1/bin
+sdl-flags: debug: 6154: moved to /tmp/new-project-cross/SYSDEPS/modules/sdl-flags
+sdl-flags: debug: 6154: remove flags-sdl
+sdl-flags: debug: 11082: sd-configbin: /usr/x86-ms_windows-6.1/bin/sdl-config not executable or nonexistent
+sdl-flags: debug: 11082: sd-configbin: could not locate or execute sdl-config
+sdl-flags: error: config binary 'sdl-config' failed
+sdl-flags: debug: 20911: sd-configpkg: /usr/x86-ms_windows-6.1/bin/pkg-config not executable or nonexistent
+sdl-flags: debug: 20911: sd-configpkg: could not locate or execute pkg-config
+sdl-flags: error: pkg-config failed for 'sdl'
+sdl-flags: error: manual search for SDL.h failed
+sdl-flags: info: all search types failed
+sdl-flags: debug: 6154: remove flags-sdl
+sdl-flags: debug: 6154: remove sysdeps.out")
+
+    (para "It's clear from studying this output that SDL is not really installed.")
+
+    (para "After installation, however:")
+
+    (para-verbatim example
+"$ (cd SYSDEPS && ./sd-run modules/sdl-flags)
+sysdep-main: debug: 90544: SYSDEP_BASE_DIRECTORY /tmp/new-project-cross/SYSDEPS
+sysdep-main: debug: 90544: SYSDEP_OUTPUT_DIRECTORY /tmp/new-project-cross/SYSDEPS/../
+sdl-flags: debug: 984: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-cc exists
+sdl-flags: info: conf-x-cc exists - assuming cross compilation
+sdl-flags: debug: 6084: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-cc exists
+sdl-flags: debug: 23415: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-ld exists
+sdl-flags: debug: 34623: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-cflags unreadable or nonexistent
+sdl-flags: debug: 34623: sd-file: /tmp/new-project-cross/SYSDEPS//conf-x-cflags unreadable or nonexistent
+sdl-flags: debug: 39730: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-ldflags unreadable or nonexistent
+sdl-flags: debug: 39730: sd-file: /tmp/new-project-cross/SYSDEPS//conf-x-ldflags unreadable or nonexistent
+sdl-flags: debug: 90544: SYSDEP_CC          mingw32-gcc
+sdl-flags: debug: 90544: SYSDEP_CFLAGS      
+sdl-flags: debug: 90544: SYSDEP_LD          mingw32-gcc
+sdl-flags: debug: 90544: SYSDEP_LDFLAGS     
+sdl-flags: debug: 90544: SYSDEP_ADA_COMP    
+sdl-flags: debug: 90544: SYSDEP_ADA_CFLAGS  
+sdl-flags: debug: 90544: SYSDEP_ADA_BIND    
+sdl-flags: debug: 90544: SYSDEP_ADA_BFLAGS  
+sdl-flags: debug: 90544: SYSDEP_ADA_LINK    
+sdl-flags: debug: 90544: SYSDEP_ADA_LDFLAGS 
+sdl-flags: debug: 90544: CC /sbin/mingw32-gcc not executable
+sdl-flags: debug: 90544: CC /bin/mingw32-gcc not executable
+sdl-flags: debug: 90544: CC /usr/sbin/mingw32-gcc not executable
+sdl-flags: debug: 90544: CC /usr/bin/mingw32-gcc not executable
+sdl-flags: debug: 90544: CC /usr/local/sbin/mingw32-gcc not executable
+sdl-flags: debug: 90544: CC /usr/local/bin/mingw32-gcc usable
+sdl-flags: debug: 90544: LD /sbin/mingw32-gcc not executable
+sdl-flags: debug: 90544: LD /bin/mingw32-gcc not executable
+sdl-flags: debug: 90544: LD /usr/sbin/mingw32-gcc not executable
+sdl-flags: debug: 90544: LD /usr/bin/mingw32-gcc not executable
+sdl-flags: debug: 90544: LD /usr/local/sbin/mingw32-gcc not executable
+sdl-flags: debug: 90544: LD /usr/local/bin/mingw32-gcc usable
+sdl-flags: debug: 65253: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-systype exists
+sdl-flags: debug: 94796: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-sysver exists
+sdl-flags: debug: 6718: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-arch exists
+sdl-flags: debug: 14286: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-cctype exists
+sdl-flags: debug: 58240: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-ccver exists
+sdl-flags: debug: 65812: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-cpufeat unreadable or nonexistent
+sdl-flags: debug: 65812: sd-file: /tmp/new-project-cross/SYSDEPS//conf-x-cpufeat unreadable or nonexistent
+sdl-flags: debug: 75341: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-cpunum unreadable or nonexistent
+sdl-flags: debug: 75341: sd-file: /tmp/new-project-cross/SYSDEPS//conf-x-cpunum unreadable or nonexistent
+sdl-flags: debug: 75725: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-cpumodel unreadable or nonexistent
+sdl-flags: debug: 75725: sd-file: /tmp/new-project-cross/SYSDEPS//conf-x-cpumodel unreadable or nonexistent
+sdl-flags: debug: 81619: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-cpufreq unreadable or nonexistent
+sdl-flags: debug: 81619: sd-file: /tmp/new-project-cross/SYSDEPS//conf-x-cpufreq unreadable or nonexistent
+sdl-flags: debug: 83604: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-cpul1ic unreadable or nonexistent
+sdl-flags: debug: 83604: sd-file: /tmp/new-project-cross/SYSDEPS//conf-x-cpul1ic unreadable or nonexistent
+sdl-flags: debug: 89529: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-cpul1dc unreadable or nonexistent
+sdl-flags: debug: 89529: sd-file: /tmp/new-project-cross/SYSDEPS//conf-x-cpul1dc unreadable or nonexistent
+sdl-flags: debug: 89691: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-cpul2c unreadable or nonexistent
+sdl-flags: debug: 89691: sd-file: /tmp/new-project-cross/SYSDEPS//conf-x-cpul2c unreadable or nonexistent
+sdl-flags: debug: 95028: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-cpul3c unreadable or nonexistent
+sdl-flags: debug: 95028: sd-file: /tmp/new-project-cross/SYSDEPS//conf-x-cpul3c unreadable or nonexistent
+sdl-flags: debug: 158: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-cpucline unreadable or nonexistent
+sdl-flags: debug: 158: sd-file: /tmp/new-project-cross/SYSDEPS//conf-x-cpucline unreadable or nonexistent
+sdl-flags: debug: 1437: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-adatype unreadable or nonexistent
+sdl-flags: debug: 1437: sd-file: /tmp/new-project-cross/SYSDEPS//conf-x-adatype unreadable or nonexistent
+sdl-flags: debug: 26331: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-adaver unreadable or nonexistent
+sdl-flags: debug: 26331: sd-file: /tmp/new-project-cross/SYSDEPS//conf-x-adaver unreadable or nonexistent
+sdl-flags: debug: 32278: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-prefix exists
+sdl-flags: debug: 35860: sd-file: /tmp/new-project-cross/SYSDEPS/..///conf-x-prefix exists
+sdl-flags: info: using custom x-prefix /usr/x86-ms_windows-6.1/include
+sdl-flags: info: using custom x-prefix /usr/x86-ms_windows-6.1/lib
+sdl-flags: info: using custom x-prefix /usr/x86-ms_windows-6.1/bin
+sdl-flags: debug: 90544: SYSDEP_STDINC  /usr/x86-ms_windows-6.1/include
+sdl-flags: debug: 90544: SYSDEP_STDLIB  /usr/x86-ms_windows-6.1/lib
+sdl-flags: debug: 90544: SYSDEP_STDBIN  /usr/x86-ms_windows-6.1/bin
+sdl-flags: debug: 90544: moved to /tmp/new-project-cross/SYSDEPS/modules/sdl-flags
+sdl-flags: debug: 90544: remove flags-sdl
+sdl-flags: debug: 19363: sd-configbin: executing /usr/x86-ms_windows-6.1/bin/sdl-config --cflags
+sdl-flags: debug: 19363: sd-configbin: execution successful
+sdl-flags: debug: 90544: remove flags-sdl
+sdl-flags: debug: 90544: remove sysdeps.out")
+
+  (para "This time, the configuration program exists and is executed. The output
+    from the program is:")
+
+  (para-verbatim example
+"$ cat flags-sdl
+-I/usr/x86-ms_windows-6.1/include/SDL -I/usr/x86-ms_windows-6.1/include -D_GNU_SOURCE=1 -DSD_HAVE_SDL"))
 
 )
