@@ -3,12 +3,14 @@ Documentation outline:
   Orientation
 
   User documentation
-    How it works
-    How to use tools, etc
-    Cross compilation
+    Tutorials
+      First steps, setup, etc
+      Makefile generation
+      Using external packages
+      Cross compilation
+
     Module writing
     Explicitly supported platforms/issues
-    Module reference
 
   Developer documentation
     Platform assumptions
@@ -26,3 +28,5 @@ Documentation outline:
       Correct detection of system features in as many modules as possible.
     Rationale
 
+  References
+    Module reference
