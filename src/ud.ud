@@ -1,5 +1,12 @@
 (section
   (title "User Documentation")
 
+  (para "This section provides documentation for those wishing to use
+    the " (item package "sysdeps") " package for their own projects (or,
+    for example, those who've downloaded a package and found that
+    it uses " (item package "sysdeps") " as part of the build
+    system).")
+
+  (include "ud-tut.ud")
   (include "ud-mr.ud")
 )
