@@ -1,0 +1,26 @@
+(section
+  (ref "ud_cmd_sysdeps-remove")
+  (title "sysdeps-remove")
+
+  (subsection
+    (title "Description")
+    (para-verbatim program_synopsis "sysdeps-remove: usage: module [modules ...]"))
+
+  (subsection
+    (title "Description")
+    (para "The " (item command "sysdeps-remove") " command removes modules from the
+      the base directory in the current directory."))
+
+  (subsection
+    (title "Preconditions")
+    (para "There must be an initialized base directory named "
+      (item file_name "SYSDEPS") " in the current directory.")
+    (para "The environment variable " (item variable "SYSDEP_REPOSITORY")
+      " must be defined in the environment."))
+
+  (subsection
+    (title "Postconditions")
+    (para "The program will remove modules from the base directory.")
+    (para "The program will return an exit code indicating failure if any
+      modules cannot be removed."))
+)
