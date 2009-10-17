@@ -63,7 +63,7 @@ $ sysdeps-add tiff-flags tiff-libs")
       for some packages that provide linker flags to statically link against
       a given library.")
 
-    (para "In this case, two files will be creates - "
+    (para "In this case, two files will be created - "
       (item file_name "flags-tiff") " and " (item file_name "libs-tiff") ".
       The " (item package "sysdeps") " package provides a command for listing files
       that will be created by all of the current modules - "
