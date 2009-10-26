@@ -39,8 +39,8 @@
       (list
         (item (link "dd_env_SYSDEP_ADA_TYPE" "SYSDEP_ADA_TYPE"))
         (item (link "dd_env_SYSDEP_ARCH" "SYSDEP_ARCH"))
-        (item (link "dd_env_SYSDEP_CCTYPE" "SYSDEP_CCTYPE"))
+        (item (link "dd_env_SYSDEP_CC_TYPE" "SYSDEP_CC_TYPE"))
         (item (link "dd_env_SYSDEP_OS" "SYSDEP_OS"))
-        (item (link "dd_env_SYSDEP_OSVERSION" "SYSDEP_OSVERSION")))))
+        (item (link "dd_env_SYSDEP_OS_VERSION" "SYSDEP_OS_VERSION")))))
 
 )

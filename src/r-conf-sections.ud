@@ -74,7 +74,7 @@
     (para example (item file_name "conf-x-cctype") " : " (link "dd_type_cc"      "cc-type"))
     (para " C cross compiler compiler type.")
     (para "Example value:")
-    (para-verbatim example " SD_SYSINFO_CCTYPE_PORTLAND       "))
+    (para-verbatim example " SD_SYSINFO_CC_TYPE_PORTLAND      "))
   (subsection
     (ref "r_conf_conf-x-ccver")
     (title "conf-x-ccver")
