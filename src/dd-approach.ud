@@ -1,4 +1,18 @@
 (section
   (title "Approach To Portability")
 
+  (para "The " (item package "sysdeps") " package attempts to remain
+    portable by assuming that all systems are similar and performing
+    as little \"special-case\" code as possible - the ideal situation
+    is that all code is performed in exactly the same way, in the same
+    order on all systems.")
+
+  (para "The core programs essentially assume a BSD-like base system
+    with a " (item command "sysctl") " program present to fetch system
+    information. This assumption is overriden when running on Solaris,
+    for example, where this information is contained in separate
+    commands.")
+
+  (para "When system specific code is executed, it is done so in an
+    isolated manner, away from system independent code.")
 )
