@@ -6,7 +6,6 @@
     simply interested in the implementation of it.")
 
   (contents)
-  (include "dd-arch.ud")
   (include "dd-module.ud")
   (include "dd-approach.ud")
   (include "dd-plat.ud")
