@@ -169,4 +169,14 @@
       will write to the " (item file_name "sysdeps.out") " file.")
     (para "The " (item file_name "sysdeps_bnf") " file is not required to
       be present in a module."))
+
+  (subsection
+    (ref "dd_mod_version")
+    (title "version")
+    (para "The " (item file_name "version") " file specifies the
+      version of the module.")
+    (para "The syntax of the file is as follows:")
+    (para-verbatim example ebnf (render "dd-module-version.txt"))
+    (para "The " (item file_name "version") " file is not required to
+      be present in a module."))
 )
