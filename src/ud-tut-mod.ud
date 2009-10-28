@@ -109,8 +109,9 @@ $ cat ../../flags-fiction
       should also be appended to the compiler flags to make it possible for C
       programs to determine whether or not the library was detected.")
     (para "The " (item file_name "defines") " file gives a list of preprocessor
-      definitions that the module will define when executed. A formal definition
-      of the syntax of this file is out of the scope of this tutorial. In order
+      definitions that the module will define when executed. A "
+      (link "dd_mod_defines" "formal definition")
+      " of the syntax of this file is out of the scope of this tutorial. In order
       to define the standard " (item constant "SD_HAVE_FICTION")
       " definition:")
     (para-verbatim example

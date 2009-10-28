@@ -1,0 +1,159 @@
+(section
+  (ref "dd_mod")
+  (title "Module Definition")
+  (contents)
+
+  (para "A module is simply a directory containing a set of files.")
+
+  (para "This section documents the meanings and syntax of the
+    various files that may be present in a module.")
+
+  (subsection
+    (ref "dd_mod_author_email")
+    (title "author_email")
+    (para "The " (item file_name "author_email") " file specifies
+      the email address of the author of the module.")
+    (para "The " (item file_name "author_email") " file is required to
+      be present in a module."))
+
+  (subsection
+    (ref "dd_mod_author_url")
+    (title "author_url")
+    (para "The " (item file_name "author_url") " file specifies
+      the web address of the author of the module.")
+    (para "The " (item file_name "author_url") " file is required to
+      be present in a module."))
+
+  (subsection
+    (ref "dd_mod_config_bin")
+    (title "config_bin")
+    (para "The " (item file_name "config_bin") " file specifies
+      an executable that will be executed in order to determine
+      compiler flags for an external package.")
+    (para "The " (item file_name "config_bin") " file is not required
+      to be present in a module."))
+
+  (subsection
+    (ref "dd_mod_config_bin_args")
+    (title "config_bin_args")
+    (para "The " (item file_name "config_bin_args") " file specifies
+      arguments that will be passed directly, unmodified and unquoted,
+      to the executable specified by the "
+      (link "dd_mod_config_bin" "config_bin") " file.")
+    (para "The " (item file_name "config_bin_args") " file is required
+      to be present if " (link "dd_mod_config_bin" "config_bin") 
+      " is present."))
+
+  (subsection
+    (ref "dd_mod_creates")
+    (title "creates")
+    (para "The " (item file_name "creates") " file specifies
+      a list of files, one per line, that will be creates by the module
+      when executed.")
+    (para "The " (item file_name "creates") " file is required
+      to be present in a module."))
+
+  (subsection
+    (ref "dd_mod_definition")
+    (title "definition.ud")
+    (para "The " (item file_name "definition.ud") " file provides
+      a long description of the module in "
+      (link-ext "http://coreland.ath.cx/code/udoc" "udoc") " format.")
+    (para "The " (item file_name "definition.ud") " file is not required
+      to be present in a module."))
+
+  (subsection
+    (ref "dd_mod_defines")
+    (title "defines")
+    (para "The " (item file_name "defines") " file specifies the
+      preprocessor definitions that may be defined by the module
+      upon execution.")
+    (para "The syntax of the file is given by the following EBNF:")
+    (para-verbatim example ebnf (render "dd-module-defines.txt"))
+    (para "The file is a simple list of " (item constant "constant-spec")
+      " definitions, one per line.")
+    (para "Each " (item constant "constant-spec") " defines one
+      preprocessor constant named " (item constant "constant-name") ".
+      The type of the constant is given by "
+      (item constant "constant-type") ". A constant of type "
+      (item type "integer") " will have a value in the optionally
+      specified inclusive range " (item constant "integer-range") ".")
+    (para "The " (item file_name "defines") " file is not required to
+      be present in a module."))
+
+  (subsection
+    (ref "dd_mod_dynlib")
+    (title "dynlib")
+    (para "The " (item file_name "dynlib") " file specifies the
+      basic name of of a dynamic library file that may be searched
+      for manually by the module. The name must be specified without a dot suffix -
+      the correct, system specific library suffix and prefix will be
+      appended and prepended at execution time.")
+    (para "The " (item file_name "dynlib") " file is not required to
+      be present in a module."))
+ 
+  (subsection
+    (ref "dd_mod_header")
+    (title "header")
+    (para "The " (item file_name "header") " file specifies the
+      name of of a header file that may be searched
+      for manually by the module.")
+    (para "The " (item file_name "header") " file is not required to
+      be present in a module."))
+ 
+  (subsection
+    (ref "dd_mod_package_url")
+    (title "package_url")
+    (para "The " (item file_name "package_url") " file specifies
+      the web address of the external package detected by the module.")
+    (para "The " (item file_name "package_url") " file is not required to
+      be present in a module."))
+
+  (subsection
+    (ref "dd_mod_pkg")
+    (title "pkg")
+    (para "The " (item file_name "pkg") " file specifies
+      the name of the " (link-ext "http://pkg-config.freedesktop.org/wiki/" "pkg-config")
+      " entry that the module will query if necessary.")
+    (para "The " (item file_name "pkg") " file is not required to
+      be present in a module."))
+
+  (subsection
+    (ref "dd_mod_pkg_config_args")
+    (title "pkg_config_args")
+    (para "The " (item file_name "pkg_config_args") " file specifies
+      the extra arguments that will be passed to "
+      (link-ext "http://pkg-config.freedesktop.org/wiki/" "pkg-config")
+      " in addition to the name of the package specified by the "
+      (link "dd_mod_pkg" "pkg") " file.")
+    (para "The " (item file_name "pkg") " file is required to
+      be present in a module if " (link "dd_mod_pkg" "pkg") " is present."))
+
+  (subsection
+    (ref "dd_mod_synopsis")
+    (title "synopsis")
+    (para "The " (item file_name "synopsis") " file gives a simple,
+      one-line description of the module.")
+    (para "The " (item file_name "synopsis") " file is required to
+      be present in a module."))
+
+  (subsection
+    (ref "dd_mod_slib")
+    (title "slib")
+    (para "The " (item file_name "slib") " file specifies the
+      basic name of of a static library file that may be searched
+      for manually by the module. The name must be specified without a dot suffix -
+      the correct, system specific library suffix and prefix will be
+      appended and prepended at execution time.")
+    (para "The " (item file_name "slib") " file is not required to
+      be present in a module."))
+ 
+  (subsection
+    (ref "dd_mod_sysdeps_bnf")
+    (title "sysdeps_bnf")
+    (para "The " (item file_name "sysdeps_bnf") " file provides an
+      EBNF specification describing the format of the line(s) that it
+      will write to the " (item file_name "sysdeps.out") " file.")
+    (para "The " (item file_name "sysdeps_bnf") " file is not required to
+      be present in a module."))
+)

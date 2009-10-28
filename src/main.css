@@ -55,6 +55,7 @@ table.ud_footnote_tab td { vertical-align: top; }
 .parameter,
 .struct,
 .struct_field,
+.type,
 .tag_name,
 .variable
 {
