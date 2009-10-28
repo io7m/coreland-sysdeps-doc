@@ -54,6 +54,19 @@
       to be present in a module."))
 
   (subsection
+    (ref "dd_mod_custom")
+    (title "custom")
+    (para "The " (item file_name "custom") " file contains POSIX "
+      (item command "sh") " script that will be executed upon
+      execution of the module. Execution of this script overrides
+      all other methods. It is the responsibility of the script author
+      to ensure that the script properly creates the definitions specified
+      by " (link "dd_mod_defines" "defines") ".")
+    (para "The script is required to be marked as executable.")
+    (para "The " (item file_name "custom") " file is not required
+      to be present in a module."))
+
+  (subsection
     (ref "dd_mod_definition")
     (title "definition.ud")
     (para "The " (item file_name "definition.ud") " file provides
