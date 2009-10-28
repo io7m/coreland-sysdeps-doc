@@ -151,14 +151,14 @@
       be present in a module."))
 
   (subsection
-    (ref "dd_mod_slib")
-    (title "slib")
-    (para "The " (item file_name "slib") " file specifies the
+    (ref "dd_mod_static_lib")
+    (title "static_lib")
+    (para "The " (item file_name "static_lib") " file specifies the
       basic name of of a static library file that may be searched
       for manually by the module. The name must be specified without a dot suffix -
       the correct, system specific library suffix and prefix will be
       appended and prepended at execution time.")
-    (para "The " (item file_name "slib") " file is not required to
+    (para "The " (item file_name "static_lib") " file is not required to
       be present in a module."))
  
   (subsection
