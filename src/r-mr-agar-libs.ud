@@ -12,7 +12,7 @@
   link against " (link-ext "http://libagar.org/" "agar-core") ".")
     (para "The module will attempt to execute the following command in order
       to retrieve the desired information from the environment:")
-    (para-verbatim example "agar-core-conf --libs")
+    (para-verbatim example "agar-core-config --libs")
   )
 
   (subsection

@@ -1,0 +1,39 @@
+(section
+  (ref "ud_cmd_status_set")
+  (title "sd-status-set")
+
+  (subsection
+    (title "Synopsis")
+    (para-verbatim program_synopsis "sd-status-set: usage: module status"))
+
+  (subsection
+    (title "Description")
+    (para "The " (item command "sd-status-set") " command sets the status of the
+      the given " (item variable "module") " to " (item variable "status") ".")
+    (para "The " (item command "sd-status-set") " command is included in the base "
+      (item file_name "SYSDEPS") " directory."))
+
+  (subsection
+    (title "Example")
+    (para-verbatim example
+"$ ./sd-status sdl-ada-flags
+not-executed
+$ ./sd-status-set sdl-ada-flags failed
+$ ./sd-status sdl-ada-flags
+failed
+$ ./sd-status-is sdl-ada-flags failed
+$ echo $?
+0
+$ ./sd-status-set sdl-ada-flags invalid
+sd-status-set: fatal: unknown status value 'invalid'"))
+
+  (subsection
+    (title "Preconditions")
+    (para "The " (item command "sd-status-set") " command must be run from the base "
+      (item file_name "SYSDEPS") " directory."))
+
+  (subsection
+    (title "Postconditions")
+    (para "The status of the given module is set to " (item variable "status")
+      "."))
+)

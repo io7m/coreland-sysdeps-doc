@@ -1,0 +1,43 @@
+(section
+  (ref "ud_cmd_status_is")
+  (title "sd-status-is")
+
+  (subsection
+    (title "Synopsis")
+    (para-verbatim program_synopsis "sd-status-is: usage: module status"))
+
+  (subsection
+    (title "Description")
+    (para "The " (item command "sd-status-is") " command checks the output of
+      the " (link "ud_cmd_status" "sd-status") " command against the given "
+      (item variable "status") " value for the given " (item variable "module")
+      ".")
+    (para "The program exits with an exit code indicating success if "
+      (item variable "status") " matches or an exit code indicating failure if
+      it does not.")
+    (para "The " (item command "sd-status-is") " command is included in the base "
+      (item file_name "SYSDEPS") " directory."))
+
+  (subsection
+    (title "Example")
+    (para-verbatim example
+"$ ./sd-status sdl-ada-flags
+not-executed
+$ ./sd-status-is sdl-ada-flags not-executed
+$ echo $?
+0
+$ ./sd-status-is sdl-ada-flags failed
+$ echo $?
+1
+$ ./sd-status-is sdl-ada-flags invalid
+sd-status-is: fatal: unknown status value 'invalid'"))
+
+  (subsection
+    (title "Preconditions")
+    (para "The " (item command "sd-status-is") " command must be run from the base "
+      (item file_name "SYSDEPS") " directory."))
+
+  (subsection
+    (title "Postconditions")
+    (para "None."))
+)

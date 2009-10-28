@@ -1,0 +1,38 @@
+(section
+  (ref "ud_cmd_status")
+  (title "sd-status")
+
+  (subsection
+    (title "Synopsis")
+    (para-verbatim program_synopsis "sd-status: usage: module"))
+
+  (subsection
+    (title "Description")
+    (para "The " (item command "sd-status") " command queries the status of the
+      given module. Modules may be in one of three states:")
+    (para
+      (list
+        (item "not-executed")
+        (item "succeeded")
+        (item "failed")))
+    (para "A module begins in the " (item constant "not-executed") " state and
+      is moved into the " (item constant "succeeded") " or "
+      (item constant "failed") " state by a successful or unsuccessful execution
+      attempt, respectively. A module is returned to the "
+      (item constant "not-executed") " by executing "
+      (link "ud_cmd_clean" "sd-clean") " on the module.")
+    (para "The output is in the following format:")
+    (para-verbatim ebnf example "output = \"not-executed\" | \"succeeded\" | \"failed\"")
+    (para "The " (item command "sd-status") " command is included in the base "
+      (item file_name "SYSDEPS") " directory."))
+
+  (subsection
+    (title "Preconditions")
+    (para "The " (item command "sd-status") " command must be run from the base "
+      (item file_name "SYSDEPS") " directory."))
+
+  (subsection
+    (title "Postconditions")
+    (para "The command will write the status of the given module to the standard
+      output in the format described above."))
+)

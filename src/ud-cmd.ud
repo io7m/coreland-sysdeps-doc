@@ -8,6 +8,9 @@
 
   (include "ud-cmd-run.ud")
   (include "ud-cmd-clean.ud")
+  (include "ud-cmd-status.ud")
+  (include "ud-cmd-status-is.ud")
+  (include "ud-cmd-status-set.ud")
   (include "ud-cmd-genmk.ud")
   (include "ud-cmd-creates.ud")
 

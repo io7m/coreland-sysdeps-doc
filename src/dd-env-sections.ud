@@ -265,6 +265,13 @@
     (para "Example value:")
     (para-verbatim example " /u/coreland/symbex/SYSDEPS/sysdep-subs         "))
   (subsection
+    (ref "dd_env_SYSDEP_STATUS_DIRECTORY")
+    (title "SYSDEP_STATUS_DIRECTORY")
+    (para example (item variable "SYSDEP_STATUS_DIRECTORY") " : " "string")
+    (para " Name/full path to status directory.")
+    (para "Example value:")
+    (para-verbatim example " /u/coreland/symbex/SYSDEPS/status              "))
+  (subsection
     (ref "dd_env_SYSDEP_TRY_CONFIG_BIN")
     (title "SYSDEP_TRY_CONFIG_BIN")
     (para example (item variable "SYSDEP_TRY_CONFIG_BIN") " : " "string")

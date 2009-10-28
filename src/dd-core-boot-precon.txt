@@ -1,4 +1,5 @@
 (list
 (item (link "dd_env_SYSDEP_UTIL_BASENAME" "SYSDEP_UTIL_BASENAME"))
+(item (link "dd_env_SYSDEP_UTIL_MKDIR" "SYSDEP_UTIL_MKDIR"))
 (item (link "dd_env_SYSDEP_UTIL_PWD" "SYSDEP_UTIL_PWD"))
 )
