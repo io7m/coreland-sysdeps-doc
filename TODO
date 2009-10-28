@@ -12,6 +12,8 @@ Documentation outline:
     Explicitly supported platforms/issues
 
   Developer documentation
+    Formal definition of module.
+      Module requirements to be distributed in core.
     Platform assumptions
       cc -o file.o -c file.c
       cc -o file      file.o
