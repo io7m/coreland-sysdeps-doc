@@ -158,12 +158,6 @@ echo ")"
 ) > src/dd-comp-cctype-table.ud || fatal "could not write src/dd-comp-cctype-table.ud"
 
 #
-# Copy images.
-#
-
-cp src/*.png release || fatal "could not copy images"
-
-#
 # Write variable lists.
 #
 
