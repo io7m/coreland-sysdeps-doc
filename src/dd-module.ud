@@ -95,14 +95,14 @@
       be present in a module."))
 
   (subsection
-    (ref "dd_mod_dynlib")
-    (title "dynlib")
-    (para "The " (item file_name "dynlib") " file specifies the
+    (ref "dd_mod_dynamic_lib")
+    (title "dynamic_lib")
+    (para "The " (item file_name "dynamic_lib") " file specifies the
       basic name of of a dynamic library file that may be searched
       for manually by the module. The name must be specified without a dot suffix -
       the correct, system specific library suffix and prefix will be
       appended and prepended at execution time.")
-    (para "The " (item file_name "dynlib") " file is not required to
+    (para "The " (item file_name "dynamic_lib") " file is not required to
       be present in a module."))
  
   (subsection

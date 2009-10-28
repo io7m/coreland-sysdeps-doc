@@ -244,11 +244,11 @@ $ echo --static --libs > fiction-libs-S/pkg_config_args")
     (para "The " (item package "sysdeps") " system  takes care of
       system-specific library suffixes and prefixes automatically.")
     (para "The modules can be given this information using the "
-      (item file_name "header") ", " (item file_name "dynlib") " and "
+      (item file_name "header") ", " (item file_name "dynamic_lib") " and "
       (item file_name "static_lib") " files.")
     (para-verbatim example
 "$ echo fiction.h > fiction-flags/header
-$ echo fiction   > fiction-libs/dynlib
+$ echo fiction   > fiction-libs/dynamic_lib
 $ echo fiction   > fiction-libs-S/static_lib")
     (para "If a header file is located through manual searches, the "
       (item file_name "defines") " entries are applied correctly
