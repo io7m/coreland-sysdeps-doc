@@ -13,5 +13,7 @@
   (include "ud-tut-genmk.ud")
   (include "ud-tut-ext.ud")
   (include "ud-tut-cross.ud")
+  (include "ud-tut-mod.ud")
+
   (include "ud-cmd.ud")
 )

@@ -1,0 +1,259 @@
+(section
+  (title "Tutorial - Writing Modules")
+  (contents)
+  (para "This tutorial demonstrates how to write custom modules for "
+    (item package "sysdeps") ".")
+
+  (subsection
+    (title "Configuration")
+    (para-verbatim example
+"$ mkdir new-project-modules
+$ cd new-project-modules
+$ echo cc > conf-cc
+$ echo cc > conf-ld
+$ sysdeps-init
+$ cd SYSDEPS/modules"))
+
+  (subsection
+    (title "Package Detection")
+    (para "The " (item package "sysdeps") " system makes it very easy
+      to detect external packages. Essentially, a module is a directory
+      with a set of files describing various aspects of the external
+      package.")
+    (para "For this tutorial, a module will be written that correctly
+      detects a fictional C library named " (item package "libfiction") ".
+      The package has a home page at " (item constant "http://example.org") ".")
+    (para "As mentioned earlier, " (item package "sysdeps") " convention
+      is to write one module to obtain compiler flags and another to obtain
+      linker flags - essentially, one detects C header files and the other
+      detects compiled library files. In some cases, a third module will be
+      written to detect static library files (as in this tutorial). This
+      convention also translates to Ada without modification.")
+    (para (item package "sysdeps") " naming conventions are to begin
+      the module name with a possibly abbreviated version of the name
+      of the external package, followed by either " (item constant "-flags")
+      " for a module that returns C/Ada compile flags, " (item constant "-libs")
+      " for a module that returns linker flags to dynamically link against
+      an external library and " (item constant "-libs-S") " for a module that
+      returns linker flags to statically link against an external library.")
+    (para "First of all, then, create directories for these modules:")
+    (para-verbatim example
+"$ mkdir fiction-flags
+$ mkdir fiction-libs
+$ mkdir fiction-libs-S"))
+
+  (subsection
+    (title "Metadata")
+    (para "It is extremely helpful for modules to provide metadata,
+      detailing exactly what the module does. " (item package "sysdeps")
+      " provides a structured way to do this. To save space, the metadata
+      for all three modules will be written at the same time.")
+    (para "The " (item file_name "synopsis") " file gives a one-line
+      description of the module. It is used as the short description
+      printed by " (link "ud_cmd_sysdeps-list" "sysdeps-list") ".")
+    (para-verbatim example
+"$ echo 'Compiler flags to compile against libfiction'       > fiction-flags/synopsis
+$ echo 'Linker flags to link against libfiction'            > fiction-libs/synopsis
+$ echo 'Linker flags to link statically against libfiction' > fiction-libs-S/synopsis")
+    (para "The " (item file_name "author_email") " and "
+      (item file_name "author_url") " files specify the email address
+      and URL of the module author, respectively.")
+    (para-verbatim example
+"$ echo 'sysdeps@coreland.ath.cx' > fiction-flags/author_email
+$ echo 'sysdeps@coreland.ath.cx' > fiction-libs/author_email
+$ echo 'sysdeps@coreland.ath.cx' > fiction-libs-S/author_email
+
+$ echo 'http://coreland.ath.cx' > fiction-flags/author_url
+$ echo 'http://coreland.ath.cx' > fiction-libs/author_url
+$ echo 'http://coreland.ath.cx' > fiction-libs-S/author_url")
+    (para "The " (item file_name "package_url") " file specifies the URL
+      of the actual package being detected. As mentioned, earlier, this
+      is currently " (item constant "http://example.org") ".")
+    (para-verbatim example
+"$ echo 'http://example.org' > fiction-flags/package_url
+$ echo 'http://example.org' > fiction-libs/package_url
+$ echo 'http://example.org' > fiction-libs-S/package_url")
+    (para "The " (item file_name "description.ud") " file provides a long
+      description for the module in " (link-ext "http://coreland.ath.cx/code/udoc" "udoc")
+      " format. The details of this file are out of the scope of this tutorial
+      and the file is not strictly required (although seriously recommended)."))
+
+  (subsection
+    (title "fiction-flags")
+    (para "The " (item file_name "creates") " file specifies a list of files
+      that will be created on module execution. In this case, only one line
+      is required.")
+    (para-verbatim example
+"$ echo flags-fiction > fiction-flags/creates")
+    (para "The " (item package "libfiction") " package helpfully provides a
+      program called " (item command "fiction-config") " that can be used to
+      obtain the correct compiler flags. The " (item file_name "config_bin")
+      " and " (item file_name "config_bin_args") " files specify the name
+      of an executable to execute and the command line arguments to pass to
+      it, respectively. The " (item command "fiction-config") " program
+      returns C compiler flags when called thusly:")
+    (para-verbatim example
+"$ fiction-config --cflags
+-I/usr/local/include")
+    (para "Therefore:")
+    (para-verbatim example
+"$ echo fiction-config > fiction-flags/config_bin
+$ echo --cflags       > fiction-flags/config_bin_args")
+    (para "At this point, the module contains enough information to run
+      correctly:")
+    (para-verbatim example
+"$ (cd ../ && ./sd-run modules/fiction-flags)
+$ cat ../../flags-fiction
+-I/usr/local/include")
+    (para "The module is not quite complete, however. A preprocessor definition
+      should also be appended to the compiler flags to make it possible for C
+      programs to determine whether or not the library was detected.")
+    (para "The " (item file_name "defines") " file gives a list of preprocessor
+      definitions that the module will define when executed. A formal definition
+      of the syntax of this file is out of the scope of this tutorial. In order
+      to define the standard " (item constant "SD_HAVE_FICTION")
+      " definition:")
+    (para-verbatim example
+"$ echo 'SD_HAVE_FICTION : integer 1 .. 1 : optional' > fiction-flags/defines")
+    (para "The above essentially states that a preprocessor constant called "
+      (item constant "SD_HAVE_FICTION") " might be created (it is optional -
+      dependent on module execution) and the value of the constant will be in
+      the range " (item constant "1") " .. " (item constant "1") " inclusive
+      (in other words, the only valid value is " (item constant "1") ").")
+    (para "The effect of the definition is immediate:")
+    (para-verbatim example
+"$ (cd ../ && ./sd-run modules/fiction-flags)
+$ cat ../../flags-fiction
+-I/usr/local/include -DSD_HAVE_FICTION=1")
+    (para "This module is about as simple as it gets and also assumes an ideal
+      external package executing on a range of ideal systems. This module (in
+      addition to the others) will be revisited later in the tutorial and expanded
+      to deal with specific \"less-than-ideal\" situations..."))
+
+  (subsection
+    (title "fiction-libs")
+    (para "The process for " (item file_name "fiction-libs") " is almost
+      identical to " (item file_name "fiction-flags") " except that no "
+      (item file_name "defines") " file is required (the consumer of the
+      flags is not a C compiler but a linker) and "
+      (item file_name "config_bin_args") " must be adjusted to ask for
+      linker flags.")
+    (para "The " (item command "fiction-config") " program returns linker
+      flags when called thusly:")
+    (para-verbatim example
+"$ fiction-config --libs
+-L/usr/local/lib -lfiction")
+    (para "The module can essentially be defined with:")
+    (para-verbatim example
+"$ echo libs-fiction   > fiction-libs/creates
+$ echo fiction-config > fiction-libs/config_bin
+$ echo --libs         > fiction-libs/config_bin_args")
+    (para "The module will execute correctly without further modification:")
+    (para-verbatim example
+"$ (cd ../ && ./sd-run modules/fiction-libs)
+$ cat ../../libs-fiction
+-L/usr/local/include -lfiction"))
+
+  (subsection
+    (title "fiction-libs-S")
+    (para "The process for " (item file_name "fiction-libs-S") " is almost
+      identical to " (item file_name "fiction-libs") " except that linker
+      flags are expected to cause an executable to be statically linked against
+      the library. " (item file_name "config_bin_args") " must be adjusted to
+      ask for static linker flags. Not all libraries provide static libraries,
+      but " (item package "libfiction") " does, for the sake of example.")
+    (para "The " (item command "fiction-config") " program returns static
+      linker flags when called thusly:")
+    (para-verbatim example
+"$ fiction-config --static-libs
+/usr/local/lib/libfiction.a")
+    (para "The module can essentially be defined with:")
+    (para-verbatim example
+"$ echo libs-fiction-S > fiction-libs/creates
+$ echo fiction-config > fiction-libs/config_bin
+$ echo --static-libs  > fiction-libs/config_bin_args")
+    (para "The module will execute correctly without further modification:")
+    (para-verbatim example
+"$ (cd ../ && ./sd-run modules/fiction-libs-S)
+$ cat ../../libs-fiction-S
+/usr/local/lib/libfiction.a"))
+
+  (subsection
+    (title "Dealing With Distributors - pkg-config")
+    (para "The module appears to work correctly on the current system.
+      Unfortunately, the distributor of the operating system on a different
+      machine has decided that the license of the "
+      (item command "fiction-config") " command is somehow incompatible
+      with his pet iguana and has removed the program. Anyone executing
+      the modules on that system will see the following:")
+    (para-verbatim example
+"$ ./sd-run modules/fiction-flags
+fiction-flags: error: config binary 'fiction-config' failed
+fiction-flags: info: all search types failed
+$ ./sd-run modules/fiction-libs
+fiction-libs: error: config binary 'fiction-config' failed
+fiction-libs: info: all search types failed")
+    (para "This situation occurs frequently. Distributors will often
+      rename or remove configuration programs without warning or explanation.")
+    (para "If the modules were given more information about the package,
+      however, they would be able to fall back to other methods of detection
+      when the first failed.")
+    (para "For the sake of example, " (item package "libfiction") " has
+      an entry in the "
+      (link-ext "http://pkg-config.freedesktop.org/wiki/" "pkg-config")
+      " database, under the name " (item package "fiction") ":")
+    (para-verbatim example
+"$ pkg-config fiction --cflags
+-I/usr/local/include
+$ pkg-config fiction --libs
+-L/usr/local/include -lfiction
+$ pkg-config fiction --static --libs
+/usr/local/lib/libfiction.a")
+    (para "The name of the " (item command "pkg-config") " entry can be
+      inserted in the modules and they will then check "
+      (item command "pkg-config") " when the initial configuration command
+      fails:")
+    (para-verbatim example
+"$ echo fiction  > fiction-flags/pkg
+$ echo --cflags > fiction-flags/pkg_config_args
+
+$ echo fiction  > fiction-libs/pkg
+$ echo --libs   > fiction-libs/pkg_config_args
+
+$ echo fiction         > fiction-libs-S/pkg
+$ echo --static --libs > fiction-libs-S/pkg_config_args")
+    (para "Somebody executing the module on a system lacking the "
+      (item command "fiction-config") " command but with "
+      (item command "pkg-config") " installed would now get the
+      correct compiler flags.")
+    (para "The " (item file_name "defines") " entries are applied correctly
+      to the resulting flags, as before.")
+    (para "Of course, it's entirely possible that "
+      (item command "pkg-config") " isn't installed either..."))
+
+  (subsection
+    (title "Last Resort - Manual Search")
+    (para "If all of the previous search methods have failed, the "
+      (item package "sysdeps") " system can attempt to manually search
+      for files, given enough information.")
+    (para "For the sake of example, " (item package "libfiction") " has
+      one header file named " (item file_name "fiction.h") ", one dynamic library
+      file named " (item file_name "libfiction") " and one static library named "
+      (item file_name "libfiction.a") ".")
+    (para "The " (item package "sysdeps") " system  takes care of
+      system-specific library suffixes and prefixes automatically.")
+    (para "The modules can be given this information using the "
+      (item file_name "header") ", " (item file_name "dynlib") " and "
+      (item file_name "slib") " files.")
+    (para-verbatim example
+"$ echo fiction.h > fiction-flags/header
+$ echo fiction   > fiction-libs/dynlib
+$ echo fiction   > fiction-libs-S/slib")
+    (para "If a header file is located through manual searches, the "
+      (item file_name "defines") " entries are applied correctly
+      to the resulting flags, as before.")
+    (para "Given this information, " (item package "sysdeps") " now has an
+      excellent chance of locating the library, even on the most misconfigured
+      of systems."))
+
+)
