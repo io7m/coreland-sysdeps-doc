@@ -17,8 +17,8 @@ $ cd SYSDEPS/modules"))
   (subsection
     (title "Package Detection")
     (para "The " (item package "sysdeps") " system makes it very easy
-      to detect external packages. Essentially, a module is a directory
-      with a set of files describing various aspects of the external
+      to write modules that detect external packages. Essentially, a module is
+      a directory with a set of files describing various aspects of the external
       package.")
     (para "For this tutorial, a module will be written that correctly
       detects a fictional C library named " (item package "libfiction") ".
@@ -76,7 +76,7 @@ $ echo 'http://example.org' > fiction-libs-S/package_url")
     (para "The " (item file_name "description.ud") " file provides a long
       description for the module in " (link-ext "http://coreland.ath.cx/code/udoc" "udoc")
       " format. The details of this file are out of the scope of this tutorial
-      and the file is not strictly required (although seriously recommended)."))
+      and the file is not strictly required (although strongly recommended)."))
 
   (subsection
     (title "fiction-flags")
