@@ -76,7 +76,12 @@ $ echo 'http://example.org' > fiction-libs-S/package_url")
     (para "The " (item file_name "description.ud") " file provides a long
       description for the module in " (link-ext "http://coreland.ath.cx/code/udoc" "udoc")
       " format. The details of this file are out of the scope of this tutorial
-      and the file is not strictly required (although strongly recommended)."))
+      and the file is not strictly required (although strongly recommended).")
+    (para "Modules are also versioned, for documentation purposes.")
+    (para-verbatim example
+"$ echo 1.0 > fiction-flags/version
+$ echo 1.0 > fiction-libs/version
+$ echo 1.0 > fiction-libs-S/version"))
 
   (subsection
     (title "fiction-flags")
