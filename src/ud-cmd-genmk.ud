@@ -1,10 +1,10 @@
 (section
   (ref "ud_cmd_genmk")
-  (title "sd-genmk")
+  (title "sysdeps-genmk")
 
   (subsection
     (title "Description")
-    (para "The " (item command "sd-genmk") " command creates a "
+    (para "The " (item command "sysdeps-genmk") " command creates a "
       (item command "make") "-independent " (item file_name "Makefile")
       " fragment with appropriate targets for all modules currently present
       in the " (item file_name "modules") " directory.")
@@ -27,17 +27,17 @@ flags-pthr_rt: libs-pthreads")
     (para "The generated " (item file_name "Makefile") " fragment is written
       in a manner that will cause parallel " (item command "make") " invocations
       (eg. '" (item command "make -j 32") "') to execute completely safely.")
-    (para "The " (item command "sd-genmk") " command is included in the base "
+    (para "The " (item command "sysdeps-genmk") " command is included in the base "
       (item file_name "SYSDEPS") " directory."))
 
   (subsection
     (title "Preconditions")
-    (para "The " (item command "sd-genmk") " command must be run from the base "
-      (item file_name "SYSDEPS") " directory."))
+    (para "There must be a base directory named " (item file_name "SYSDEPS")
+      " in the current directory."))
 
   (subsection
     (title "Postconditions")
-    (para "The " (item command "sd-genmk") " will write a "
+    (para "The " (item command "sysdeps-genmk") " will write a "
       (item file_name "Makefile") " fragment to standard out."))
 
   (subsection
