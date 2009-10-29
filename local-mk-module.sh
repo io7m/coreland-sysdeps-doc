@@ -69,25 +69,25 @@ then
 EOF
 fi
 
-if [ -f "${dir}/dynlib" ]
+if [ -f "${dir}/dynamic_lib" ]
 then
-  dynlib=`head -n 1 ${dir}/dynlib` || fatal "could not read ${dir}/dynlib"
+  dynamic_lib=`head -n 1 ${dir}/dynamic_lib` || fatal "could not read ${dir}/dynamic_lib"
 
   cat <<EOF
     (para "The module will attempt to manually search for the following
       dynamic library file:")
-    (para (item file_name "${dynlib}.\${SO_SUFFIX}"))
+    (para (item file_name "${dynamic_lib}.\${SO_SUFFIX}"))
 EOF
 fi
 
-if [ -f "${dir}/slib" ]
+if [ -f "${dir}/static_lib" ]
 then
-  slib=`head -n 1 ${dir}/slib` || fatal "could not read ${dir}/slib"
+  static_lib=`head -n 1 ${dir}/static_lib` || fatal "could not read ${dir}/static_lib"
 
   cat <<EOF
     (para "The module will attempt to manually search for the following
       static library file:")
-    (para (item file_name "lib${slib}.a"))
+    (para (item file_name "lib${static_lib}.a"))
 EOF
 fi
 
