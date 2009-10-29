@@ -64,8 +64,6 @@ drwxr-xr-x  2 cpj wheel    512 14 Oct 02:00 modules/
 -rwxr-xr-x  1 cpj wheel    533 14 Oct 02:00 sd-cpul3cache*
 -rwxr-xr-x  1 cpj wheel   1021 14 Oct 02:00 sd-cpumodel*
 -rwxr-xr-x  1 cpj wheel   1485 14 Oct 02:00 sd-cpunum*
--rwxr-xr-x  1 cpj wheel    130 14 Oct 02:00 sd-creates*
--rwxr-xr-x  1 cpj wheel    789 14 Oct 02:00 sd-defines*
 -rwxr-xr-x  1 cpj wheel   2274 14 Oct 02:00 sd-file*
 -rwxr-xr-x  1 cpj wheel   2545 14 Oct 02:00 sd-genmk*
 -rwxr-xr-x  1 cpj wheel    199 14 Oct 02:00 sd-line*

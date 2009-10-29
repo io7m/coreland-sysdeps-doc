@@ -1,0 +1,22 @@
+(section
+  (ref "ud_cmd_defines")
+  (title "sysdeps-defines")
+
+  (subsection
+    (title "Description")
+    (para "The " (item command "sysdeps-defines") " command lists all the C
+      preprocessor definitions that may be defined by the set of currently
+      selected modules.")
+    (para-verbatim example
+"$ sysdeps-defines
+SD_HAVE_TIFF"))
+
+  (subsection
+    (title "Preconditions")
+    (para "There must be a base directory named " (item file_name "SYSDEPS")
+      " in the current directory."))
+
+  (subsection
+    (title "Postconditions")
+    (para "None."))
+)

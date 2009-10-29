@@ -12,10 +12,11 @@
   (include "ud-cmd-status-is.ud")
   (include "ud-cmd-status-set.ud")
   (include "ud-cmd-genmk.ud")
-  (include "ud-cmd-creates.ud")
 
   (include "ud-cmd-sysdeps-init.ud")
   (include "ud-cmd-sysdeps-list.ud")
   (include "ud-cmd-sysdeps-add.ud")
   (include "ud-cmd-sysdeps-remove.ud")
+  (include "ud-cmd-creates.ud")
+  (include "ud-cmd-sysdeps-defines.ud")
 )
