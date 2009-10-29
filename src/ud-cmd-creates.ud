@@ -1,22 +1,20 @@
 (section
   (ref "ud_cmd_creates")
-  (title "sd-creates")
+  (title "sysdeps-creates")
 
   (subsection
     (title "Description")
-    (para "The " (item command "sd-creates") " command lists all the files that
+    (para "The " (item command "sysdeps-creates") " command lists all the files that
       will be created by the set of currently selected modules.")
     (para-verbatim example
-"$ (cd SYSDEPS && ./sd-creates)
+"$ sysdeps-creates
 flags-tiff
-libs-tiff")
-    (para "The " (item command "sd-creates") " command is included in the base "
-      (item file_name "SYSDEPS") " directory."))
+libs-tiff"))
 
   (subsection
     (title "Preconditions")
-    (para "The " (item command "sd-creates") " command must be run from the base "
-      (item file_name "SYSDEPS") " directory."))
+    (para "There must be a base directory named " (item file_name "SYSDEPS")
+      " in the current directory."))
 
   (subsection
     (title "Postconditions")

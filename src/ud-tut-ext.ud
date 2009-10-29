@@ -67,10 +67,10 @@ $ sysdeps-add tiff-flags tiff-libs")
       (item file_name "flags-tiff") " and " (item file_name "libs-tiff") ".
       The " (item package "sysdeps") " package provides a command for listing files
       that will be created by all of the current modules - "
-      (link "ud_cmd_creates" "sd-creates") ":")
+      (link "ud_cmd_creates" "sysdeps-creates") ":")
 
     (para-verbatim example
-"$ (cd SYSDEPS && ./sd-creates)
+"$ sysdeps-creates
 flags-tiff
 libs-tiff")
 
