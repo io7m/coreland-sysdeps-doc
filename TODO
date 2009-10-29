@@ -17,6 +17,7 @@ Documentation outline:
     Platform assumptions
       cc -o file.o -c file.c
       cc -o file      file.o
+      GNAT interface
     Platform dependent/independent code
     Documentation of all files in SYSDEPS.
     Approach to portability
