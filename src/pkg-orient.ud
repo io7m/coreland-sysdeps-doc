@@ -29,6 +29,7 @@
         (item "Linux - Too many combinations to mention")
         (item "Mac OS X / Darwin - PPC / PPC64 / x86 / x86_64")
         (item "Microsoft Windows 2000/XP (using MSYS for minimal POSIX shell commands)")
+        (item "MINIX 3")
         (item "NetBSD - Too many combinations to mention")
         (item "OpenBSD - 3.5 .. 4.0 - x86")
         (item "OpenVMS - Alpha")
