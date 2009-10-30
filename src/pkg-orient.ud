@@ -50,16 +50,21 @@
     (para
       (list
         (item command "awk")
+        (item command "basename")
         (item command "cat")
-        (item command "cc")
         (item command "cd")
+        (item command "cp")
         (item command "echo")
+        (item command "exit")
         (item command "grep")
         (item command "head")
         (item command "mv")
+        (item command "mkdir")
+        (item command "pwd")
         (item command "rm")
         (item command "sed")
-        (item command "sort")
+        (item command "touch")
+        (item command "tr")
         (item command "wc")
         (item command "uname"))))
 
