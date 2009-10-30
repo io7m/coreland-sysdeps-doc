@@ -177,6 +177,20 @@
       version of the module.")
     (para "The syntax of the file is as follows:")
     (para-verbatim example ebnf (render "dd-module-version.txt"))
-    (para "The " (item file_name "version") " file is not required to
+    (para "The major version number must be incremented when a module implements
+      a compatibility breaking change. A compatibility breaking change is defined as a change
+      that would require source code modifications to projects using the module. An
+      example of a compatibility breaking change would be renaming a preprocessor
+      define or changing the name of a created file.")
+    (para "The minor version number must be incremented when a module implements
+      a non compatibility breaking change. A non compatibility breaking change is
+      defined as a change that would require not source code modifications to projects
+      using the module. An
+      example of a compatibility breaking change would be adding a preprocessor
+      define or adding extra information about an external package to better detect it.")
+    (para "The line between the two types of changes is, of course, blurred and
+      the utmost care should be taken to prevent the introduction of unexpected
+      incompatibilities.")
+    (para "The " (item file_name "version") " file is required to
       be present in a module."))
 )
