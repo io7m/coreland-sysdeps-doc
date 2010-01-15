@@ -64,7 +64,7 @@ then
 
   cat <<EOF
     (para "The module will attempt to manually search for the following
-      C header files:")
+      C header file:")
     (para (item file_name "${header}"))
 EOF
 fi
@@ -74,9 +74,10 @@ then
   dynamic_lib=`head -n 1 ${dir}/dynamic_lib` || fatal "could not read ${dir}/dynamic_lib"
 
   cat <<EOF
-    (para "The module will attempt to manually search for the following
-      dynamic library file:")
-    (para (item file_name "${dynamic_lib}.\${SO_SUFFIX}"))
+    (para "The module will attempt to manually search for a dynamic library
+      with a base name matching \"" (item file_name "${dynamic_lib}") "\".")
+    (para "Platform-specific variations such as file suffixes and prefixes
+      are automatically accounted for.")
 EOF
 fi
 
@@ -85,9 +86,10 @@ then
   static_lib=`head -n 1 ${dir}/static_lib` || fatal "could not read ${dir}/static_lib"
 
   cat <<EOF
-    (para "The module will attempt to manually search for the following
-      static library file:")
-    (para (item file_name "lib${static_lib}.a"))
+    (para "The module will attempt to manually search for a static library
+      with a base name matching \"" (item file_name "${static_lib}") "\".")
+    (para "Platform-specific variations such as file suffixes and prefixes
+      are automatically accounted for.")
 EOF
 fi
 
@@ -95,6 +97,85 @@ cat <<EOF
   )
 
 EOF
+
+if [ -d "${dir}/os_ext" ]
+then
+  cat <<EOF
+  (subsection
+    (title "System Specifics")
+EOF
+
+  for SYSDEP_OS in `ls "${dir}/os_ext"`
+  do
+    cat <<EOF
+      (subsection
+        (title "${SYSDEP_OS}")
+EOF
+
+    if [ -f "${dir}/os_ext/${SYSDEP_OS}/override" ]
+    then
+      override=`head -n 1 ${dir}/os_ext/${SYSDEP_OS}/override` ||
+        fatal "could not read ${dir}/os_ext/${SYSDEP_OS}/override"
+
+      cat <<EOF
+        (para "On systems returning " (item constant "${SYSDEP_OS}") " for "
+          (link "dd_env_SYSDEP_OS" "SYSDEP_OS") ", the module will do nothing
+          other than simply print:")
+        (para-verbatim example "${override}")
+EOF
+    fi
+
+
+    if [ -f "${dir}/os_ext/${SYSDEP_OS}/header" ]
+    then
+      header=`head -n 1 ${dir}/os_ext/${SYSDEP_OS}/header` ||
+        fatal "could not read ${dir}/os_ext/${SYSDEP_OS}/header"
+
+      cat <<EOF
+        (para "On systems returning " (item constant "${SYSDEP_OS}") " for "
+          (link "dd_env_SYSDEP_OS" "SYSDEP_OS") ", the module will attempt to
+          locate " (item file_name "${header}") " instead of the normal header
+          file.")
+EOF
+    fi
+
+    if [ -f "${dir}/os_ext/${SYSDEP_OS}/static_lib" ]
+    then
+      static_lib=`head -n 1 ${dir}/os_ext/${SYSDEP_OS}/static_lib` ||
+        fatal "could not read ${dir}/os_ext/${SYSDEP_OS}/static_lib"
+
+      cat <<EOF
+        (para "On systems returning " (item constant "${SYSDEP_OS}") " for "
+          (link "dd_env_SYSDEP_OS" "SYSDEP_OS") ", the module will attempt to
+          locate a static library with a base name matching "
+          (item file_name "${static_lib}") " instead of the normal static
+          library file.")
+EOF
+    fi
+ 
+    if [ -f "${dir}/os_ext/${SYSDEP_OS}/dynamic_lib" ]
+    then
+      dynamic_lib=`head -n 1 ${dir}/os_ext/${SYSDEP_OS}/dynamic_lib` ||
+        fatal "could not read ${dir}/os_ext/${SYSDEP_OS}/dynamic_lib"
+
+      cat <<EOF
+        (para "On systems returning " (item constant "${SYSDEP_OS}") " for "
+          (link "dd_env_SYSDEP_OS" "SYSDEP_OS") ", the module will attempt to
+          locate a dynamic library with a base name matching "
+          (item file_name "${dynamic_lib}") " instead of the normal dynamic
+          library file.")
+EOF
+    fi
+    cat <<EOF
+    )
+EOF
+  done
+
+  cat <<EOF
+  )
+EOF
+fi
+
 
 #
 # Read list of created files.
