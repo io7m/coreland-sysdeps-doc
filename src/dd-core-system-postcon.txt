@@ -16,6 +16,7 @@
 (item (link "dd_env_SYSDEP_OS" "SYSDEP_OS"))
 (item (link "dd_env_SYSDEP_OS_VERSION" "SYSDEP_OS_VERSION"))
 (item (link "dd_env_SYSDEP_LIB_SUFFIX" "SYSDEP_LIB_SUFFIX"))
+(item (link "dd_env_SYSDEP_STATIC_LIB_SUFFIXES" "SYSDEP_STATIC_LIB_SUFFIXES"))
 (item (link "dd_env_SYSDEP_STDBIN" "SYSDEP_STDBIN"))
 (item (link "dd_env_SYSDEP_STDINC" "SYSDEP_STDINC"))
 (item (link "dd_env_SYSDEP_STDLIB" "SYSDEP_STDLIB"))
