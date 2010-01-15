@@ -17,9 +17,10 @@
       (item command "pkg-config") " command in order
       to retrieve the desired information from the environment:")
     (para-verbatim example "pkg-config --libs sdl")
-    (para "The module will attempt to manually search for the following
-      dynamic library file:")
-    (para (item file_name "SDL.${SO_SUFFIX}"))
+    (para "The module will attempt to manually search for a dynamic library
+      with a base name matching \"" (item file_name "SDL") "\".")
+    (para "Platform-specific variations such as file suffixes and prefixes
+      are automatically accounted for.")
   )
 
   (subsection

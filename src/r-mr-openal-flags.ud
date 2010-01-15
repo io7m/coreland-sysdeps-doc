@@ -11,10 +11,20 @@
 (para "This module determines the compiler flags required to compile against "
   (link-ext "http://www.openal.org" "OpenAL"))
     (para "The module will attempt to manually search for the following
-      C header files:")
+      C header file:")
     (para (item file_name "AL/al.h"))
   )
 
+  (subsection
+    (title "System Specifics")
+      (subsection
+        (title "SYSDEP_OS_DARWIN")
+        (para "On systems returning " (item constant "SYSDEP_OS_DARWIN") " for "
+          (link "dd_env_SYSDEP_OS" "SYSDEP_OS") ", the module will attempt to
+          locate " (item file_name "al.h") " instead of the normal header
+          file.")
+    )
+  )
   (subsection
     (title "Creates")
     (para "The module creates the following files:")

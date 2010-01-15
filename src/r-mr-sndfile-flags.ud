@@ -15,7 +15,7 @@
       to retrieve the desired information from the environment:")
     (para-verbatim example "pkg-config --cflags sndfile")
     (para "The module will attempt to manually search for the following
-      C header files:")
+      C header file:")
     (para (item file_name "sndfile.h"))
   )
 

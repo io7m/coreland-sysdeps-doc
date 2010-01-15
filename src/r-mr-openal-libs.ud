@@ -10,8 +10,37 @@
     (title "Description")
 (para "This module determines the linker flags required to link against "
   (link-ext "http://www.openal.org" "OpenAL"))
+    (para "The module will attempt to execute the following command in order
+      to retrieve the desired information from the environment:")
+    (para-verbatim example "openal-config --libs")
+    (para "The module will attempt to execute the following "
+      (item command "pkg-config") " command in order
+      to retrieve the desired information from the environment:")
+    (para-verbatim example "pkg-config --libs openal")
+    (para "The module will attempt to manually search for a dynamic library
+      with a base name matching \"" (item file_name "openal") "\".")
+    (para "Platform-specific variations such as file suffixes and prefixes
+      are automatically accounted for.")
   )
 
+  (subsection
+    (title "System Specifics")
+      (subsection
+        (title "SYSDEP_OS_DARWIN")
+        (para "On systems returning " (item constant "SYSDEP_OS_DARWIN") " for "
+          (link "dd_env_SYSDEP_OS" "SYSDEP_OS") ", the module will do nothing
+          other than simply print:")
+        (para-verbatim example "-framework OpenAL")
+    )
+      (subsection
+        (title "SYSDEP_OS_MS_WINDOWS")
+        (para "On systems returning " (item constant "SYSDEP_OS_MS_WINDOWS") " for "
+          (link "dd_env_SYSDEP_OS" "SYSDEP_OS") ", the module will attempt to
+          locate a dynamic library with a base name matching "
+          (item file_name "OpenAL32") " instead of the normal dynamic
+          library file.")
+    )
+  )
   (subsection
     (title "Creates")
     (para "The module creates the following files:")

@@ -10,9 +10,10 @@
     (title "Description")
 (para "This module determines the linker flags required to statically link against "
   (link-ext "http://enet.cubik.org/" "enet"))
-    (para "The module will attempt to manually search for the following
-      static library file:")
-    (para (item file_name "libenet.a"))
+    (para "The module will attempt to manually search for a static library
+      with a base name matching \"" (item file_name "enet") "\".")
+    (para "Platform-specific variations such as file suffixes and prefixes
+      are automatically accounted for.")
   )
 
   (subsection

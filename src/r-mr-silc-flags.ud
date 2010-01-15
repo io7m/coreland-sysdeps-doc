@@ -11,7 +11,7 @@
 (para "This module determines the compiler flags required to compile against "
   (link-ext "http://silcnet.org" "SILC Toolkit"))
     (para "The module will attempt to manually search for the following
-      C header files:")
+      C header file:")
     (para (item file_name "silc/silc.h"))
   )
 

@@ -11,10 +11,16 @@
 (para "This module determines the compiler flags required to compile against "
   (link-ext "http://www.libsdl.org/projects/SDL_mixer/" "SDL_mixer"))
     (para "The module will attempt to manually search for the following
-      C header files:")
+      C header file:")
     (para (item file_name "SDL_mixer.h"))
   )
 
+  (subsection
+    (title "System Specifics")
+      (subsection
+        (title "SYSDEP_OS_DARWIN")
+    )
+  )
   (subsection
     (title "Creates")
     (para "The module creates the following files:")

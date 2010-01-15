@@ -78,6 +78,7 @@
   (include "r-mr-netlib-flags.ud")
   (include "r-mr-netlib-libs.ud")
   (include "r-mr-netlib-libs-S.ud")
+  (include "r-mr-ocaml-flags.ud")
   (include "r-mr-openal-flags.ud")
   (include "r-mr-openal-libs.ud")
   (include "r-mr-opengl-ada-flags.ud")

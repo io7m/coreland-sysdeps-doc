@@ -10,6 +10,14 @@
     (title "Description")
 (para "This module determines the linker flags required to link against "
   (link-ext "http://www.jackaudio.org" "JACK"))
+    (para "The module will attempt to execute the following "
+      (item command "pkg-config") " command in order
+      to retrieve the desired information from the environment:")
+    (para-verbatim example "pkg-config --libs jack")
+    (para "The module will attempt to manually search for a dynamic library
+      with a base name matching \"" (item file_name "jack") "\".")
+    (para "Platform-specific variations such as file suffixes and prefixes
+      are automatically accounted for.")
   )
 
   (subsection

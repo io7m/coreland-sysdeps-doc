@@ -10,9 +10,10 @@
     (title "Description")
 (para "This module determines the linker flags required to link against "
   (link-ext "http://www.fastcgi.com" "FastCGI"))
-    (para "The module will attempt to manually search for the following
-      dynamic library file:")
-    (para (item file_name "fcgi.${SO_SUFFIX}"))
+    (para "The module will attempt to manually search for a dynamic library
+      with a base name matching \"" (item file_name "fcgi") "\".")
+    (para "Platform-specific variations such as file suffixes and prefixes
+      are automatically accounted for.")
   )
 
   (subsection
