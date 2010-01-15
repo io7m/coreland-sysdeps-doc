@@ -188,9 +188,9 @@
     (para "Example value:")
     (para-verbatim example " -v                                             "))
   (subsection
-    (ref "dd_env_SYSDEP_LIBSUFFIX")
-    (title "SYSDEP_LIBSUFFIX")
-    (para example (item variable "SYSDEP_LIBSUFFIX") " : " "string")
+    (ref "dd_env_SYSDEP_LIB_SUFFIX")
+    (title "SYSDEP_LIB_SUFFIX")
+    (para example (item variable "SYSDEP_LIB_SUFFIX") " : " "string")
     (para " Host system dynamic library suffix (.so, etc).")
     (para "Example value:")
     (para-verbatim example " sl                                             "))
