@@ -26,15 +26,15 @@
   (subsection
     (title "System Specifics")
       (subsection
-        (title "SYSDEP_OS_DARWIN")
-        (para "On systems returning " (item constant "SYSDEP_OS_DARWIN") " for "
+        (title "SD_SYSINFO_OS_DARWIN")
+        (para "On systems returning " (item constant "SD_SYSINFO_OS_DARWIN") " for "
           (link "dd_env_SYSDEP_OS" "SYSDEP_OS") ", the module will do nothing
           other than simply print:")
         (para-verbatim example "-framework OpenAL")
     )
       (subsection
-        (title "SYSDEP_OS_MS_WINDOWS")
-        (para "On systems returning " (item constant "SYSDEP_OS_MS_WINDOWS") " for "
+        (title "SD_SYSINFO_OS_MS_WINDOWS")
+        (para "On systems returning " (item constant "SD_SYSINFO_OS_MS_WINDOWS") " for "
           (link "dd_env_SYSDEP_OS" "SYSDEP_OS") ", the module will attempt to
           locate a dynamic library with a base name matching "
           (item file_name "OpenAL32") " instead of the normal dynamic

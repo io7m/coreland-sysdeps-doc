@@ -1,0 +1,60 @@
+(section
+  (ref "dd_comp_search_slib")
+  (title "sd-search_slib")
+
+  (subsection
+    (title "Synopsis")
+    (para-verbatim program_synopsis
+"sd-search_slib: usage:"))
+
+  (subsection
+    (title "Description")
+    (para "The " (item command "sd-search_slib") " program searches for
+      static libraries. It attempts to read a name " (item variable "F")
+      " corresponding to the name of a static library minus prefix or suffix
+      from a file named "
+      (item file_name "static_lib") " in the current directory. It then
+      attempts to do the same from a file named "
+      (item file_name "os_ext/${SYSDEP_OS}/static_lib") ", overriding
+      the original name read, if successful.")
+    (para "The program then checks in each directory specified by "
+      (item variable "SYSDEP_STDLIB") " for a file with the base name "
+      (item variable "F") ", the file suffix matching any of "
+      (item variable "SYSDEP_STATIC_LIB_SUFFIXES") " and optionally beginning
+      with " (item constant "lib") ".")
+    (para "As a concrete example:")
+    (para-verbatim example
+"SYSDEP_STDLIB=\"/usr/lib /usr/local/lib\"
+SYSDEP_STATIC_LIB_SUFFIXES=\"a lib\"
+
+F=\"png\"")
+    (para "Would result in all of the following being checked:")
+    (para-verbatim example
+"/usr/lib/png.a
+/usr/lib/png.lib
+/usr/lib/libpng.a
+/usr/lib/libpng.lib
+/usr/local/lib/png.a
+/usr/local/lib/png.lib
+/usr/local/lib/libpng.a
+/usr/local/lib/libpng.lib")
+    (para "The first file found to exist takes priority and the full
+      path to the file is printed.")
+    (para "The program uses " (link "dd_comp_configman" "sd-configman")
+      " to perform the search."))
+
+  (subsection
+    (title "Preconditions")
+    (para "The program requires the value of the environment variable "
+      (item variable "SYSDEP_BASE_DIRECTORY") " to be set to the location
+      of the base " (item package "sysdeps") " directory."))
+
+  (subsection
+    (title "Postconditions")
+    (para "The " (item command "sd-search_slib") " will print nothing
+      and exit with a successful exit code if no file was found.")
+    (para "The program will print the full path to the file and
+      exit with a successful exit code if a file was located.")
+    (para "The program will exit with an exit code indicating failure
+      if any error occurs."))
+)

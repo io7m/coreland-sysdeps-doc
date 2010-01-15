@@ -28,4 +28,7 @@
   (include "dd-comp-locker.ud")
   (include "dd-comp-os.ud")
   (include "dd-comp-osversion.ud")
+  (include "dd-comp-search_dlib.ud")
+  (include "dd-comp-search_slib.ud")
+  (include "dd-comp-search_header.ud")
 )

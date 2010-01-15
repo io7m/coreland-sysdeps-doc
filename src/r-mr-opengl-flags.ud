@@ -18,8 +18,8 @@
   (subsection
     (title "System Specifics")
       (subsection
-        (title "SYSDEP_OS_DARWIN")
-        (para "On systems returning " (item constant "SYSDEP_OS_DARWIN") " for "
+        (title "SD_SYSINFO_OS_DARWIN")
+        (para "On systems returning " (item constant "SD_SYSINFO_OS_DARWIN") " for "
           (link "dd_env_SYSDEP_OS" "SYSDEP_OS") ", the module will attempt to
           locate " (item file_name "gl.h") " instead of the normal header
           file.")

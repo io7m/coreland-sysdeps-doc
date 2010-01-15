@@ -18,7 +18,7 @@
   (subsection
     (title "System Specifics")
       (subsection
-        (title "SYSDEP_OS_DARWIN")
+        (title "SD_SYSINFO_OS_DARWIN")
     )
   )
   (subsection
